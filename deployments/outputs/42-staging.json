@@ -65,7 +65,9 @@
     "OtcEscrow - 0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5": "0xBc568CaDEA028CD4E1478c9216337Dd583d876f6",
     "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f": "0xcB97e3e5a8F4Fc51f3BEC253e336E655BEcB6618",
     "BaseManager - DPI": "0x350bE5A3306C62CBf958Fca20eE99214fEC8D2dc",
-    "GovernanceAdapter - DPI": "0x425f512E4996CeE632f852A05f2cDfE3578C83b2"
+    "GovernanceAdapter - DPI": "0x425f512E4996CeE632f852A05f2cDfE3578C83b2",
+    "GIMExtension - DPI": "0x60b65425B6AbFf179E0187756771f534672e7C0C",
+    "StreamingFeeSplitExtension - DPI": "0xF97a6a16AdC716B9bFb1684A8E29C71EB73B03Ed"
   },
   "transactions": {
     "0": {
@@ -1386,6 +1388,46 @@
       "id": "0xc83e40516f510c41f6b74f5d1d4f3a260079085fb6874027cd98eab3600d19bb",
       "timestamp": 1624560081900,
       "description": "Add GovernanceAdapter - DPI on BaseManager - DPI"
+    },
+    "149": {
+      "id": "0x5bcdd0fb1464378fcb7f690fdc4597aeeb0ad11deb1c0503128951f257e1599b",
+      "name": "GIMExtension - DPI",
+      "timestamp": 1624902685861,
+      "verified": true,
+      "description": "Deployed GIMExtension - DPI",
+      "contractAddress": "0x60b65425B6AbFf179E0187756771f534672e7C0C",
+      "constructorArgs": [
+        "0x350bE5A3306C62CBf958Fca20eE99214fEC8D2dc",
+        "0x2889dee478f1e2913b7de0913be3de40bf05f326"
+      ],
+      "libraries": {}
+    },
+    "150": {
+      "id": "0xf5d8763053ba76ba6f4033762ec9d1aa5c3c79bb3a696b98a27f2a7103cdfdc3",
+      "name": "StreamingFeeSplitExtension - DPI",
+      "timestamp": 1624902706976,
+      "verified": true,
+      "description": "Deployed StreamingFeeSplitExtension - DPI",
+      "contractAddress": "0xF97a6a16AdC716B9bFb1684A8E29C71EB73B03Ed",
+      "constructorArgs": [
+        "0x350bE5A3306C62CBf958Fca20eE99214fEC8D2dc",
+        "0xE038E59DEEC8657d105B6a3Fb5040b3a6189Dd51",
+        {
+          "type": "BigNumber",
+          "hex": "0x09b6e64a8ec60000"
+        }
+      ],
+      "libraries": {}
+    },
+    "151": {
+      "id": "0xcc83c38d22c3b37b09e745cace9e10056ae0ad2f4d106d0ca7e87dac288eabe1",
+      "timestamp": 1624902713081,
+      "description": "Add GIMExtension - DPI on BaseManager - DPI"
+    },
+    "152": {
+      "id": "0xb4ae3b97206d8cfd7dcc2d7ed6e68b2026482add9063c524d3be717343516d06",
+      "timestamp": 1624902722080,
+      "description": "Add StreamingFeeSplitExtension - DPI on BaseManager - DPI"
     }
   }
 }
