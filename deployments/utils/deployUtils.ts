@@ -18,8 +18,10 @@ import {
   InstanceGetter,
   removeNetwork,
   saveContractDeployment,
+  saveDeferredTransactionData,
 } from "@deployments/utils";
 import { Address } from "hardhat-deploy/dist/types";
+import { BigNumber } from "ethers";
 
 export function trackFinishedStage(
   currentStage: number,
@@ -176,6 +178,80 @@ export async function deployGovernanceAdapter(
   }
 }
 
+export async function deployStreamingFeeExtension(
+  hre: HardhatRuntimeEnvironment,
+  feeExtensionName: string,
+  managerName: string,
+  feeSplit: BigNumber
+): Promise<void> {
+  const {
+    deploy,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const checkFeeExtensionAddress = await getContractAddress(feeExtensionName);
+  if (checkFeeExtensionAddress === "") {
+    const manager = await getContractAddress(managerName);
+    const streamingFeeModule = await findDependency("STREAMING_FEE_MODULE");
+
+    const constructorArgs = [
+      manager,
+      streamingFeeModule,
+      feeSplit,
+    ];
+
+    const feeSplitExtensionDeploy = await deploy("StreamingFeeSplitExtension", {
+      from: deployer,
+      args: constructorArgs,
+      log: true,
+    });
+
+    feeSplitExtensionDeploy.receipt && await saveContractDeployment({
+      name: feeExtensionName,
+      contractAddress: feeSplitExtensionDeploy.address,
+      id: feeSplitExtensionDeploy.receipt.transactionHash,
+      description: `Deployed ${feeExtensionName}`,
+      constructorArgs,
+    });
+  }
+}
+
+export async function deployGIMExtension(
+  hre: HardhatRuntimeEnvironment,
+  gimExtensionName: string,
+  managerName: string,
+): Promise<void> {
+  const {
+    deploy,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const checkGIMExtensionAddress = await getContractAddress(gimExtensionName);
+  if (checkGIMExtensionAddress === "") {
+    const manager = await getContractAddress(managerName);
+    const generalIndexModule = await findDependency("GENERAL_INDEX_MODULE");
+
+    const constructorArgs = [
+      manager,
+      generalIndexModule,
+    ];
+
+    const gimExtensionDeploy = await deploy("GIMExtension", {
+      from: deployer,
+      args: constructorArgs,
+      log: true,
+    });
+
+    gimExtensionDeploy.receipt && await saveContractDeployment({
+      name: gimExtensionName,
+      contractAddress: gimExtensionDeploy.address,
+      id: gimExtensionDeploy.receipt.transactionHash,
+      description: `Deployed ${gimExtensionName}`,
+      constructorArgs,
+    });
+  }
+}
+
 export async function addAdapter(
   hre: HardhatRuntimeEnvironment,
   managerName: string,
@@ -184,6 +260,7 @@ export async function addAdapter(
   const {
     rawTx,
     deployer,
+    networkConstant,
   } = await prepareDeployment(hre);
 
   const [owner] = await getAccounts();
@@ -195,12 +272,22 @@ export async function addAdapter(
   const adapterAddress = await getContractAddress(adapterName);
   if (!await baseManagerInstance.isAdapter(adapterAddress)) {
     const addAdapterData = baseManagerInstance.interface.encodeFunctionData("addAdapter", [adapterAddress]);
-    const addAdapterTransaction: any = await rawTx({
-      from: deployer,
-      to: baseManagerInstance.address,
-      data: addAdapterData,
-      log: true,
-    });
-    await writeTransactionToOutputs(addAdapterTransaction.transactionHash, `Add ${adapterName} on ${managerName}`);
+    const description = `Add ${adapterName} on ${managerName}`;
+
+    if (networkConstant === "production" || process.env.TESTING_PRODUCTION) {
+      await saveDeferredTransactionData({
+        data: addAdapterData,
+        description,
+        contractName: managerName,
+      });
+    } else {
+      const addAdapterTransaction: any = await rawTx({
+        from: deployer,
+        to: baseManagerInstance.address,
+        data: addAdapterData,
+        log: true,
+      });
+      await writeTransactionToOutputs(addAdapterTransaction.transactionHash, description);
+    }
   }
 }
