@@ -95,7 +95,7 @@
     "web3": "^1.2.9"
   },
   "dependencies": {
-    "@setprotocol/index-coop-contracts": "0.0.21",
+    "@setprotocol/index-coop-contracts": "0.0.22",
     "ethereumjs-util": "^7.0.10",
     "fs-extra": "^5.0.0",
     "module-alias": "^2.2.2",

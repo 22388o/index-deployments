@@ -6,8 +6,10 @@ export {
 export {
   addAdapter,
   deployBaseManager,
+  deployGIMExtension,
   deployGovernanceAdapter,
   deployMerkleDistributor,
+  deployStreamingFeeExtension,
   prepareDeployment,
   stageAlreadyFinished,
   trackFinishedStage,
