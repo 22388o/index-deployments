@@ -35,7 +35,7 @@ const {
 
 const expect = getWaffleExpect();
 
-describe.only("DPI: New Manager System", () => {
+describe("DPI: New Manager System", () => {
   let deployer: Account;
 
   let baseManagerInstance: BaseManager;

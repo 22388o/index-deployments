@@ -31,7 +31,7 @@ const {
 
 const expect = getWaffleExpect();
 
-describe.only("MVI: New Manager System", () => {
+describe("MVI: New Manager System", () => {
   let deployer: Account;
 
   let baseManagerInstance: BaseManager;
