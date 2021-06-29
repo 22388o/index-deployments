@@ -5,12 +5,14 @@ export {
 } from "./merkleUtils";
 export {
   addAdapter,
+  addApprovedCaller,
   deployBaseManager,
   deployGIMExtension,
   deployGovernanceAdapter,
   deployMerkleDistributor,
   deployStreamingFeeExtension,
   prepareDeployment,
+  setOperator,
   stageAlreadyFinished,
   trackFinishedStage,
 } from "./deployUtils";

@@ -293,3 +293,86 @@ export async function addAdapter(
     }
   }
 }
+
+export async function setOperator(
+  hre: HardhatRuntimeEnvironment,
+  managerName: string,
+  newOperator: Address,
+): Promise<void> {
+  const {
+    rawTx,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const [owner] = await getAccounts();
+  const instanceGetter: InstanceGetter = new InstanceGetter(owner.wallet);
+
+  const baseManagerAddress = await getContractAddress(managerName);
+  const baseManagerInstance = await instanceGetter.getBaseManager(baseManagerAddress);
+  const currentOperator = await baseManagerInstance.operator();
+
+  if (currentOperator != newOperator) {
+    const setOperatorData = baseManagerInstance.interface.encodeFunctionData("setOperator", [newOperator]);
+    const description = `${newOperator} set as operator on ${managerName}`;
+
+    if (currentOperator != deployer) {
+      await saveDeferredTransactionData({
+        data: setOperatorData,
+        description,
+        contractName: managerName,
+      });
+    } else {
+      const addAdapterTransaction: any = await rawTx({
+        from: deployer,
+        to: baseManagerInstance.address,
+        data: setOperatorData,
+        log: true,
+      });
+      await writeTransactionToOutputs(addAdapterTransaction.transactionHash, description);
+    }
+  }
+}
+
+export async function addApprovedCaller(
+  hre: HardhatRuntimeEnvironment,
+  extensionName: string,
+  callers: Address[],
+  statuses: boolean[]
+): Promise<void> {
+  const {
+    rawTx,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const [owner] = await getAccounts();
+  const instanceGetter: InstanceGetter = new InstanceGetter(owner.wallet);
+
+  const extensionAddress = await getContractAddress(extensionName);
+  const extensionInstance = await instanceGetter.getExtension(extensionAddress);
+
+  const updateCallerData = extensionInstance.interface.encodeFunctionData(
+    "updateCallerStatus",
+    [callers, statuses]
+  );
+  const description = `${extensionName} caller statuses updated.`;
+
+  const managerAddress = await extensionInstance.manager();
+  const baseManagerInstance = await instanceGetter.getBaseManager(managerAddress);
+  const operator = await baseManagerInstance.operator();
+
+  if (operator != deployer) {
+    await saveDeferredTransactionData({
+      data: updateCallerData,
+      description,
+      contractName: extensionName,
+    });
+  } else {
+    const addAdapterTransaction: any = await rawTx({
+      from: deployer,
+      to: extensionInstance.address,
+      data: updateCallerData,
+      log: true,
+    });
+    await writeTransactionToOutputs(addAdapterTransaction.transactionHash, description);
+  }
+}
