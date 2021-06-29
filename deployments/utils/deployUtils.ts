@@ -274,7 +274,9 @@ export async function addAdapter(
     const addAdapterData = baseManagerInstance.interface.encodeFunctionData("addAdapter", [adapterAddress]);
     const description = `Add ${adapterName} on ${managerName}`;
 
-    if (networkConstant === "production" || process.env.TESTING_PRODUCTION) {
+    const operator = await baseManagerInstance.operator();
+
+    if (networkConstant === "production" || process.env.TESTING_PRODUCTION || operator != deployer) {
       await saveDeferredTransactionData({
         data: addAdapterData,
         description,
