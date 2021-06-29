@@ -17,15 +17,18 @@ import {
   ContractSettings,
   MethodologySettings,
   ExecutionSettings,
-  IncentiveSettings } from "@utils/types";
+  IncentiveSettings,
+  ExchangeSettings } from "@utils/types";
 
-import { stageAlreadyFinished, trackFinishedStage, EMPTY_BYTES } from "@deployments/utils";
+import { stageAlreadyFinished, trackFinishedStage } from "@deployments/utils";
 
 import {
   CONTRACT_NAMES,
   METHODOLOGY_SETTINGS,
   EXECUTION_SETTINGS,
   INCENTIVE_SETTINGS,
+  EXCHANGE_NAMES,
+  EXCHANGE_SETTINGS,
 } from "@deployments/constants/007_ethfli_system";
 import { BigNumber } from "ethers";
 
@@ -78,12 +81,10 @@ const func: DeployFunction = trackFinishedStage(
       borrowDecimalAdjustment: BigNumber.from(22),
     };
     const methodologySettings: MethodologySettings = METHODOLOGY_SETTINGS;
-    const executionSettings: ExecutionSettings = {
-      ...EXECUTION_SETTINGS,
-      leverExchangeData: EMPTY_BYTES,
-      deleverExchangeData: EMPTY_BYTES,
-    };
+    const executionSettings: ExecutionSettings = EXECUTION_SETTINGS;
     const incentiveSettings: IncentiveSettings = INCENTIVE_SETTINGS;
+    const exchangeNames: string[] = EXCHANGE_NAMES;
+    const exchangeSettings: ExchangeSettings[] = EXCHANGE_SETTINGS;
 
     const constructorArgs = [
       manager,
@@ -91,20 +92,22 @@ const func: DeployFunction = trackFinishedStage(
       methodologySettings,
       executionSettings,
       incentiveSettings,
+      exchangeNames,
+      exchangeSettings,
     ];
 
     const flexibleLeverageDeploy = await deploy(
-      CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER, {
+      CONTRACT_NAMES.FLEXIBLE_LEVERAGE_EXTENSION, {
         from: deployer,
         args: constructorArgs,
         log: true,
     });
 
     flexibleLeverageDeploy.receipt && await saveContractDeployment({
-      name: CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER,
+      name: CONTRACT_NAMES.FLEXIBLE_LEVERAGE_EXTENSION,
       contractAddress: flexibleLeverageDeploy.address,
       id: flexibleLeverageDeploy.receipt.transactionHash,
-      description: "Deployed FexibleLeverageStrategyAdapter",
+      description: "Deployed FexibleLeverageStrategyExtension",
       constructorArgs,
     });
   }

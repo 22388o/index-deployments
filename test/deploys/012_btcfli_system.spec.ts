@@ -1,17 +1,17 @@
 import "module-alias/register";
 import { deployments } from "hardhat";
-import { defaultAbiCoder } from "ethers/lib/utils";
+import { defaultAbiCoder, solidityPack } from "ethers/lib/utils";
 
 import { Account } from "@utils/types";
 import {
   BaseManager,
   FeeSplitAdapter,
   SupplyCapAllowedCallerIssuanceHook,
-  FlexibleLeverageStrategyAdapter,
+  FlexibleLeverageStrategyExtension,
   BaseManager__factory,
   FeeSplitAdapter__factory,
   SupplyCapAllowedCallerIssuanceHook__factory,
-  FlexibleLeverageStrategyAdapter__factory,
+  FlexibleLeverageStrategyExtension__factory,
 } from "@set/typechain/index";
 
 import { BigNumber } from "@ethersproject/bignumber";
@@ -35,7 +35,7 @@ describe("BTCFLI System", () => {
   let deployer: Account;
 
   let baseManagerInstance: BaseManager;
-  let flexibleLeverageStrategyAdapterInstance: FlexibleLeverageStrategyAdapter;
+  let flexibleLeverageStrategyExtensionInstance: FlexibleLeverageStrategyExtension;
   let feeSplitAdapterInstance: FeeSplitAdapter;
   let supplyCapInstance: SupplyCapAllowedCallerIssuanceHook;
 
@@ -49,9 +49,9 @@ describe("BTCFLI System", () => {
     const deployedBaseManagerContract = await getContractAddress("BTCFLIBaseManager");
     baseManagerInstance = new BaseManager__factory(deployer.wallet).attach(deployedBaseManagerContract);
 
-    const deployedFlexibleLeverageStrategyAdapterContract = await getContractAddress("BTCFlexibleLeverageStrategyAdapter");
-    flexibleLeverageStrategyAdapterInstance =
-      new FlexibleLeverageStrategyAdapter__factory(deployer.wallet).attach(deployedFlexibleLeverageStrategyAdapterContract);
+    const deployedFlexibleLeverageStrategyExtensionContract = await getContractAddress("BTCFlexibleLeverageStrategyExtension");
+    flexibleLeverageStrategyExtensionInstance =
+      new FlexibleLeverageStrategyExtension__factory(deployer.wallet).attach(deployedFlexibleLeverageStrategyExtensionContract);
 
     const deployedFeeSplitAdapterContract = await getContractAddress("BTCFLIFeeSplitAdapter");
     feeSplitAdapterInstance = new FeeSplitAdapter__factory(deployer.wallet).attach(deployedFeeSplitAdapterContract);
@@ -80,20 +80,20 @@ describe("BTCFLI System", () => {
 
     it("should have the correct adapters", async () => {
       const adapters = await baseManagerInstance.getAdapters();
-      expect(adapters[0]).to.eq(flexibleLeverageStrategyAdapterInstance.address);
+      expect(adapters[0]).to.eq(flexibleLeverageStrategyExtensionInstance.address);
       expect(adapters[1]).to.eq(feeSplitAdapterInstance.address);
     });
   });
 
-  describe("FlexibleLeverageStrategyAdapter", async () => {
+  describe("FlexibleLeverageStrategyExtension", async () => {
     it("should set the manager", async () => {
-      const manager = await flexibleLeverageStrategyAdapterInstance.manager();
+      const manager = await flexibleLeverageStrategyExtensionInstance.manager();
 
       expect(manager).to.eq(baseManagerInstance.address);
     });
 
     it("should set the contract addresses", async () => {
-      const strategy = await flexibleLeverageStrategyAdapterInstance.getStrategy();
+      const strategy = await flexibleLeverageStrategyExtensionInstance.getStrategy();
 
       expect(strategy.setToken).to.eq(await findDependency("BTCFLI"));
       expect(strategy.leverageModule).to.eq(await findDependency("COMPOUND_LEVERAGE_MODULE"));
@@ -109,7 +109,7 @@ describe("BTCFLI System", () => {
     });
 
     it("should set the correct methodology parameters", async () => {
-      const methodology = await flexibleLeverageStrategyAdapterInstance.getMethodology();
+      const methodology = await flexibleLeverageStrategyExtensionInstance.getMethodology();
 
       expect(methodology.targetLeverageRatio).to.eq(ether(2));
       expect(methodology.minLeverageRatio).to.eq(ether(1.8));
@@ -119,27 +119,63 @@ describe("BTCFLI System", () => {
     });
 
     it("should set the correct execution parameters", async () => {
-      const execution = await flexibleLeverageStrategyAdapterInstance.getExecution();
-      const leverData = defaultAbiCoder.encode(["address[]"], [[await findDependency("USDC"), await findDependency("WETH"), await findDependency("WBTC")]]);
-      const deleverData = defaultAbiCoder.encode(["address[]"], [[await findDependency("WBTC"), await findDependency("WETH"), await findDependency("USDC")]]);
+      const execution = await flexibleLeverageStrategyExtensionInstance.getExecution();
 
-      expect(execution.exchangeName).to.eq("SushiswapExchangeAdapter");
-      expect(execution.leverExchangeData).to.eq(leverData);
-      expect(execution.deleverExchangeData).to.eq(deleverData);
       expect(execution.unutilizedLeveragePercentage).to.eq(ether(0.01));
-      expect(execution.twapMaxTradeSize).to.eq(bitcoin(20));
       expect(execution.twapCooldownPeriod).to.eq(BigNumber.from(30));
       expect(execution.slippageTolerance).to.eq(ether(0.02));
     });
 
     it("should set the correct incentive parameters", async () => {
-      const incentive = await flexibleLeverageStrategyAdapterInstance.getIncentive();
+      const incentive = await flexibleLeverageStrategyExtensionInstance.getIncentive();
 
-      expect(incentive.incentivizedTwapMaxTradeSize).to.eq(bitcoin(50));
       expect(incentive.incentivizedTwapCooldownPeriod).to.eq(BigNumber.from(1));
       expect(incentive.incentivizedSlippageTolerance).to.eq(ether(0.05));
       expect(incentive.etherReward).to.eq(ether(1.5));
       expect(incentive.incentivizedLeverageRatio).to.eq(ether(2.4));
+    });
+
+    it("should set the correct exchange settings", async () => {
+      const sushiSettings = await flexibleLeverageStrategyExtensionInstance.getExchangeSettings("SushiswapExchangeAdapter");
+      const uniV3Settings = await flexibleLeverageStrategyExtensionInstance.getExchangeSettings("UniswapV3ExchangeAdapter");
+
+      const sushiLeverData = defaultAbiCoder.encode(
+        ["address[]"],
+        [[await findDependency("USDC"), await findDependency("WETH"), await findDependency("WBTC")]]
+      );
+      const sushiDeleverData = defaultAbiCoder.encode(
+        ["address[]"],
+        [[await findDependency("WBTC"), await findDependency("WETH"), await findDependency("USDC")]]
+      );
+
+      const uniV3LeverData = solidityPack(
+        ["address", "uint24", "address"],
+        [await findDependency("USDC"), BigNumber.from(3000), await findDependency("WBTC")]
+      );
+      const uniV3DeleverData = solidityPack(
+        ["address", "uint24", "address"],
+        [await findDependency("WBTC"), BigNumber.from(3000), await findDependency("USDC")]
+      );
+
+      expect(sushiSettings.twapMaxTradeSize).to.eq(bitcoin(20));
+      expect(sushiSettings.incentivizedTwapMaxTradeSize).to.eq(bitcoin(50));
+      expect(sushiSettings.exchangeLastTradeTimestamp).to.eq(BigNumber.from(0));
+      expect(sushiSettings.leverExchangeData).to.eq(sushiLeverData);
+      expect(sushiSettings.deleverExchangeData).to.eq(sushiDeleverData);
+
+      expect(uniV3Settings.twapMaxTradeSize).to.eq(bitcoin(50));
+      expect(uniV3Settings.incentivizedTwapMaxTradeSize).to.eq(bitcoin(50));
+      expect(uniV3Settings.exchangeLastTradeTimestamp).to.eq(BigNumber.from(0));
+      expect(uniV3Settings.leverExchangeData).to.eq(uniV3LeverData);
+      expect(uniV3Settings.deleverExchangeData).to.eq(uniV3DeleverData);
+    });
+
+    it("should set the correct enabled exchanges", async () => {
+      const enabledExchanges = await flexibleLeverageStrategyExtensionInstance.getEnabledExchanges();
+
+      expect(enabledExchanges.length).to.eq(2);
+      expect(enabledExchanges[0]).to.eq("SushiswapExchangeAdapter");
+      expect(enabledExchanges[1]).to.eq("UniswapV3ExchangeAdapter");
     });
   });
 

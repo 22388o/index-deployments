@@ -3,7 +3,7 @@ import "module-alias/register";
 import { HardhatRuntimeEnvironment as HRE } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { BigNumber } from "@ethersproject/bignumber";
-import { defaultAbiCoder } from "ethers/lib/utils";
+import { defaultAbiCoder, solidityPack } from "ethers/lib/utils";
 import {
   ether,
   getAccounts,
@@ -29,7 +29,8 @@ import {
   ContractSettings,
   MethodologySettings,
   ExecutionSettings,
-  IncentiveSettings
+  IncentiveSettings,
+  ExchangeSettings
 } from "@utils/types";
 import {
   CONTRACT_NAMES,
@@ -39,6 +40,8 @@ import {
   METHODOLOGY_SETTINGS,
   EXECUTION_SETTINGS,
   INCENTIVE_SETTINGS,
+  EXCHANGE_NAMES,
+  EXCHANGE_SETTINGS
 } from "@deployments/constants/012_btcfli_system";
 
 const {
@@ -56,6 +59,14 @@ const {
   CHAINLINK_BTC,
   CHAINLINK_USDC,
 } = DEPENDENCY;
+
+/**
+ * CHANGELOG
+ *
+ * 6/29/21: 9f0fce35138c05b5e152e24a82377c5e4657a519
+ * - Update name of FlexibleLeverageStrategyAdapter to FlexibleLeverageStrategyExtension
+ * - Update FlexibleLeverageStrategyExtension constructor parameters with new exchange settings format
+ */
 
 let owner: Account;
 let instanceGetter: InstanceGetter;
@@ -86,11 +97,11 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   await deployBaseManager();
 
-  await deployFlexibleLeverageStrategyAdapter();
+  await deployFlexibleLeverageStrategyExtension();
 
   await deployFeeAdapter();
 
-  await addAdapter(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER_NAME);
+  await addAdapter(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FLEXIBLE_LEVERAGE_EXTENSION_NAME);
   await addAdapter(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
 
   //
@@ -179,9 +190,9 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
     }
   }
 
-  async function deployFlexibleLeverageStrategyAdapter(): Promise<void> {
-    const checkFlexibleLeverageAdapterAddress = await getContractAddress(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER_NAME);
-    if (checkFlexibleLeverageAdapterAddress === "") {
+  async function deployFlexibleLeverageStrategyExtension(): Promise<void> {
+    const checkFlexibleLeverageExtensionAddress = await getContractAddress(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_EXTENSION_NAME);
+    if (checkFlexibleLeverageExtensionAddress === "") {
       const manager = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER_NAME);
 
       const contractSettings: ContractSettings = {
@@ -198,18 +209,31 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
         borrowDecimalAdjustment: CONTRACT_SETTINGS.BORROW_DECIMAL_ADJUSTMENT,
       };
       const methodologySettings: MethodologySettings = METHODOLOGY_SETTINGS;
-      const executionSettings: ExecutionSettings = {
-        ...EXECUTION_SETTINGS,
-        leverExchangeData: defaultAbiCoder.encode(
-          ["address[]"],
-          [[contractSettings.borrowAsset, await findDependency(WETH), contractSettings.collateralAsset]]
-        ),
-        deleverExchangeData: defaultAbiCoder.encode(
-          ["address[]"],
-          [[contractSettings.collateralAsset, await findDependency(WETH), contractSettings.borrowAsset]]
-        ),
-      };
+      const executionSettings: ExecutionSettings = EXECUTION_SETTINGS;
       const incentiveSettings: IncentiveSettings = INCENTIVE_SETTINGS;
+      const exchangeNames: string[] = EXCHANGE_NAMES;
+
+      const exchangeSettings: ExchangeSettings[] = EXCHANGE_SETTINGS;
+
+      // add Sushiswap lever and delever exchange data
+      exchangeSettings[0].leverExchangeData = defaultAbiCoder.encode(
+        ["address[]"],
+        [[contractSettings.borrowAsset, await findDependency(WETH), contractSettings.collateralAsset]]
+      );
+      exchangeSettings[0].deleverExchangeData = defaultAbiCoder.encode(
+        ["address[]"],
+        [[contractSettings.collateralAsset, await findDependency(WETH), contractSettings.borrowAsset]]
+      );
+
+      // add Uniswap V3 lever and delever data
+      exchangeSettings[1].leverExchangeData = solidityPack(
+        ["address", "uint24", "address"],
+        [contractSettings.borrowAsset, BigNumber.from(3000), contractSettings.collateralAsset]
+      );
+      exchangeSettings[1].deleverExchangeData = solidityPack(
+        ["address", "uint24", "address"],
+        [contractSettings.collateralAsset, BigNumber.from(3000), contractSettings.borrowAsset]
+      );
 
       const constructorArgs = [
         manager,
@@ -217,18 +241,20 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
         methodologySettings,
         executionSettings,
         incentiveSettings,
+        exchangeNames,
+        exchangeSettings,
       ];
-      const flexibleLeverageDeploy = await deploy(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER, {
+      const flexibleLeverageDeploy = await deploy(CONTRACT_NAMES.FLEXIBLE_LEVERAGE_EXTENSION, {
         from: deployer,
         args: constructorArgs,
         log: true,
       });
 
       flexibleLeverageDeploy.receipt && await saveContractDeployment({
-        name: CONTRACT_NAMES.FLEXIBLE_LEVERAGE_ADAPTER_NAME,
+        name: CONTRACT_NAMES.FLEXIBLE_LEVERAGE_EXTENSION_NAME,
         contractAddress: flexibleLeverageDeploy.address,
         id: flexibleLeverageDeploy.receipt.transactionHash,
-        description: "Deployed BTC FlexibleLeverageStrategyAdapter",
+        description: "Deployed BTC FlexibleLeverageStrategyExtension",
         constructorArgs,
       });
     }

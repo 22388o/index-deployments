@@ -1,10 +1,10 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { ether } from "@utils/index";
-import { ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
+import { EMPTY_BYTES, ONE_DAY_IN_SECONDS } from "@deployments/utils/constants";
 
 export const CONTRACT_NAMES = {
   BASE_MANAGER: "BaseManager",
-  FLEXIBLE_LEVERAGE_ADAPTER: "FlexibleLeverageStrategyAdapter",
+  FLEXIBLE_LEVERAGE_EXTENSION: "FlexibleLeverageStrategyExtension",
   STANDARD_TOKEN_MOCK: "StandardTokenMock",
   FEE_SPLIT_ADAPTER: "FeeSplitAdapter",
   SUPPLY_CAP_ISSUANCE_HOOK: "SupplyCapIssuanceHook",
@@ -32,17 +32,36 @@ export const METHODOLOGY_SETTINGS = {
 };
 
 export const EXECUTION_SETTINGS = {
-  unutilizedLeveragePercentage: ether(0.01),               // 1% of leverage as buffer from max borrow
-  twapMaxTradeSize: ether(600),                           // 600 ETH max trade size ~0.6% price impact
+  unutilizedLeveragePercentage: ether(0.01),              // 1% of leverage as buffer from max borrow
   twapCooldownPeriod: BigNumber.from(30),                 // 30 sec cooldown
   slippageTolerance: ether(0.02),                         // 2% max slippage on regular rebalances
-  exchangeName: "SushiswapExchangeAdapter",                // Use Uniswap as initial exchange
 };
 
 export const INCENTIVE_SETTINGS = {
-  incentivizedTwapMaxTradeSize: ether(1600),              // 1600 ETH max trade size ~1.2% price impact on ripcord
   incentivizedTwapCooldownPeriod: BigNumber.from(1),      // 1 sec cooldown on ripcord
   incentivizedSlippageTolerance: ether(0.05),             // 5% max slippage on ripcord
   etherReward: ether(1.5),                                // 2000 gwei * 700k gas used = 1.4 ETH
   incentivizedLeverageRatio: ether(2.7),                  // 1 ripcord will return back to 2.3x
 };
+
+export const EXCHANGE_NAMES = [
+  "SushiswapExchangeAdapter",
+  "UniswapV3ExchangeAdapter",
+];
+
+export const EXCHANGE_SETTINGS = [
+  {
+    twapMaxTradeSize: ether(600),                         // 1600 ETH max trade size ~1.2% price impact on ripcord
+    exchangeLastTradeTimestamp: ether(0),
+    incentivizedTwapMaxTradeSize: ether(1600),            // 600 ETH max trade size ~0.6% price impact
+    leverExchangeData: EMPTY_BYTES,
+    deleverExchangeData: EMPTY_BYTES,
+  },
+  {
+    twapMaxTradeSize: ether(1500),
+    exchangeLastTradeTimestamp: ether(0),
+    incentivizedTwapMaxTradeSize: ether(1500),
+    leverExchangeData: EMPTY_BYTES,                       // will be overridden in deploy script
+    deleverExchangeData: EMPTY_BYTES,                     // will be overridden in deploy script
+  },
+];

@@ -51,7 +51,7 @@ export const DFP_YEAR_TWO_OWNERSHIP_AMOUNT = ether(60000); // 60k tokens; 0.6% s
 export const DFP_YEAR_THREE_OWNERSHIP_AMOUNT = ether(40000); // 40k tokens; 0.4% supply
 
 // Vesting parameters
-const anchorTime = BigNumber.from(Math.floor(Date.now() / 1000)).add(60);
+const anchorTime = BigNumber.from(Math.floor(Date.now() / 1000)).add(120);
 export const VESTING_TIMES: { [networkId: string]: any } = {
   vestingIndexMethodologyBegin: {
     production: BigNumber.from(1607281200),                   // 12/06/2020 @ 7:00pm UTC
