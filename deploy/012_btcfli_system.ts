@@ -101,8 +101,8 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   await deployFeeAdapter();
 
-  await addAdapter(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FLEXIBLE_LEVERAGE_EXTENSION_NAME);
-  await addAdapter(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
+  await addExtension(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FLEXIBLE_LEVERAGE_EXTENSION_NAME);
+  await addExtension(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
 
   //
   // Helper Functions
@@ -315,7 +315,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
     }
   }
 
-  async function addAdapter(icManagerName: string, adapterName: string): Promise<void> {
+  async function addExtension(icManagerName: string, adapterName: string): Promise<void> {
     const baseManagerAddress = await getContractAddress(icManagerName);
     const baseManagerInstance = await instanceGetter.getBaseManager(baseManagerAddress);
 

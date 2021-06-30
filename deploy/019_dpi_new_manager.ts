@@ -8,7 +8,7 @@ import {
 } from "@utils/index";
 
 import {
-  addAdapter,
+  addExtension,
   addApprovedCaller,
   DEPENDENCY,
   deployBaseManager,
@@ -69,9 +69,9 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
   await deployGIMExtension(hre, GIM_EXTENSION_NAME, BASE_MANAGER_NAME);
   await deployStreamingFeeExtension(hre, FEE_EXTENSION_NAME, BASE_MANAGER_NAME, FEE_SPLIT_ADAPTER.FEE_SPLIT);
 
-  await addAdapter(hre, BASE_MANAGER_NAME, GOVERNANCE_ADAPTER_NAME);
-  await addAdapter(hre, BASE_MANAGER_NAME, GIM_EXTENSION_NAME);
-  await addAdapter(hre, BASE_MANAGER_NAME, FEE_EXTENSION_NAME);
+  await addExtension(hre, BASE_MANAGER_NAME, GOVERNANCE_ADAPTER_NAME);
+  await addExtension(hre, BASE_MANAGER_NAME, GIM_EXTENSION_NAME);
+  await addExtension(hre, BASE_MANAGER_NAME, FEE_EXTENSION_NAME);
 
   await addApprovedCaller(hre, GOVERNANCE_ADAPTER_NAME, [await findDependency(OPS_MULTI_SIG)], [true]);
   await setOperator(hre, BASE_MANAGER_NAME, await findDependency(TREASURY_MULTI_SIG));

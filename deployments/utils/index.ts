@@ -4,7 +4,7 @@ export {
   parseBalanceMap,
 } from "./merkleUtils";
 export {
-  addAdapter,
+  addExtension,
   addApprovedCaller,
   deployBaseManager,
   deployGIMExtension,

@@ -252,7 +252,7 @@ export async function deployGIMExtension(
   }
 }
 
-export async function addAdapter(
+export async function addExtension(
   hre: HardhatRuntimeEnvironment,
   managerName: string,
   adapterName: string
