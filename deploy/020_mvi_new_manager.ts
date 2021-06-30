@@ -48,16 +48,16 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
     networkConstant,
   } = await prepareDeployment(hre);
 
-  let treasuryMultiSig: string;
+  let methodologistAddress: string;
   if (networkConstant === "production") {
-    treasuryMultiSig = await findDependency(TREASURY_MULTI_SIG);
+    methodologistAddress = await findDependency(TREASURY_MULTI_SIG);
   } else {
-    treasuryMultiSig = deployer;
+    methodologistAddress = deployer;
   }
 
   await polyFillForDevelopment();
 
-  await deployBaseManager(hre, BASE_MANAGER_NAME, MVI, deployer, treasuryMultiSig);
+  await deployBaseManager(hre, BASE_MANAGER_NAME, MVI, deployer, methodologistAddress);
 
   await deployGIMExtension(hre, GIM_EXTENSION_NAME, BASE_MANAGER_NAME);
   await deployStreamingFeeExtension(hre, FEE_EXTENSION_NAME, BASE_MANAGER_NAME, FEE_SPLIT_ADAPTER.FEE_SPLIT);

@@ -54,16 +54,16 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
     networkConstant,
   } = await prepareDeployment(hre);
 
-  let dfpMultisigAddress: string;
+  let methodologistAddress: string;
   if (networkConstant === "production") {
-    dfpMultisigAddress = await findDependency(DFP_MULTI_SIG);
+    methodologistAddress = await findDependency(DFP_MULTI_SIG);
   } else {
-    dfpMultisigAddress = deployer;
+    methodologistAddress = deployer;
   }
 
   await polyFillForDevelopment();
 
-  await deployBaseManager(hre, BASE_MANAGER_NAME, DPI, deployer, dfpMultisigAddress);
+  await deployBaseManager(hre, BASE_MANAGER_NAME, DPI, deployer, methodologistAddress);
 
   await deployGovernanceAdapter(hre, GOVERNANCE_ADAPTER_NAME, BASE_MANAGER_NAME);
   await deployGIMExtension(hre, GIM_EXTENSION_NAME, BASE_MANAGER_NAME);
