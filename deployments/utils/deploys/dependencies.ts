@@ -9,6 +9,13 @@ export default {
     },
     42: "0xEA41F11c916813EDa966a4e1a0b09c98C4bbC555",
   },
+  MVI: {
+    1: {
+      production: "0x72e364f2abdc788b7e918bc238b21f109cd634d7",
+      staging: "0x66e3d0f4563b53d9049a241499dce6d5423c3af2",
+    },
+    42: "",
+  },
   WBTC: {
     1: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
     42: "0x595f8DaB94b9c718cbf5c693cD539Fd00b286D3d",
@@ -144,7 +151,10 @@ export default {
 
   // Admin
   TREASURY_MULTI_SIG: {
-    1: "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+    1: {
+      production: "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+      staging: "0x68170278804Fc18481aECfB497D63A9b11DC692F",
+    },
     42: "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
   },
   OPS_MULTI_SIG: {
@@ -177,6 +187,7 @@ export default {
 export const DEPENDENCY = {
   // Tokens
   DPI: "DPI",
+  MVI: "MVI",
   BTCFLI: "BTCFLI",
   ETHFLI: "ETHFLI",
   WETH: "WETH",

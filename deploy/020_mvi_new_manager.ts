@@ -9,11 +9,9 @@ import {
 
 import {
   addExtension,
-  addApprovedCaller,
   DEPENDENCY,
   deployBaseManager,
   deployGIMExtension,
-  deployGovernanceAdapter,
   deployStreamingFeeExtension,
   EMPTY_BYTES,
   findDependency,
@@ -27,21 +25,17 @@ import {
 import {
   CONTRACT_NAMES,
   FEE_SPLIT_ADAPTER
-} from "@deployments/constants/019_dpi_new_manager";
+} from "@deployments/constants/020_mvi_new_manager";
 
 const {
-  DFP_MULTI_SIG,
-  DPI,
-  GENERAL_INDEX_MODULE,
-  GOVERNANCE_MODULE,
-  OPS_MULTI_SIG,
-  STREAMING_FEE_MODULE,
   TREASURY_MULTI_SIG,
+  MVI,
+  GENERAL_INDEX_MODULE,
+  STREAMING_FEE_MODULE,
 } = DEPENDENCY;
 
 const {
   BASE_MANAGER_NAME,
-  GOVERNANCE_ADAPTER_NAME,
   GIM_EXTENSION_NAME,
   FEE_EXTENSION_NAME,
 } = CONTRACT_NAMES;
@@ -56,37 +50,26 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   let methodologistAddress: string;
   if (networkConstant === "production") {
-    methodologistAddress = await findDependency(DFP_MULTI_SIG);
+    methodologistAddress = await findDependency(TREASURY_MULTI_SIG);
   } else {
     methodologistAddress = deployer;
   }
 
   await polyFillForDevelopment();
 
-  await deployBaseManager(hre, BASE_MANAGER_NAME, DPI, deployer, methodologistAddress);
+  await deployBaseManager(hre, BASE_MANAGER_NAME, MVI, deployer, methodologistAddress);
 
-  await deployGovernanceAdapter(hre, GOVERNANCE_ADAPTER_NAME, BASE_MANAGER_NAME);
   await deployGIMExtension(hre, GIM_EXTENSION_NAME, BASE_MANAGER_NAME);
   await deployStreamingFeeExtension(hre, FEE_EXTENSION_NAME, BASE_MANAGER_NAME, FEE_SPLIT_ADAPTER.FEE_SPLIT);
 
-  await addExtension(hre, BASE_MANAGER_NAME, GOVERNANCE_ADAPTER_NAME);
   await addExtension(hre, BASE_MANAGER_NAME, GIM_EXTENSION_NAME);
   await addExtension(hre, BASE_MANAGER_NAME, FEE_EXTENSION_NAME);
 
-  await addApprovedCaller(hre, GOVERNANCE_ADAPTER_NAME, [await findDependency(OPS_MULTI_SIG)], [true]);
   await setOperator(hre, BASE_MANAGER_NAME, await findDependency(TREASURY_MULTI_SIG));
 
   async function polyFillForDevelopment(): Promise<void> {
-    if (await findDependency(OPS_MULTI_SIG) === "") {
-      await writeContractAndTransactionToOutputs(OPS_MULTI_SIG, await getRandomAddress(), EMPTY_BYTES, "Created OPS_MULTI_SIG");
-    }
-
-    if (await findDependency(DPI) === "") {
-      await writeContractAndTransactionToOutputs(DPI, await getRandomAddress(), EMPTY_BYTES, "Created Mock DPI");
-    }
-
-    if (await findDependency(GOVERNANCE_MODULE) === "") {
-      await writeContractAndTransactionToOutputs(GOVERNANCE_MODULE, await getRandomAddress(), EMPTY_BYTES, "Created Mock GovernanceModule");
+    if (await findDependency(MVI) === "") {
+      await writeContractAndTransactionToOutputs(MVI, await getRandomAddress(), EMPTY_BYTES, "Created Mock MVI");
     }
 
     if (await findDependency(STREAMING_FEE_MODULE) === "") {

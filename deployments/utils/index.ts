@@ -4,13 +4,15 @@ export {
   parseBalanceMap,
 } from "./merkleUtils";
 export {
-  addAdapter,
+  addExtension,
+  addApprovedCaller,
   deployBaseManager,
   deployGIMExtension,
   deployGovernanceAdapter,
   deployMerkleDistributor,
   deployStreamingFeeExtension,
   prepareDeployment,
+  setOperator,
   stageAlreadyFinished,
   trackFinishedStage,
 } from "./deployUtils";

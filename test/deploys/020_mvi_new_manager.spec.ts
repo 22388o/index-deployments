@@ -8,8 +8,6 @@ import { BaseManager } from "@set/typechain/BaseManager";
 import { BaseManager__factory } from "@set/typechain/factories/BaseManager__factory";
 import { GIMExtension } from "@set/typechain/GIMExtension";
 import { GIMExtension__factory } from "@set/typechain/factories/GIMExtension__factory";
-import { GovernanceAdapter } from "@set/typechain/GovernanceAdapter";
-import { GovernanceAdapter__factory } from "@set/typechain/factories/GovernanceAdapter__factory";
 import { StreamingFeeSplitExtension } from "@set/typechain/StreamingFeeSplitExtension";
 import { StreamingFeeSplitExtension__factory } from "@set/typechain/factories/StreamingFeeSplitExtension__factory";
 
@@ -26,8 +24,6 @@ import {
 
 const {
   GENERAL_INDEX_MODULE,
-  GOVERNANCE_MODULE,
-  OPS_MULTI_SIG,
   STREAMING_FEE_MODULE,
   TREASURY_MULTI_SIG,
 } = DEPENDENCY;
@@ -35,11 +31,10 @@ const {
 
 const expect = getWaffleExpect();
 
-describe("DPI: New Manager System", () => {
+describe("MVI: New Manager System", () => {
   let deployer: Account;
 
   let baseManagerInstance: BaseManager;
-  let governanceAdapterInstance: GovernanceAdapter;
   let gimExtensionInstance: GIMExtension;
   let feeExtensionInstance: StreamingFeeSplitExtension;
 
@@ -50,16 +45,13 @@ describe("DPI: New Manager System", () => {
 
     await deployments.fixture();
 
-    const deployedBaseManagerContract = await getContractAddress("BaseManager - DPI");
+    const deployedBaseManagerContract = await getContractAddress("BaseManager - MVI");
     baseManagerInstance = new BaseManager__factory(deployer.wallet).attach(deployedBaseManagerContract);
 
-    const deployedGovernanceAdapter = await getContractAddress("GovernanceAdapter - DPI");
-    governanceAdapterInstance = new GovernanceAdapter__factory(deployer.wallet).attach(deployedGovernanceAdapter);
-
-    const deployedGIMExtension = await await getContractAddress("GIMExtension - DPI");
+    const deployedGIMExtension = await await getContractAddress("GIMExtension - MVI");
     gimExtensionInstance = new GIMExtension__factory(deployer.wallet).attach(deployedGIMExtension);
 
-    const deployedFeeExtension = await await getContractAddress("StreamingFeeSplitExtension - DPI");
+    const deployedFeeExtension = await await getContractAddress("StreamingFeeSplitExtension - MVI");
     feeExtensionInstance = new StreamingFeeSplitExtension__factory(deployer.wallet).attach(deployedFeeExtension);
   });
 
@@ -69,7 +61,7 @@ describe("DPI: New Manager System", () => {
     it("should have the correct SetToken address", async () => {
       const setToken = await baseManagerInstance.setToken();
 
-      expect(setToken).to.eq(await findDependency("DPI"));
+      expect(setToken).to.eq(await findDependency("MVI"));
     });
 
     it("should have the correct operator address", async () => {
@@ -84,33 +76,15 @@ describe("DPI: New Manager System", () => {
 
     it("should have the correct adapters", async () => {
       const adapters = await baseManagerInstance.getAdapters();
-      expect(adapters[0]).to.eq(governanceAdapterInstance.address);
-      expect(adapters[1]).to.eq(gimExtensionInstance.address);
-      expect(adapters[2]).to.eq(feeExtensionInstance.address);
-    });
-  });
-
-  describe("GovernanceAdapter", async () => {
-    it("should have the correct manager address", async () => {
-      const manager = await governanceAdapterInstance.manager();
-      expect(manager).to.eq(await getContractAddress("BaseManager - DPI"));
-    });
-
-    it("should have the correct GovernanceModule address", async () => {
-      const govModule = await governanceAdapterInstance.governanceModule();
-      expect(govModule).to.eq(await findDependency(GOVERNANCE_MODULE));
-    });
-
-    it("should have the OPS_MULTI_SIG added as a caller", async () => {
-      const isCaller = await governanceAdapterInstance.callAllowList(await findDependency(OPS_MULTI_SIG));
-      expect(isCaller).to.be.true;
+      expect(adapters[0]).to.eq(gimExtensionInstance.address);
+      expect(adapters[1]).to.eq(feeExtensionInstance.address);
     });
   });
 
   describe("GIMExtension", async () => {
     it("should have the correct manager address", async () => {
       const manager = await gimExtensionInstance.manager();
-      expect(manager).to.eq(await getContractAddress("BaseManager - DPI"));
+      expect(manager).to.eq(await getContractAddress("BaseManager - MVI"));
     });
 
     it("should have the correct GeneralIndexModule address", async () => {
@@ -122,7 +96,7 @@ describe("DPI: New Manager System", () => {
   describe("StreamingFeeSplitExtension", async () => {
     it("should have the correct manager address", async () => {
       const manager = await feeExtensionInstance.manager();
-      expect(manager).to.eq(await getContractAddress("BaseManager - DPI"));
+      expect(manager).to.eq(await getContractAddress("BaseManager - MVI"));
     });
 
     it("should have the correct StreamingFeeModule address", async () => {
@@ -132,7 +106,7 @@ describe("DPI: New Manager System", () => {
 
     it("should have the correct fee split", async () => {
       const feeSplit = await feeExtensionInstance.operatorFeeSplit();
-      expect(feeSplit).to.eq(ether(.7));
+      expect(feeSplit).to.eq(ether(1));
     });
   });
 });
