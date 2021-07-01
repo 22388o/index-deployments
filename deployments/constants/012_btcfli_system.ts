@@ -63,9 +63,9 @@ export const EXCHANGE_SETTINGS = [
     deleverExchangeData: EMPTY_BYTES,                     // will be overridden in deployment script
   },
   {
-    twapMaxTradeSize: bitcoin(50),
+    twapMaxTradeSize: bitcoin(55),                        // 55 WBTC max trade size ~0.7% price impact
     exchangeLastTradeTimestamp: ether(0),
-    incentivizedTwapMaxTradeSize: bitcoin(50),
+    incentivizedTwapMaxTradeSize: bitcoin(100),           // 100 WBTC max trade size ~1% price impact for ripcord
     leverExchangeData: EMPTY_BYTES,                       // will be overridden in deploy script
     deleverExchangeData: EMPTY_BYTES,                     // will be overridden in deploy script
   },

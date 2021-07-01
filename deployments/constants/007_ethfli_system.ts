@@ -51,16 +51,16 @@ export const EXCHANGE_NAMES = [
 
 export const EXCHANGE_SETTINGS = [
   {
-    twapMaxTradeSize: ether(600),                         // 1600 ETH max trade size ~1.2% price impact on ripcord
+    twapMaxTradeSize: ether(600),                         // 600 ETH max trade size ~0.6% price impact
     exchangeLastTradeTimestamp: ether(0),
-    incentivizedTwapMaxTradeSize: ether(1600),            // 600 ETH max trade size ~0.6% price impact
+    incentivizedTwapMaxTradeSize: ether(1600),            // 1600 ETH max trade size ~1.2% price impact on ripcord
     leverExchangeData: EMPTY_BYTES,
     deleverExchangeData: EMPTY_BYTES,
   },
   {
-    twapMaxTradeSize: ether(1500),
+    twapMaxTradeSize: ether(2000),                        // 2000 ETH max trade size ~.67% price impact
     exchangeLastTradeTimestamp: ether(0),
-    incentivizedTwapMaxTradeSize: ether(1500),
+    incentivizedTwapMaxTradeSize: ether(3000),            // 3000 ETH max trade size ~1% price impact on ripcord
     leverExchangeData: EMPTY_BYTES,                       // will be overridden in deploy script
     deleverExchangeData: EMPTY_BYTES,                     // will be overridden in deploy script
   },
