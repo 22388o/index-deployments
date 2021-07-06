@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 19
+    "last_deployment_stage": 21
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -59,7 +59,14 @@
     "OtcEscrow - 0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5": "0x16D90763Fd0B3472B7465D709065b95e4Bc737AA",
     "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f": "0x9dC35cA49Cbc3e4998a420B0A4067DEa0bDDc81D",
     "BTCFlexibleLeverageStrategyAdapter": "0x6B351cdd65704D86134c183aa4BBfFb0833e4A8c",
-    "FlexibleLeverageStrategyAdapter": "0x90A17826C80Ea4917BBD64b281d92aAF2bBb0024"
+    "FlexibleLeverageStrategyAdapter": "0x90A17826C80Ea4917BBD64b281d92aAF2bBb0024",
+    "BaseManager - DPI": "0xdBD18918A8e5617c02E1F7ed9c18F406dBf1011F",
+    "GovernanceAdapter - DPI": "0x9450D113fCc791FDa705d938Daf1C942E113AB1e",
+    "GIMExtension - DPI": "0xb5bdA3a528E8C0b45FEd4E51829d36CFc674DC87",
+    "StreamingFeeSplitExtension - DPI": "0xF8a89e4Da4bEbf79d5bA69E71b4552E6b5435C8c",
+    "BaseManager - MVI": "0x0528A40435D0940f3759F6bBad3eBfD050211a2e",
+    "GIMExtension - MVI": "0x8E9468D1261E926A7b75276c29E4983937b69AC4",
+    "StreamingFeeSplitExtension - MVI": "0xf47A6657493632Fc23b11D3A0BDA5aF890a9c574"
   },
   "transactions": {
     "0": {
@@ -704,7 +711,7 @@
       "id": "0x2e718b28ff1c849a19bfd619e9201fb3d3c8b23b9003df3713e09334168e0b26",
       "name": "IndexPowah",
       "timestamp": 1623449895523,
-      "verified": false,
+      "verified": true,
       "description": "Deployed IndexPowah",
       "contractAddress": "0x44f2F64287753E0D4EE4043BB1d30077Bf22414e",
       "constructorArgs": [
@@ -830,7 +837,7 @@
       "id": "0x1ff3bb0ce3816c7ee956c593526b7ff040f699678eb6af85f5238bed0577c9ee",
       "name": "OtcEscrow - 0x5BCF61c5E5C72457003feD3d292AAEA1c06f3691",
       "timestamp": 1623702387558,
-      "verified": false,
+      "verified": true,
       "description": "Deployed OtcEscrow",
       "contractAddress": "0xAA69dBF77E11DacFB7f9973057ef10eCd60d5Bd6",
       "constructorArgs": [
@@ -882,7 +889,7 @@
       "id": "0x9dd6aec55b15f8e7b6db795a9c2dd706697af22397ec757c627d12242eae593d",
       "name": "OtcEscrow - 0xe1B6e4C28127C4704838A0a2d6c6F7c344944B22",
       "timestamp": 1623702417388,
-      "verified": false,
+      "verified": true,
       "description": "Deployed OtcEscrow",
       "contractAddress": "0x3F6a188502fDfabd9F66f7D09ed511Fcd5f0Ca4A",
       "constructorArgs": [
@@ -908,7 +915,7 @@
       "id": "0x72134d795af84a637d02330b5b650590523e003d6df2b70a400fe556cc288929",
       "name": "OtcEscrow - 0xd16295DEA1115C9df62FC35017bB359fb1E6d639",
       "timestamp": 1623702434135,
-      "verified": false,
+      "verified": true,
       "description": "Deployed OtcEscrow",
       "contractAddress": "0x196334E54b9c63C367BaE298126a5E228e09CCdf",
       "constructorArgs": [
@@ -934,7 +941,7 @@
       "id": "0x99e2bca1257b247929a5efa4cde51ec18098e028530d4474ad7ac2d730772062",
       "name": "OtcEscrow - 0xAA023910e301E23400bc4871c3cCCD58997E2327",
       "timestamp": 1623702451522,
-      "verified": false,
+      "verified": true,
       "description": "Deployed OtcEscrow",
       "contractAddress": "0x5FAD85d2a5080f165AE5F7B17d40437e1ECa15af",
       "constructorArgs": [
@@ -960,7 +967,7 @@
       "id": "0x255f80bd584191ef46c1d9746c4c1ed816654de4c6e86283da90140d3335ad80",
       "name": "OtcEscrow - 0x3b2cbBe6B4656548E995b26dF0954d31C081e0e5",
       "timestamp": 1623702583263,
-      "verified": false,
+      "verified": true,
       "description": "Deployed OtcEscrow",
       "contractAddress": "0x16D90763Fd0B3472B7465D709065b95e4Bc737AA",
       "constructorArgs": [
@@ -986,7 +993,7 @@
       "id": "0x979be40dbd5d59d355fb86ba22b6d1a57e0d5e73699c01b100903c44684283d0",
       "name": "OtcEscrow - 0x0C497bD20de89D9b14637415405690Ce1B1fD62f",
       "timestamp": 1623702613291,
-      "verified": false,
+      "verified": true,
       "description": "Deployed OtcEscrow",
       "contractAddress": "0x9dC35cA49Cbc3e4998a420B0A4067DEa0bDDc81D",
       "constructorArgs": [
@@ -1007,6 +1014,147 @@
         "0x0954906da0Bf32d5479e25f46056d22f08464cab"
       ],
       "libraries": {}
+    },
+    "69": {
+      "id": "0xc7257467c8b499f14af2715118b19769802c662c6e0ca4214152015965cfccaa",
+      "name": "BaseManager - DPI",
+      "timestamp": 1625070481657,
+      "verified": true,
+      "description": "Deployed BaseManager - DPI",
+      "contractAddress": "0xdBD18918A8e5617c02E1F7ed9c18F406dBf1011F",
+      "constructorArgs": [
+        "0x1494CA1F11D487c2bBe4543E90080AeBa4BA3C2b",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
+        "0x673d140Eed36385cb784e279f8759f495C97cF03"
+      ],
+      "libraries": {}
+    },
+    "70": {
+      "id": "0x93e059561b937256a514cf27c78c554a994e00f06a7e85ad95b6015ac51db524",
+      "name": "GovernanceAdapter - DPI",
+      "timestamp": 1625070600246,
+      "verified": true,
+      "description": "Deployed GovernanceAdapter - DPI",
+      "contractAddress": "0x9450D113fCc791FDa705d938Daf1C942E113AB1e",
+      "constructorArgs": [
+        "0xdBD18918A8e5617c02E1F7ed9c18F406dBf1011F",
+        "0x5C87b042494cDcebA44C541fbB3BC8bFF179d500"
+      ],
+      "libraries": {}
+    },
+    "71": {
+      "id": "0x3d30158075af8904146be72cea1918f84868bb94ed086c3ca92b687965472003",
+      "name": "GIMExtension - DPI",
+      "timestamp": 1625070610022,
+      "verified": true,
+      "description": "Deployed GIMExtension - DPI",
+      "contractAddress": "0xb5bdA3a528E8C0b45FEd4E51829d36CFc674DC87",
+      "constructorArgs": [
+        "0xdBD18918A8e5617c02E1F7ed9c18F406dBf1011F",
+        "0xb58E207da98986f9A13D0109b06C9E8d4fc19284"
+      ],
+      "libraries": {}
+    },
+    "72": {
+      "id": "0x3f489ae926e2df49dc191c09ba78d84be8d068b374c0c6289f1803f8e888fca0",
+      "name": "StreamingFeeSplitExtension - DPI",
+      "timestamp": 1625070620035,
+      "verified": true,
+      "description": "Deployed StreamingFeeSplitExtension - DPI",
+      "contractAddress": "0xF8a89e4Da4bEbf79d5bA69E71b4552E6b5435C8c",
+      "constructorArgs": [
+        "0xdBD18918A8e5617c02E1F7ed9c18F406dBf1011F",
+        "0x08f866c74205617B6F3903EF481798EcED10cDEC",
+        {
+          "type": "BigNumber",
+          "hex": "0x09b6e64a8ec60000"
+        }
+      ],
+      "libraries": {}
+    },
+    "73": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d410000000000000000000000009450d113fcc791fda705d938daf1c942e113ab1e",
+      "description": "Add GovernanceAdapter - DPI on BaseManager - DPI",
+      "contractName": "BaseManager - DPI"
+    },
+    "74": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d41000000000000000000000000b5bda3a528e8c0b45fed4e51829d36cfc674dc87",
+      "description": "Add GIMExtension - DPI on BaseManager - DPI",
+      "contractName": "BaseManager - DPI"
+    },
+    "75": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d41000000000000000000000000f8a89e4da4bebf79d5ba69e71b4552e6b5435c8c",
+      "description": "Add StreamingFeeSplitExtension - DPI on BaseManager - DPI",
+      "contractName": "BaseManager - DPI"
+    },
+    "76": {
+      "id": "0x00745cb94aeee1b7c246ecaa13aeda865000ca67f653fcd55cd999aaab358c9d",
+      "timestamp": 1625070663206,
+      "description": "GovernanceAdapter - DPI caller statuses updated."
+    },
+    "77": {
+      "id": "0xab3666bf8a5b4744161ab87cca33e1fb708e7a0878aae4adab526486cb9eed77",
+      "name": "BaseManager - MVI",
+      "timestamp": 1625070677057,
+      "verified": true,
+      "description": "Deployed BaseManager - MVI",
+      "contractAddress": "0x0528A40435D0940f3759F6bBad3eBfD050211a2e",
+      "constructorArgs": [
+        "0x72e364f2abdc788b7e918bc238b21f109cd634d7",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC"
+      ],
+      "libraries": {}
+    },
+    "78": {
+      "id": "0x6ec12e6df38ae08350dec2b74032e820556d2d0800ae1c406c4d48e03cc79aab",
+      "name": "GIMExtension - MVI",
+      "timestamp": 1625070728941,
+      "verified": true,
+      "description": "Deployed GIMExtension - MVI",
+      "contractAddress": "0x8E9468D1261E926A7b75276c29E4983937b69AC4",
+      "constructorArgs": [
+        "0x0528A40435D0940f3759F6bBad3eBfD050211a2e",
+        "0xb58E207da98986f9A13D0109b06C9E8d4fc19284"
+      ],
+      "libraries": {}
+    },
+    "79": {
+      "id": "0x6bb38caad8acfb62b18fef1e83a7edb68b465020cecbe1ada80de63ccbd36e95",
+      "name": "StreamingFeeSplitExtension - MVI",
+      "timestamp": 1625070748518,
+      "verified": true,
+      "description": "Deployed StreamingFeeSplitExtension - MVI",
+      "contractAddress": "0xf47A6657493632Fc23b11D3A0BDA5aF890a9c574",
+      "constructorArgs": [
+        "0x0528A40435D0940f3759F6bBad3eBfD050211a2e",
+        "0x08f866c74205617B6F3903EF481798EcED10cDEC",
+        {
+          "type": "BigNumber",
+          "hex": "0x0de0b6b3a7640000"
+        }
+      ],
+      "libraries": {}
+    },
+    "80": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d410000000000000000000000008e9468d1261e926a7b75276c29e4983937b69ac4",
+      "description": "Add GIMExtension - MVI on BaseManager - MVI",
+      "contractName": "BaseManager - MVI"
+    },
+    "81": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d41000000000000000000000000f47a6657493632fc23b11d3a0bda5af890a9c574",
+      "description": "Add StreamingFeeSplitExtension - MVI on BaseManager - MVI",
+      "contractName": "BaseManager - MVI"
     }
   }
 }

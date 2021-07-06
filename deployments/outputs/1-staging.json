@@ -3,7 +3,7 @@
     "network_key": "1-staging",
     "human_friendly_name": "main-net-staging",
     "network_id": 1,
-    "last_deployment_stage": 20
+    "last_deployment_stage": 21
   },
   "addresses": {
     "IndexToken": "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
@@ -57,7 +57,10 @@
     "BaseManager - DPI": "0x2B0Ff8429A19708D609106981CC80900F8f6FC2f",
     "GovernanceAdapter - DPI": "0x32393897E88aBeEF899F319a78D067099f2BFb1c",
     "GIMExtension - DPI": "0x7B4c8Fd589F47bfA1bd820bb402AE4A513096669",
-    "StreamingFeeSplitExtension - DPI": "0x7767ed31758F19e187016b05f69c583Dc586c574"
+    "StreamingFeeSplitExtension - DPI": "0x7767ed31758F19e187016b05f69c583Dc586c574",
+    "BaseManager - MVI": "0xdA4d9d1da7fC8e1569F6102Ff6ABa17cA736fC4A",
+    "GIMExtension - MVI": "0x0ea41138506BE2CB550C1edee1d12e6808714E46",
+    "StreamingFeeSplitExtension - MVI": "0xD12a761C5b84DE2aB9B3FD74c9768b886C283583"
   },
   "transactions": {
     "0": {
@@ -1049,6 +1052,65 @@
       "data": "0x60d54d410000000000000000000000007767ed31758f19e187016b05f69c583dc586c574",
       "description": "Add StreamingFeeSplitExtension - DPI on BaseManager - DPI",
       "contractName": "BaseManager - DPI"
+    },
+    "76": {
+      "id": "0xfeb1c52f021eda4a8fc58aaf859558bac976e3f0824733bd18ebc9ca9b35d734",
+      "name": "BaseManager - MVI",
+      "timestamp": 1625069148812,
+      "verified": true,
+      "description": "Deployed BaseManager - MVI",
+      "contractAddress": "0xdA4d9d1da7fC8e1569F6102Ff6ABa17cA736fC4A",
+      "constructorArgs": [
+        "0x66e3d0f4563b53d9049a241499dce6d5423c3af2",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3"
+      ],
+      "libraries": {}
+    },
+    "77": {
+      "id": "0x77a46cb863a8cdb0e99fc52d8c2442e8bec56ca8ee69d08571bf8b34fabef4f7",
+      "name": "GIMExtension - MVI",
+      "timestamp": 1625069168815,
+      "verified": true,
+      "description": "Deployed GIMExtension - MVI",
+      "contractAddress": "0x0ea41138506BE2CB550C1edee1d12e6808714E46",
+      "constructorArgs": [
+        "0xdA4d9d1da7fC8e1569F6102Ff6ABa17cA736fC4A",
+        "0x3eEBb8f01540Ac3F20072fe1DF3c3f8Dc274E4d0"
+      ],
+      "libraries": {}
+    },
+    "78": {
+      "id": "0x50cd9c0c91043aaef4d05300c5fabc7a9131395b9fc602d2f725ece76983eecb",
+      "name": "StreamingFeeSplitExtension - MVI",
+      "timestamp": 1625069213338,
+      "verified": false,
+      "description": "Deployed StreamingFeeSplitExtension - MVI",
+      "contractAddress": "0xD12a761C5b84DE2aB9B3FD74c9768b886C283583",
+      "constructorArgs": [
+        "0xdA4d9d1da7fC8e1569F6102Ff6ABa17cA736fC4A",
+        "0x3D8d14b7eFb8e342189ee14c3d40dCe005EB901B",
+        {
+          "type": "BigNumber",
+          "hex": "0x0de0b6b3a7640000"
+        }
+      ],
+      "libraries": {}
+    },
+    "79": {
+      "id": "0xd40f9360f70ba83ec414cc6bb91468b19ab3659606cf54964e8e4a3a2254ac5a",
+      "timestamp": 1625069892096,
+      "description": "Add GIMExtension - MVI on BaseManager - MVI"
+    },
+    "80": {
+      "id": "0xc4f0520a3945217a7ea191c9feb73c6e55be7c85a20a707d40100c3a2727b6c2",
+      "timestamp": 1625070255341,
+      "description": "Add StreamingFeeSplitExtension - MVI on BaseManager - MVI"
+    },
+    "81": {
+      "id": "0xe1c51f58f82760fe862f632c2dd9e2197f536d6ec801ee5b69d7a19d8fe44dba",
+      "timestamp": 1625070263549,
+      "description": "0x68170278804Fc18481aECfB497D63A9b11DC692F set as operator on BaseManager - MVI"
     }
   }
 }
