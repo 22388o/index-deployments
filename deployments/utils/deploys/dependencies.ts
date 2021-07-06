@@ -16,6 +16,13 @@ export default {
     },
     42: "",
   },
+  BED: {
+    1: {
+      production: "",
+      staging: "",
+    },
+    42: "",
+  },
   WBTC: {
     1: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
     42: "0x595f8DaB94b9c718cbf5c693cD539Fd00b286D3d",
@@ -188,6 +195,7 @@ export const DEPENDENCY = {
   // Tokens
   DPI: "DPI",
   MVI: "MVI",
+  BED: "BED",
   BTCFLI: "BTCFLI",
   ETHFLI: "ETHFLI",
   WETH: "WETH",
