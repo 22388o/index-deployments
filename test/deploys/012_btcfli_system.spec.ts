@@ -163,8 +163,8 @@ describe("BTCFLI System", () => {
       expect(sushiSettings.leverExchangeData).to.eq(sushiLeverData);
       expect(sushiSettings.deleverExchangeData).to.eq(sushiDeleverData);
 
-      expect(uniV3Settings.twapMaxTradeSize).to.eq(bitcoin(50));
-      expect(uniV3Settings.incentivizedTwapMaxTradeSize).to.eq(bitcoin(50));
+      expect(uniV3Settings.twapMaxTradeSize).to.eq(bitcoin(55));
+      expect(uniV3Settings.incentivizedTwapMaxTradeSize).to.eq(bitcoin(100));
       expect(uniV3Settings.exchangeLastTradeTimestamp).to.eq(BigNumber.from(0));
       expect(uniV3Settings.leverExchangeData).to.eq(uniV3LeverData);
       expect(uniV3Settings.deleverExchangeData).to.eq(uniV3DeleverData);
