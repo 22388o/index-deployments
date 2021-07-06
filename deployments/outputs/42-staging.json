@@ -36,7 +36,7 @@
     "BaseManager": "0xC8C64614945aAC7c4eC2b3F72C23E2C16Dc8F454",
     "FeeSplitAdapter": "0x7528369249f18CE18cD5d2aAA23D19765E38d518",
     "StakingRewardsV2 - ETHFLI": "0x0DdC0a6D0e92a2d931bd85379DfF113b1b634EA7",
-    "FlexibleLeverageStrategyAdapter - DEPRECATED": "0x9Cd8860325b83FB7c3f151c82f269442A4f8B50b",
+    "FlexibleLeverageStrategyAdapter - DEPRECATED": "0xcf723bF22996bC99B07d2f53e3eD7a1A290581D3",
     "FlexibleLeverageStrategyAdapter V2 - DEPRECATED": "0x9B08a1738AB089348F514f3Ba55f20b8d801505c",
     "Eth2xFLIRebalanceViewer - DEPRECATED": "0x9d939F9938D037B33217f109d917a36527F13f28",
     "RewardsMar21MerkleDistributor": "0xe868ACB2BaFCA51e75862B3f92fD6C3f18a2EBA2",
@@ -44,7 +44,7 @@
     "StakingRewardsV2 - MVI": "0x48152d3199da64CA6d2657eDdbf36b91d6D81920",
     "BTCFLISupplyCapAllowedCallerIssuanceHook": "0x16351f57F2ff5394b8470e650ACd8e3c4994455e",
     "BTCFLIBaseManager": "0x3bD16E1b34eE1Eb72C4EDDFB123446Bd9C146742",
-    "BTCFlexibleLeverageStrategyAdapter - DEPRECATED": "0xb45d2b88d06C634A6bd5191C5E92Ce0902785dEB",
+    "BTCFlexibleLeverageStrategyAdapter - DEPRECATED": "0xa9C70ba8b174F2Ba846d3ba3e1E4DEAa20BDa485",
     "BTCFLIFeeSplitAdapter": "0x7C6a5F572e6e8176f57983c7033bF0F88aF6a7ea",
     "Btc2xFLIRebalanceViewer - DEPRECATED": "0x7CD0FB4aAaa4ce1e163be29414a0fFbeDe0eE906",
     "RewardsApr21MerkleDistributor": "0xD43490952826ED7f0603d61659Db71a3Cb0Ef97a",
@@ -55,8 +55,6 @@
     "INDEX_ETH_UNISWAP": "0x6B4B8d059Aae3192ea3e68FCD3C494aFDAF8280b",
     "INDEX_ETH_SUSHISWAP": "0x6EC40Dd7f20Bcf94F196Db79096dc139F6c645bd",
     "IndexPowah": "0xB2c66F9AB9f2Bc37cA365beAD5084FBAAC621Cb5",
-    "FlexibleLeverageStrategyAdapter": "0xcf723bF22996bC99B07d2f53e3eD7a1A290581D3",
-    "BTCFlexibleLeverageStrategyAdapter": "0xa9C70ba8b174F2Ba846d3ba3e1E4DEAa20BDa485",
     "OtcEscrow - 0x5BCF61c5E5C72457003feD3d292AAEA1c06f3691": "0xF991EEAC6b4654098e49dE48DcA127a78F5171C8",
     "OtcEscrow - 0x7E2E80E8250844Dd4E558f13850380D5af8F0C61": "0x42d14c47FDd68c131b7eB6e386dD02085e01337d",
     "OtcEscrow - 0xe1B6e4C28127C4704838A0a2d6c6F7c344944B22": "0xB5537C70222F399eC63DA01d6c0fB3DBd1A1FA93",
@@ -67,7 +65,9 @@
     "BaseManager - DPI": "0x350bE5A3306C62CBf958Fca20eE99214fEC8D2dc",
     "GovernanceAdapter - DPI": "0x425f512E4996CeE632f852A05f2cDfE3578C83b2",
     "GIMExtension - DPI": "0x60b65425B6AbFf179E0187756771f534672e7C0C",
-    "StreamingFeeSplitExtension - DPI": "0xF97a6a16AdC716B9bFb1684A8E29C71EB73B03Ed"
+    "StreamingFeeSplitExtension - DPI": "0xF97a6a16AdC716B9bFb1684A8E29C71EB73B03Ed",
+    "FlexibleLeverageStrategyExtension": "0x294Fd303899742D634E5683DCf47dFC0D29D70C1",
+    "BTCFlexibleLeverageStrategyExtension": "0xE089bdff60BeC927F541F922B90105C100664c56"
   },
   "transactions": {
     "0": {
@@ -1428,6 +1428,262 @@
       "id": "0xb4ae3b97206d8cfd7dcc2d7ed6e68b2026482add9063c524d3be717343516d06",
       "timestamp": 1624902722080,
       "description": "Add StreamingFeeSplitExtension - DPI on BaseManager - DPI"
+    },
+    "153": {
+      "id": "0x2aa506c587255abae3b7a434d461efee94851d988203cf4fe9c9fc71362c1b2a",
+      "name": "FlexibleLeverageStrategyExtension",
+      "timestamp": 1625023837564,
+      "verified": true,
+      "description": "Deployed FlexibleLeverageStrategyExtension",
+      "contractAddress": "0x294Fd303899742D634E5683DCf47dFC0D29D70C1",
+      "constructorArgs": [
+        "0xC8C64614945aAC7c4eC2b3F72C23E2C16Dc8F454",
+        {
+          "setToken": "0x0437c39a59c42E367C00BC3C95999fEb799bce1a",
+          "leverageModule": "0x676C7B527c706801e64AD2108aA1F0Ddc83807D0",
+          "comptroller": "0x047ba8fe92c01bffec22a93b3acdfc9a938887f9",
+          "targetCollateralCToken": "0xefa3e50f493d39a1b53698c549ad35fbf4b1053c",
+          "targetBorrowCToken": "0x48f4944f65c1d67009b6d5c9f70bd79c2f41ead8",
+          "collateralAsset": "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
+          "borrowAsset": "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+          "collateralPriceOracle": "0x9326BFA02ADD2366b30bacB125260Af641031331",
+          "borrowPriceOracle": "0x9211c6b3BF41A10F78539810Cf5c64e1BB78Ec60",
+          "collateralDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x0a"
+          },
+          "borrowDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x16"
+          }
+        },
+        {
+          "targetLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1bc16d674ec80000"
+          },
+          "minLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x17979cfe362a0000"
+          },
+          "maxLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1feb3dd067660000"
+          },
+          "recenteringSpeed": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "rebalanceInterval": {
+            "type": "BigNumber",
+            "hex": "0x015180"
+          }
+        },
+        {
+          "unutilizedLeveragePercentage": {
+            "type": "BigNumber",
+            "hex": "0x2386f26fc10000"
+          },
+          "twapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x1e"
+          },
+          "slippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0x470de4df820000"
+          }
+        },
+        {
+          "incentivizedTwapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x01"
+          },
+          "incentivizedSlippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "etherReward": {
+            "type": "BigNumber",
+            "hex": "0x14d1120d7b160000"
+          },
+          "incentivizedLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x257853b1dd8e0000"
+          }
+        },
+        [
+          "SushiswapExchangeAdapter",
+          "UniswapV3ExchangeAdapter"
+        ],
+        [
+          {
+            "twapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x2086ac351052600000"
+            },
+            "exchangeLastTradeTimestamp": {
+              "type": "BigNumber",
+              "hex": "0x00"
+            },
+            "incentivizedTwapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x56bc75e2d631000000"
+            },
+            "leverExchangeData": "0x",
+            "deleverExchangeData": "0x"
+          },
+          {
+            "twapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x5150ae84a8cdf00000"
+            },
+            "exchangeLastTradeTimestamp": {
+              "type": "BigNumber",
+              "hex": "0x00"
+            },
+            "incentivizedTwapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x5150ae84a8cdf00000"
+            },
+            "leverExchangeData": "0x15758350decea0e5a96cfe9024e3f352d039905a000bb8d0a1e359811322d97991e03f863a0c30c2cf029c",
+            "deleverExchangeData": "0xd0a1e359811322d97991e03f863a0c30c2cf029c000bb815758350decea0e5a96cfe9024e3f352d039905a"
+          }
+        ]
+      ],
+      "libraries": {}
+    },
+    "154": {
+      "id": "0xa3fafc3a8a233e5226891c8a2abeedf6e8a95242ffb0756dfe5a6626d4f2771e",
+      "timestamp": 1625023993049,
+      "description": "Add adapter on BaseManager"
+    },
+    "155": {
+      "id": "0xea3c8bc4b6ec8e4c6de4245b120ba9f232a904c0e2cdef4d54c1419eca48d132",
+      "name": "BTCFlexibleLeverageStrategyExtension",
+      "timestamp": 1625024018133,
+      "verified": false,
+      "description": "Deployed BTC FlexibleLeverageStrategyExtension",
+      "contractAddress": "0xE089bdff60BeC927F541F922B90105C100664c56",
+      "constructorArgs": [
+        "0x3bD16E1b34eE1Eb72C4EDDFB123446Bd9C146742",
+        {
+          "setToken": "0x7edC8917dfb6F2C696a41579356dfc6ecD360aA1",
+          "leverageModule": "0x676C7B527c706801e64AD2108aA1F0Ddc83807D0",
+          "comptroller": "0x047ba8fe92c01bffec22a93b3acdfc9a938887f9",
+          "targetCollateralCToken": "0xca1458e55d6be75ad771115d7b2fc1cb753bc5c9",
+          "targetBorrowCToken": "0x48f4944f65c1d67009b6d5c9f70bd79c2f41ead8",
+          "collateralAsset": "0x595f8DaB94b9c718cbf5c693cD539Fd00b286D3d",
+          "borrowAsset": "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+          "collateralPriceOracle": "0x6135b13325bfC4B00278B4abC5e20bbce2D6580e",
+          "borrowPriceOracle": "0x9211c6b3BF41A10F78539810Cf5c64e1BB78Ec60",
+          "collateralDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x14"
+          },
+          "borrowDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x16"
+          }
+        },
+        {
+          "targetLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1bc16d674ec80000"
+          },
+          "minLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x18fae27693b40000"
+          },
+          "maxLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1e87f85809dc0000"
+          },
+          "recenteringSpeed": {
+            "type": "BigNumber",
+            "hex": "0x016345785d8a0000"
+          },
+          "rebalanceInterval": {
+            "type": "BigNumber",
+            "hex": "0x015180"
+          }
+        },
+        {
+          "unutilizedLeveragePercentage": {
+            "type": "BigNumber",
+            "hex": "0x2386f26fc10000"
+          },
+          "twapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x1e"
+          },
+          "slippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0x470de4df820000"
+          }
+        },
+        {
+          "incentivizedTwapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x01"
+          },
+          "incentivizedSlippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "etherReward": {
+            "type": "BigNumber",
+            "hex": "0x14d1120d7b160000"
+          },
+          "incentivizedLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x214e8348c4f00000"
+          }
+        },
+        [
+          "SushiswapExchangeAdapter",
+          "UniswapV3ExchangeAdapter"
+        ],
+        [
+          {
+            "twapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x77359400"
+            },
+            "incentivizedTwapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x012a05f200"
+            },
+            "exchangeLastTradeTimestamp": {
+              "type": "BigNumber",
+              "hex": "0x00"
+            },
+            "leverExchangeData": "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000300000000000000000000000015758350decea0e5a96cfe9024e3f352d039905a000000000000000000000000d0a1e359811322d97991e03f863a0c30c2cf029c000000000000000000000000595f8dab94b9c718cbf5c693cd539fd00b286d3d",
+            "deleverExchangeData": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003000000000000000000000000595f8dab94b9c718cbf5c693cd539fd00b286d3d000000000000000000000000d0a1e359811322d97991e03f863a0c30c2cf029c00000000000000000000000015758350decea0e5a96cfe9024e3f352d039905a"
+          },
+          {
+            "twapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x012a05f200"
+            },
+            "exchangeLastTradeTimestamp": {
+              "type": "BigNumber",
+              "hex": "0x00"
+            },
+            "incentivizedTwapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x012a05f200"
+            },
+            "leverExchangeData": "0x15758350decea0e5a96cfe9024e3f352d039905a000bb8595f8dab94b9c718cbf5c693cd539fd00b286d3d",
+            "deleverExchangeData": "0x595f8dab94b9c718cbf5c693cd539fd00b286d3d000bb815758350decea0e5a96cfe9024e3f352d039905a"
+          }
+        ]
+      ],
+      "libraries": {}
+    },
+    "156": {
+      "id": "0x1ab0adf0b5e54e4916d621aa66f1e16fdd509b1bd01a6814ce0c5ef446a031c8",
+      "timestamp": 1625024029031,
+      "description": "Add adapter on BaseManager"
     }
   }
 }

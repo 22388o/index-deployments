@@ -154,8 +154,8 @@ describe("ETHFLI System", () => {
       expect(sushiSettings.leverExchangeData).to.eq(EMPTY_BYTES);
       expect(sushiSettings.deleverExchangeData).to.eq(EMPTY_BYTES);
 
-      expect(uniV3Settings.twapMaxTradeSize).to.eq(ether(1500));
-      expect(uniV3Settings.incentivizedTwapMaxTradeSize).to.eq(ether(1500));
+      expect(uniV3Settings.twapMaxTradeSize).to.eq(ether(2000));
+      expect(uniV3Settings.incentivizedTwapMaxTradeSize).to.eq(ether(3000));
       expect(uniV3Settings.exchangeLastTradeTimestamp).to.eq(BigNumber.from(0));
       expect(uniV3Settings.leverExchangeData).to.eq(uniV3LeverData);
       expect(uniV3Settings.deleverExchangeData).to.eq(uniV3DeleverData);
