@@ -64,7 +64,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
   await addExtension(hre, BASE_MANAGER_NAME, GIM_EXTENSION_NAME);
   await addExtension(hre, BASE_MANAGER_NAME, FEE_EXTENSION_NAME);
 
-  // await setOperator(hre, BASE_MANAGER_NAME, await findDependency(TREASURY_MULTI_SIG));
+  await setOperator(hre, BASE_MANAGER_NAME, await findDependency(TREASURY_MULTI_SIG));
 
   async function polyFillForDevelopment(): Promise<void> {
     if (await findDependency(MVI) === "") {
