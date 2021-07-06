@@ -17,6 +17,7 @@ import {
   findDependency,
   getCurrentStage,
   prepareDeployment,
+  setOperator,
   stageAlreadyFinished,
   trackFinishedStage,
   writeContractAndTransactionToOutputs,
