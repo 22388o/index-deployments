@@ -25,7 +25,7 @@ import {
 import {
   CONTRACT_NAMES,
   FEE_SPLIT_ADAPTER
-} from "@deployments/constants/021_bed_manager";
+} from "@deployments/constants/022_bed_manager";
 
 const {
   TREASURY_MULTI_SIG,
