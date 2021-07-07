@@ -1399,7 +1399,7 @@
       "id": "0x4e4fd3909e189e31ecde9bd0899d80b13f70409be16ea4dd64bea649cab19d5d",
       "name": "BaseManager - BED",
       "timestamp": 1625694206284,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BaseManager - BED",
       "contractAddress": "0xe337794481879179838413b581FFaBA8356A9C8B",
       "constructorArgs": [
@@ -1413,7 +1413,7 @@
       "id": "0x2c232080b385e76e157c6f16985db214fc06960383ff806e1bc649c3e2762d19",
       "name": "GIMExtension - BED",
       "timestamp": 1625694307614,
-      "verified": false,
+      "verified": true,
       "description": "Deployed GIMExtension - BED",
       "contractAddress": "0xE8fE7424350a7e213ed828FD3ca57719588f6BAe",
       "constructorArgs": [
@@ -1426,7 +1426,7 @@
       "id": "0xa9e1e0cb920a363e42391d8980b2d3c33c1c522f4abba48f37e6fb6637d91d88",
       "name": "StreamingFeeSplitExtension - BED",
       "timestamp": 1625694325875,
-      "verified": false,
+      "verified": true,
       "description": "Deployed StreamingFeeSplitExtension - BED",
       "contractAddress": "0x16C2143ebbE391403CFe755CC968184244B810C2",
       "constructorArgs": [
