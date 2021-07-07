@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 20
+    "last_deployment_stage": 22
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -67,7 +67,9 @@
     "GIMExtension - DPI": "0x60b65425B6AbFf179E0187756771f534672e7C0C",
     "StreamingFeeSplitExtension - DPI": "0xF97a6a16AdC716B9bFb1684A8E29C71EB73B03Ed",
     "FlexibleLeverageStrategyExtension": "0x294Fd303899742D634E5683DCf47dFC0D29D70C1",
-    "BTCFlexibleLeverageStrategyExtension": "0xE089bdff60BeC927F541F922B90105C100664c56"
+    "BTCFlexibleLeverageStrategyExtension": "0xE089bdff60BeC927F541F922B90105C100664c56",
+    "FLIRebalanceViewer": "0xF6F979a44FA7964668a92167Bea1d1EC4d393eF6",
+    "BTCFLIRebalanceViewer": "0x005070Cab99A96FF96608fBB6A9C08Ce27261f56"
   },
   "transactions": {
     "0": {
@@ -1561,7 +1563,7 @@
       "id": "0xea3c8bc4b6ec8e4c6de4245b120ba9f232a904c0e2cdef4d54c1419eca48d132",
       "name": "BTCFlexibleLeverageStrategyExtension",
       "timestamp": 1625024018133,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BTC FlexibleLeverageStrategyExtension",
       "contractAddress": "0xE089bdff60BeC927F541F922B90105C100664c56",
       "constructorArgs": [
@@ -1684,6 +1686,38 @@
       "id": "0x1ab0adf0b5e54e4916d621aa66f1e16fdd509b1bd01a6814ce0c5ef446a031c8",
       "timestamp": 1625024029031,
       "description": "Add adapter on BaseManager"
+    },
+    "157": {
+      "id": "0x8caf4583aeb278cc84f919f158a4ce9edc32ae51262a4d56b5def5d4db580fbd",
+      "name": "FLIRebalanceViewer",
+      "timestamp": 1625687410925,
+      "verified": true,
+      "description": "Deployed FLIRebalanceViewer",
+      "contractAddress": "0xF6F979a44FA7964668a92167Bea1d1EC4d393eF6",
+      "constructorArgs": [
+        "0x294Fd303899742D634E5683DCf47dFC0D29D70C1",
+        "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+        "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "UniswapV3ExchangeAdapter",
+        "SushiswapExchangeAdapter"
+      ],
+      "libraries": {}
+    },
+    "158": {
+      "id": "0x8941ed3362aeaaefd7bad5334248a3d2f6eda8c42b94c67853fd9f4c8d2356c3",
+      "name": "BTCFLIRebalanceViewer",
+      "timestamp": 1625687420233,
+      "verified": true,
+      "description": "Deployed BTCFLIRebalanceViewer",
+      "contractAddress": "0x005070Cab99A96FF96608fBB6A9C08Ce27261f56",
+      "constructorArgs": [
+        "0xE089bdff60BeC927F541F922B90105C100664c56",
+        "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+        "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "UniswapV3ExchangeAdapter",
+        "SushiswapExchangeAdapter"
+      ],
+      "libraries": {}
     }
   }
 }
