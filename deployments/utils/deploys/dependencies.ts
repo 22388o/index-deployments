@@ -19,7 +19,7 @@ export default {
   BED: {
     1: {
       production: "",
-      staging: "",
+      staging: "0x68aD048fA2e1bcaFa690Ce257b69A13f5A79a514",
     },
     42: "",
   },
