@@ -24,6 +24,14 @@ const {
   AMM_SPLITTER,
 } = DEPENDENCY;
 
+/**
+ * CHANGELOG
+ *
+ * 7/9/2021: b9d56349e9cb42c7ff0ac0be493cf4990f69c222
+ * - Use AMMSplitterExchangeAdapter as secondary exchange name
+ * - Use AMMSplitter as uniswapV2Router
+ */
+
 const CURRENT_STAGE = getCurrentStage(__filename);
 
 const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (hre: HRE) {
