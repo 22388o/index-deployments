@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 21
+    "last_deployment_stage": 22
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -68,7 +68,9 @@
     "GIMExtension - MVI": "0x8E9468D1261E926A7b75276c29E4983937b69AC4",
     "StreamingFeeSplitExtension - MVI": "0xf47A6657493632Fc23b11D3A0BDA5aF890a9c574",
     "FlexibleLeverageStrategyExtension": "0xF6ba6441D4DAc647898F4083483AA44Da8B1446f",
-    "BTCFlexibleLeverageStrategyExtension": "0x2612fA1E336cb248ee00eFD02f1C941a7A015e76"
+    "BTCFlexibleLeverageStrategyExtension": "0x2612fA1E336cb248ee00eFD02f1C941a7A015e76",
+    "FLIRebalanceViewer": "0x524678fDA8F7AD0Edb4e958D2112F5D28dCc2579",
+    "BTCFLIRebalanceViewer": "0x9B2395e0CbA5f1Ee9cd20795b8189D2CcEe89b08"
   },
   "transactions": {
     "0": {
@@ -1035,7 +1037,7 @@
       "id": "0xc4ff83f29d40fcc477ddb78e4905a2317c418e3cb8379e53f3cbd9c3d6f33edf",
       "name": "FlexibleLeverageStrategyExtension",
       "timestamp": 1625165286102,
-      "verified": false,
+      "verified": true,
       "description": "Deployed FlexibleLeverageStrategyExtension",
       "contractAddress": "0xF6ba6441D4DAc647898F4083483AA44Da8B1446f",
       "constructorArgs": [
@@ -1285,7 +1287,7 @@
       "id": "0x8c8676c6ae8cf3f34cf4efa36fcf9a49ea2d53c44e8e5af69eec52d3b8694812",
       "name": "BTCFlexibleLeverageStrategyExtension",
       "timestamp": 1625165487111,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BTC FlexibleLeverageStrategyExtension",
       "contractAddress": "0x2612fA1E336cb248ee00eFD02f1C941a7A015e76",
       "constructorArgs": [
@@ -1401,6 +1403,38 @@
             "deleverExchangeData": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599000bb8a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
           }
         ]
+      ],
+      "libraries": {}
+    },
+    "84": {
+      "id": "0xf4a8d838ee0bd4af8cae96b3b40602904539cee81131e5cf08312e3ffd0bf970",
+      "name": "FLIRebalanceViewer",
+      "timestamp": 1625768358414,
+      "verified": true,
+      "description": "Deployed FLIRebalanceViewer",
+      "contractAddress": "0x524678fDA8F7AD0Edb4e958D2112F5D28dCc2579",
+      "constructorArgs": [
+        "0xF6ba6441D4DAc647898F4083483AA44Da8B1446f",
+        "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+        "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F",
+        "UniswapV3ExchangeAdapter",
+        "SushiswapExchangeAdapter"
+      ],
+      "libraries": {}
+    },
+    "85": {
+      "id": "0x1ea1a01313f21e816314e67d7abaf2dcad0a17298c10ab0318882fe487ffbb7e",
+      "name": "BTCFLIRebalanceViewer",
+      "timestamp": 1625769147883,
+      "verified": true,
+      "description": "Deployed BTCFLIRebalanceViewer",
+      "contractAddress": "0x9B2395e0CbA5f1Ee9cd20795b8189D2CcEe89b08",
+      "constructorArgs": [
+        "0x2612fA1E336cb248ee00eFD02f1C941a7A015e76",
+        "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+        "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F",
+        "UniswapV3ExchangeAdapter",
+        "SushiswapExchangeAdapter"
       ],
       "libraries": {}
     }
