@@ -1241,7 +1241,7 @@
       "id": "0xcaa25d9750808792a77d089fa7921d01b51cc1c7a298ef83552876f317941b00",
       "name": "BTCFlexibleLeverageStrategyExtension",
       "timestamp": 1625024898303,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BTC FlexibleLeverageStrategyExtension",
       "contractAddress": "0x848683a30537123e21377c964b09C19964DB9B93",
       "constructorArgs": [
@@ -1364,7 +1364,7 @@
       "id": "0x939ce91d38822c80d08f37270d90a409bc8308b49ba90915e6688861ff7c7672",
       "name": "FLIRebalanceViewer",
       "timestamp": 1625689813108,
-      "verified": false,
+      "verified": true,
       "description": "Deployed FLIRebalanceViewer",
       "contractAddress": "0x8f731BdF997189d2fF355C29846077a4626B4AFd",
       "constructorArgs": [
@@ -1380,7 +1380,7 @@
       "id": "0xdbdfa663c4c8fc2e69005800a6e713b46fb6f6e77bdd8a358c96bdba430302b8",
       "name": "BTCFLIRebalanceViewer",
       "timestamp": 1625689826714,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BTCFLIRebalanceViewer",
       "contractAddress": "0xFDa5AE4d7d466f466735B9AEc6eA83841260FDC7",
       "constructorArgs": [
