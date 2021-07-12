@@ -49,6 +49,13 @@ export default {
     },
     42: "0x7edC8917dfb6F2C696a41579356dfc6ecD360aA1",
   },
+  I_ETHFLI: {
+    1: {
+      production: "",
+      staging: "",
+    },
+    42: "",
+  },
 
   // DEX Contracts
   DPI_ETH_UNI_POOL: {
@@ -229,6 +236,7 @@ export const DEPENDENCY = {
   BED: "BED",
   BTCFLI: "BTCFLI",
   ETHFLI: "ETHFLI",
+  I_ETHFLI: "I_ETHFLI",
   WETH: "WETH",
   WBTC: "WBTC",
   USDC: "USDC",
