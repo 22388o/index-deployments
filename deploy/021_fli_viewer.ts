@@ -21,8 +21,16 @@ import { getRandomAddress } from "@utils/accountUtils";
 
 const {
   UNISWAP_V3_QUOTER,
-  SUSHISWAP_ROUTER,
+  AMM_SPLITTER,
 } = DEPENDENCY;
+
+/**
+ * CHANGELOG
+ *
+ * 7/9/2021: b9d56349e9cb42c7ff0ac0be493cf4990f69c222
+ * - Use AMMSplitterExchangeAdapter as secondary exchange name
+ * - Use AMMSplitter as uniswapV2Router
+ */
 
 const CURRENT_STAGE = getCurrentStage(__filename);
 
@@ -44,8 +52,8 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
     if (await findDependency(UNISWAP_V3_QUOTER) === "") {
       await writeContractAndTransactionToOutputs(UNISWAP_V3_QUOTER, await getRandomAddress(), EMPTY_BYTES, "Created Mock Uniswap V3 Quoter");
     }
-    if (await findDependency(SUSHISWAP_ROUTER) === "") {
-      await writeContractAndTransactionToOutputs(SUSHISWAP_ROUTER, await getRandomAddress(), EMPTY_BYTES, "Created Mock Sushiswap Router");
+    if (await findDependency(AMM_SPLITTER) === "") {
+      await writeContractAndTransactionToOutputs(AMM_SPLITTER, await getRandomAddress(), EMPTY_BYTES, "Created Mock AMMSplitter");
     }
   }
 
@@ -56,14 +64,14 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
       const fliExtension = await getContractAddress(fliStrategyExtensionName);
       const uniQuoter = await findDependency(UNISWAP_V3_QUOTER);
-      const sushiRouter = await findDependency(SUSHISWAP_ROUTER);
+      const ammSplitter = await findDependency(AMM_SPLITTER);
 
       const constructorArgs: any[] = [
         fliExtension,
         uniQuoter,
-        sushiRouter,
+        ammSplitter,
         CONTRACT_NAMES.UNISWAP_V3_EXCHANGE_ADAPTER,
-        CONTRACT_NAMES.SUSHISWAP_EXCHANGE_ADAPTER,
+        CONTRACT_NAMES.AMM_SPLITTER_EXCHANGE_ADAPTER,
       ];
 
       const fliViewer = await deploy(

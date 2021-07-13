@@ -4,7 +4,7 @@ export const CONTRACT_NAMES = {
   BTC_FLI_VIEWER_NAME: "BTCFLIRebalanceViewer",
 
   UNISWAP_V3_EXCHANGE_ADAPTER: "UniswapV3ExchangeAdapter",
-  SUSHISWAP_EXCHANGE_ADAPTER: "SushiswapExchangeAdapter",
+  AMM_SPLITTER_EXCHANGE_ADAPTER: "AMMSplitterExchangeAdapter",
 
   ETH_FLI_STRATEGY_EXTENSION_NAME: "FlexibleLeverageStrategyExtension",
   BTC_FLI_STRATEGY_EXTENSION_NAME: "BTCFlexibleLeverageStrategyExtension",
