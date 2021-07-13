@@ -68,8 +68,10 @@
     "StreamingFeeSplitExtension - DPI": "0xF97a6a16AdC716B9bFb1684A8E29C71EB73B03Ed",
     "FlexibleLeverageStrategyExtension": "0x294Fd303899742D634E5683DCf47dFC0D29D70C1",
     "BTCFlexibleLeverageStrategyExtension": "0xE089bdff60BeC927F541F922B90105C100664c56",
-    "FLIRebalanceViewer": "0xF6F979a44FA7964668a92167Bea1d1EC4d393eF6",
-    "BTCFLIRebalanceViewer": "0x005070Cab99A96FF96608fBB6A9C08Ce27261f56"
+    "FLIRebalanceViewer - DEPRECATED": "0xF6F979a44FA7964668a92167Bea1d1EC4d393eF6",
+    "BTCFLIRebalanceViewer - DEPRECATED": "0x005070Cab99A96FF96608fBB6A9C08Ce27261f56",
+    "FLIRebalanceViewer": "0xdC34a219A78AbfFE2a5f1E9a2bC51324e1FB4227",
+    "BTCFLIRebalanceViewer": "0x04AF15483050DaF44390f37Eea80d4b8188C5fa5"
   },
   "transactions": {
     "0": {
@@ -1716,6 +1718,38 @@
         "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
         "UniswapV3ExchangeAdapter",
         "SushiswapExchangeAdapter"
+      ],
+      "libraries": {}
+    },
+    "159": {
+      "id": "0xeb4ee477a7b6bb028b94379bda2452c20e3f433fad2c303b4510d5321ef74046",
+      "name": "FLIRebalanceViewer",
+      "timestamp": 1625864898925,
+      "verified": true,
+      "description": "Deployed FLIRebalanceViewer",
+      "contractAddress": "0xdC34a219A78AbfFE2a5f1E9a2bC51324e1FB4227",
+      "constructorArgs": [
+        "0x294Fd303899742D634E5683DCf47dFC0D29D70C1",
+        "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+        "0xE7B42a0Bf1d41e00fba7A4d41f8fb21d2702e6e2",
+        "UniswapV3ExchangeAdapter",
+        "AMMSplitterExchangeAdapter"
+      ],
+      "libraries": {}
+    },
+    "160": {
+      "id": "0x8d657eacd4389441e9d0ed14320fc77fe1ddffd1451e844cc3c2ec1f36061951",
+      "name": "BTCFLIRebalanceViewer",
+      "timestamp": 1625864907828,
+      "verified": true,
+      "description": "Deployed BTCFLIRebalanceViewer",
+      "contractAddress": "0x04AF15483050DaF44390f37Eea80d4b8188C5fa5",
+      "constructorArgs": [
+        "0xE089bdff60BeC927F541F922B90105C100664c56",
+        "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+        "0xE7B42a0Bf1d41e00fba7A4d41f8fb21d2702e6e2",
+        "UniswapV3ExchangeAdapter",
+        "AMMSplitterExchangeAdapter"
       ],
       "libraries": {}
     }

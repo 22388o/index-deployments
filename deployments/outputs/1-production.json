@@ -69,8 +69,10 @@
     "StreamingFeeSplitExtension - MVI": "0xf47A6657493632Fc23b11D3A0BDA5aF890a9c574",
     "FlexibleLeverageStrategyExtension": "0xF6ba6441D4DAc647898F4083483AA44Da8B1446f",
     "BTCFlexibleLeverageStrategyExtension": "0x2612fA1E336cb248ee00eFD02f1C941a7A015e76",
-    "FLIRebalanceViewer": "0x524678fDA8F7AD0Edb4e958D2112F5D28dCc2579",
-    "BTCFLIRebalanceViewer": "0x9B2395e0CbA5f1Ee9cd20795b8189D2CcEe89b08"
+    "FLIRebalanceViewer - DEPRECATED": "0x524678fDA8F7AD0Edb4e958D2112F5D28dCc2579",
+    "BTCFLIRebalanceViewer - DEPRECATED": "0x9B2395e0CbA5f1Ee9cd20795b8189D2CcEe89b08",
+    "FLIRebalanceViewer": "0x979A5902baa728034Ff342172Eda64FCe416d0a4",
+    "BTCFLIRebalanceViewer": "0x45506F675872022dbd0101Ed6E1E932dE403B8B5"
   },
   "transactions": {
     "0": {
@@ -1407,34 +1409,34 @@
       "libraries": {}
     },
     "84": {
-      "id": "0xf4a8d838ee0bd4af8cae96b3b40602904539cee81131e5cf08312e3ffd0bf970",
+      "id": "0x2d8ff6aca49fc2c14439df91d237ce560155395da571f826d2ae25c6ebe85f7b",
       "name": "FLIRebalanceViewer",
-      "timestamp": 1625768358414,
+      "timestamp": 1626200838500,
       "verified": true,
       "description": "Deployed FLIRebalanceViewer",
-      "contractAddress": "0x524678fDA8F7AD0Edb4e958D2112F5D28dCc2579",
+      "contractAddress": "0x979A5902baa728034Ff342172Eda64FCe416d0a4",
       "constructorArgs": [
         "0xF6ba6441D4DAc647898F4083483AA44Da8B1446f",
         "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
-        "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F",
+        "0x3A5b399B3dDca24375388FA1b06A06D8fD3BE680",
         "UniswapV3ExchangeAdapter",
-        "SushiswapExchangeAdapter"
+        "AMMSplitterExchangeAdapter"
       ],
       "libraries": {}
     },
     "85": {
-      "id": "0x1ea1a01313f21e816314e67d7abaf2dcad0a17298c10ab0318882fe487ffbb7e",
+      "id": "0x947df746217d70efa27268a1ed39d75b121be886059c73a49da07216671562d4",
       "name": "BTCFLIRebalanceViewer",
-      "timestamp": 1625769147883,
+      "timestamp": 1626200877507,
       "verified": true,
       "description": "Deployed BTCFLIRebalanceViewer",
-      "contractAddress": "0x9B2395e0CbA5f1Ee9cd20795b8189D2CcEe89b08",
+      "contractAddress": "0x45506F675872022dbd0101Ed6E1E932dE403B8B5",
       "constructorArgs": [
         "0x2612fA1E336cb248ee00eFD02f1C941a7A015e76",
         "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
-        "0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F",
+        "0x3A5b399B3dDca24375388FA1b06A06D8fD3BE680",
         "UniswapV3ExchangeAdapter",
-        "SushiswapExchangeAdapter"
+        "AMMSplitterExchangeAdapter"
       ],
       "libraries": {}
     }
