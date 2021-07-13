@@ -1412,7 +1412,7 @@
       "id": "0x2d8ff6aca49fc2c14439df91d237ce560155395da571f826d2ae25c6ebe85f7b",
       "name": "FLIRebalanceViewer",
       "timestamp": 1626200838500,
-      "verified": false,
+      "verified": true,
       "description": "Deployed FLIRebalanceViewer",
       "contractAddress": "0x979A5902baa728034Ff342172Eda64FCe416d0a4",
       "constructorArgs": [
@@ -1428,7 +1428,7 @@
       "id": "0x947df746217d70efa27268a1ed39d75b121be886059c73a49da07216671562d4",
       "name": "BTCFLIRebalanceViewer",
       "timestamp": 1626200877507,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BTCFLIRebalanceViewer",
       "contractAddress": "0x45506F675872022dbd0101Ed6E1E932dE403B8B5",
       "constructorArgs": [
