@@ -1039,7 +1039,7 @@
       "id": "0xc4ff83f29d40fcc477ddb78e4905a2317c418e3cb8379e53f3cbd9c3d6f33edf",
       "name": "FlexibleLeverageStrategyExtension",
       "timestamp": 1625165286102,
-      "verified": false,
+      "verified": true,
       "description": "Deployed FlexibleLeverageStrategyExtension",
       "contractAddress": "0xF6ba6441D4DAc647898F4083483AA44Da8B1446f",
       "constructorArgs": [
@@ -1289,7 +1289,7 @@
       "id": "0x8c8676c6ae8cf3f34cf4efa36fcf9a49ea2d53c44e8e5af69eec52d3b8694812",
       "name": "BTCFlexibleLeverageStrategyExtension",
       "timestamp": 1625165487111,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BTC FlexibleLeverageStrategyExtension",
       "contractAddress": "0x2612fA1E336cb248ee00eFD02f1C941a7A015e76",
       "constructorArgs": [

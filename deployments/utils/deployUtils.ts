@@ -260,7 +260,6 @@ export async function addExtension(
   const {
     rawTx,
     deployer,
-    networkConstant,
   } = await prepareDeployment(hre);
 
   const [owner] = await getAccounts();
@@ -276,7 +275,7 @@ export async function addExtension(
 
     const operator = await baseManagerInstance.operator();
 
-    if (networkConstant === "production" || process.env.TESTING_PRODUCTION || operator != deployer) {
+    if (process.env.TESTING_PRODUCTION || operator != deployer) {
       await saveDeferredTransactionData({
         data: addAdapterData,
         description,
