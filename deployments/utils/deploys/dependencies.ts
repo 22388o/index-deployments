@@ -18,7 +18,7 @@ export default {
   },
   BED: {
     1: {
-      production: "",
+      production: "0x2aF1dF3AB0ab157e1E2Ad8F88A7D04fbea0c7dc6",
       staging: "0x68aD048fA2e1bcaFa690Ce257b69A13f5A79a514",
     },
     42: "",
@@ -181,6 +181,9 @@ export default {
   DFP_MULTI_SIG: {
     1: "0x673d140Eed36385cb784e279f8759f495C97cF03",
   },
+  BANKLESS_MULTI_SIG: {
+    1: "0xf26d1Bb347a59F6C283C53156519cC1B1ABacA51",
+  },
 
   // Exchanges
   UNISWAP_V2_ROUTER: {
@@ -244,6 +247,7 @@ export const DEPENDENCY = {
   TREASURY_MULTI_SIG: "TREASURY_MULTI_SIG",
   OPS_MULTI_SIG: "OPS_MULTI_SIG",
   DFP_MULTI_SIG: "DFP_MULTI_SIG",
+  BANKLESS_MULTI_SIG: "BANKLESS_MULTI_SIG",
   SET_LABS: "SET_LABS",
   UNISWAP_V2_ROUTER: "UNISWAP_V2_ROUTER",
   SUSHISWAP_ROUTER: "SUSHISWAP_ROUTER",
