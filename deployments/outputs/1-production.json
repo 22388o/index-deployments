@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 22
+    "last_deployment_stage": 23
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -72,7 +72,10 @@
     "FLIRebalanceViewer - DEPRECATED": "0x524678fDA8F7AD0Edb4e958D2112F5D28dCc2579",
     "BTCFLIRebalanceViewer - DEPRECATED": "0x9B2395e0CbA5f1Ee9cd20795b8189D2CcEe89b08",
     "FLIRebalanceViewer": "0x979A5902baa728034Ff342172Eda64FCe416d0a4",
-    "BTCFLIRebalanceViewer": "0x45506F675872022dbd0101Ed6E1E932dE403B8B5"
+    "BTCFLIRebalanceViewer": "0x45506F675872022dbd0101Ed6E1E932dE403B8B5",
+    "BaseManager - BED": "0x5E6898eE65EDd36F76571DB4171B4ebdEab5262C",
+    "GIMExtension - BED": "0x199901277EFeEaaaffC1655ce011b14827E1Ac0d",
+    "StreamingFeeSplitExtension - BED": "0xF5090c139703cF49eEfeF6E2A8E62ef150062B17"
   },
   "transactions": {
     "0": {
@@ -1439,6 +1442,65 @@
         "AMMSplitterExchangeAdapter"
       ],
       "libraries": {}
+    },
+    "86": {
+      "id": "0x654ae125ecab6c715342e6aae850fdaa5979cbb929bd7ff3d6fab7843cab27c8",
+      "name": "BaseManager - BED",
+      "timestamp": 1626284312269,
+      "verified": false,
+      "description": "Deployed BaseManager - BED",
+      "contractAddress": "0x5E6898eE65EDd36F76571DB4171B4ebdEab5262C",
+      "constructorArgs": [
+        "0x2aF1dF3AB0ab157e1E2Ad8F88A7D04fbea0c7dc6",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
+        "0xf26d1Bb347a59F6C283C53156519cC1B1ABacA51"
+      ],
+      "libraries": {}
+    },
+    "87": {
+      "id": "0x92dbf28c942a4623361949ce6cab1c8e910f129dfe979501a4679b2256f44cfb",
+      "name": "GIMExtension - BED",
+      "timestamp": 1626284326599,
+      "verified": false,
+      "description": "Deployed GIMExtension - BED",
+      "contractAddress": "0x199901277EFeEaaaffC1655ce011b14827E1Ac0d",
+      "constructorArgs": [
+        "0x5E6898eE65EDd36F76571DB4171B4ebdEab5262C",
+        "0xb58E207da98986f9A13D0109b06C9E8d4fc19284"
+      ],
+      "libraries": {}
+    },
+    "88": {
+      "id": "0x2fbc4b07b1aedb55cfbc51c9c00d537770025a203dc51bcf07545975772db765",
+      "name": "StreamingFeeSplitExtension - BED",
+      "timestamp": 1626284361834,
+      "verified": false,
+      "description": "Deployed StreamingFeeSplitExtension - BED",
+      "contractAddress": "0xF5090c139703cF49eEfeF6E2A8E62ef150062B17",
+      "constructorArgs": [
+        "0x5E6898eE65EDd36F76571DB4171B4ebdEab5262C",
+        "0x08f866c74205617B6F3903EF481798EcED10cDEC",
+        {
+          "type": "BigNumber",
+          "hex": "0x06f05b59d3b20000"
+        }
+      ],
+      "libraries": {}
+    },
+    "89": {
+      "id": "0xd0d1c9395e73793a86c4bc7296e61c8d17ea112139ab884884d5ac8471ccdd58",
+      "timestamp": 1626284371565,
+      "description": "Add GIMExtension - BED on BaseManager - BED"
+    },
+    "90": {
+      "id": "0xf543e8db49d7217eeb570a8f27d3b4d0d387e82fea77f612066397f18c371562",
+      "timestamp": 1626284385192,
+      "description": "Add StreamingFeeSplitExtension - BED on BaseManager - BED"
+    },
+    "91": {
+      "id": "0x8b53c4f27c39733d936b49889d7bbb07acc044e9f515c1f4b26e8e7059b152f6",
+      "timestamp": 1626285819205,
+      "description": "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC set as operator on BaseManager - BED"
     }
   }
 }

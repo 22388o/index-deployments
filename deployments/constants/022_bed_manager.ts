@@ -7,5 +7,5 @@ export const CONTRACT_NAMES = {
 };
 
 export const FEE_SPLIT_ADAPTER = {
-  FEE_SPLIT: ether(.5),                       // 100% operator, 0% methodologist fee split
+  FEE_SPLIT: ether(.5),                       // 50% operator, 50% methodologist fee split
 };

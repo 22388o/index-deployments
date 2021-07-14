@@ -28,10 +28,11 @@ import {
 } from "@deployments/constants/022_bed_manager";
 
 const {
-  TREASURY_MULTI_SIG,
+  BANKLESS_MULTI_SIG,
   BED,
   GENERAL_INDEX_MODULE,
   STREAMING_FEE_MODULE,
+  TREASURY_MULTI_SIG,
 } = DEPENDENCY;
 
 const {
@@ -50,7 +51,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   let methodologistAddress: string;
   if (networkConstant === "production") {
-    methodologistAddress = await findDependency(TREASURY_MULTI_SIG);
+    methodologistAddress = await findDependency(BANKLESS_MULTI_SIG);
   } else {
     methodologistAddress = deployer;
   }
