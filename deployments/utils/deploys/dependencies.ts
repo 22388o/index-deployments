@@ -152,15 +152,18 @@ export default {
   // Chainlink Oracles
   CHAINLINK_ETH: {
     1: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
-    42: "0x9326BFA02ADD2366b30bacB125260Af641031331",
+    // This oracle is manipulatable, it is not reading from an actual data source
+    42: "0x33518c7f6e0ffbaca9075121c42482499e3d3c96",
   },
   CHAINLINK_BTC: {
     1: "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
-    42: "0x6135b13325bfC4B00278B4abC5e20bbce2D6580e",
+    // This oracle is manipulatable, it is not reading from an actual data source
+    42: "0xcd4f286e65df805b29a81446ace7bcf0e3c1d2c1",
   },
   CHAINLINK_USDC: {
     1: "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6",
-    42: "0x9211c6b3BF41A10F78539810Cf5c64e1BB78Ec60",
+    // This oracle is manipulatable, it is not reading from an actual data source
+    42: "0xb944e38a42bf55e3f65d58e0eec483fe038919cc",
   },
 
   // Admin
