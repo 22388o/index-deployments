@@ -31,7 +31,7 @@ import { CONTRACT_SETTINGS } from "@deployments/constants/099_inverse_ethfli_sys
 
 const expect = getWaffleExpect();
 
-describe.only("InverseETHFLI System", () => {
+describe("InverseETHFLI System", () => {
   let deployer: Account;
 
   let baseManagerInstance: BaseManager;
