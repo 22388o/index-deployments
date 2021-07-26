@@ -57,7 +57,7 @@
     "GIMExtension - DPI": "0x7B4c8Fd589F47bfA1bd820bb402AE4A513096669",
     "StreamingFeeSplitExtension - DPI": "0x7767ed31758F19e187016b05f69c583Dc586c574",
     "BaseManager - MVI": "0xdA4d9d1da7fC8e1569F6102Ff6ABa17cA736fC4A",
-    "GIMExtension - MVI": "0x0ea41138506BE2CB550C1edee1d12e6808714E46",
+    "GIMExtension - MVI - DEPRECATED": "0x0ea41138506BE2CB550C1edee1d12e6808714E46",
     "StreamingFeeSplitExtension - MVI": "0xD12a761C5b84DE2aB9B3FD74c9768b886C283583",
     "FlexibleLeverageStrategyExtension": "0x179b8600665baAaf105b489e06259d465fC0e923",
     "BTCFlexibleLeverageStrategyExtension": "0x848683a30537123e21377c964b09C19964DB9B93",
@@ -66,8 +66,10 @@
     "FLIRebalanceViewer": "0xeeC348B81C8982704aFE26b28bb62d6150400Fa8",
     "BTCFLIRebalanceViewer": "0x8E5609954FB64ff8eb1f56F7ed46440a59c4e6A1",
     "BaseManager - BED": "0xe337794481879179838413b581FFaBA8356A9C8B",
-    "GIMExtension - BED": "0xE8fE7424350a7e213ed828FD3ca57719588f6BAe",
-    "StreamingFeeSplitExtension - BED": "0x16C2143ebbE391403CFe755CC968184244B810C2"
+    "GIMExtension - BED - DEPRECATED": "0xE8fE7424350a7e213ed828FD3ca57719588f6BAe",
+    "StreamingFeeSplitExtension - BED": "0x16C2143ebbE391403CFe755CC968184244B810C2",
+    "GIMExtension - MVI": "0x922C1b60da557685eb78DEA242C532aEA3114AC7",
+    "GIMExtension - BED": "0x45CdA54CB65AC735DA65df5e8A67CC040325E466"
   },
   "transactions": {
     "0": {
@@ -1413,7 +1415,7 @@
       ],
       "libraries": {}
     },
-   "87": {
+    "87": {
       "id": "0x4e4fd3909e189e31ecde9bd0899d80b13f70409be16ea4dd64bea649cab19d5d",
       "name": "BaseManager - BED",
       "timestamp": 1625694206284,
@@ -1487,6 +1489,46 @@
       "id": "0x45aaa9dbb6060f1efc0cfc4f7569f35e5b81919a8d2bb282fbe0698d7d87b4f6",
       "timestamp": 1625694376529,
       "description": "0x68170278804Fc18481aECfB497D63A9b11DC692F set as operator on BaseManager - BED"
+    },
+    "94": {
+      "id": "0xb5ff8653c3851ad53df117bbf16850c14728948de5306f88a7447ddc38301fef",
+      "name": "GIMExtension - MVI",
+      "timestamp": 1627329039950,
+      "verified": false,
+      "description": "Deployed GIMExtension - MVI",
+      "contractAddress": "0x922C1b60da557685eb78DEA242C532aEA3114AC7",
+      "constructorArgs": [
+        "0xdA4d9d1da7fC8e1569F6102Ff6ABa17cA736fC4A",
+        "0x94220bF689dDa53Db0dAd1ede245A7ee93f67A11"
+      ],
+      "libraries": {}
+    },
+    "95": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d41000000000000000000000000922c1b60da557685eb78dea242c532aea3114ac7",
+      "description": "Add GIMExtension - MVI on BaseManager - MVI",
+      "contractName": "BaseManager - MVI"
+    },
+    "96": {
+      "id": "0xee8728f2e834138278a934da61561aebd39ac265fdaaece38f51bc7fcad8cdb6",
+      "name": "GIMExtension - BED",
+      "timestamp": 1627329111962,
+      "verified": false,
+      "description": "Deployed GIMExtension - BED",
+      "contractAddress": "0x45CdA54CB65AC735DA65df5e8A67CC040325E466",
+      "constructorArgs": [
+        "0xe337794481879179838413b581FFaBA8356A9C8B",
+        "0x94220bF689dDa53Db0dAd1ede245A7ee93f67A11"
+      ],
+      "libraries": {}
+    },
+    "97": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d4100000000000000000000000045cda54cb65ac735da65df5e8a67cc040325e466",
+      "description": "Add GIMExtension - BED on BaseManager - BED",
+      "contractName": "BaseManager - BED"
     }
   }
 }
