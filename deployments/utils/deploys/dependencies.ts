@@ -107,7 +107,7 @@ export default {
   },
   GENERAL_INDEX_MODULE: {
     1: {
-      production: "",
+      production: "0x84cE03AE547330f61584aD6103743732B1AE97C5",
       staging: "0x94220bF689dDa53Db0dAd1ede245A7ee93f67A11",
     },
     42: "0x2889dee478f1e2913b7de0913be3de40bf05f326",
