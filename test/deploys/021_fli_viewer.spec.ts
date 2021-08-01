@@ -20,7 +20,7 @@ const {
   UNISWAP_V3_QUOTER,
 } = DEPENDENCY;
 
-describe("IndexPowah", () => {
+describe("FLIRebalanceViewer", () => {
 
   let deployer: Account;
   let ethFLIViewer: FLIRebalanceViewer;
@@ -43,7 +43,7 @@ describe("IndexPowah", () => {
   addSnapshotBeforeRestoreAfterEach();
 
   describe("#constructor", async () => {
-    it("should set the correct state variables fro ETH FLI", async () => {
+    it("should set the correct state variables for ETH FLI", async () => {
       expect(await ethFLIViewer.uniswapV2ExchangeName()).to.eq(CONTRACT_NAMES.AMM_SPLITTER_EXCHANGE_ADAPTER);
       expect(await ethFLIViewer.uniswapV3ExchangeName()).to.eq(CONTRACT_NAMES.UNISWAP_V3_EXCHANGE_ADAPTER);
       expect(await ethFLIViewer.uniswapV2Router()).to.eq(await findDependency(AMM_SPLITTER));

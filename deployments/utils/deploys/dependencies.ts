@@ -177,6 +177,10 @@ export default {
     // This oracle is manipulatable, it is not reading from an actual data source
     42: "0xb944e38a42bf55e3f65d58e0eec483fe038919cc",
   },
+  CHAINLINK_GAS: {
+    1: "0x169E633A2D1E6c10dD91238Ba11c4A708dfEF37C",
+    42: "0x3D400312Bb3456f4dC06D528B55707F08dFFD664",
+  },
 
   // Admin
   TREASURY_MULTI_SIG: {
@@ -258,6 +262,7 @@ export const DEPENDENCY = {
   CHAINLINK_ETH: "CHAINLINK_ETH",
   CHAINLINK_BTC: "CHAINLINK_BTC",
   CHAINLINK_USDC: "CHAINLINK_USDC",
+  CHAINLINK_GAS: "CHAINLINK_GAS",
   // Admin
   TREASURY_MULTI_SIG: "TREASURY_MULTI_SIG",
   OPS_MULTI_SIG: "OPS_MULTI_SIG",
