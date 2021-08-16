@@ -50,7 +50,7 @@
     "OtcEscrow - 0x578152463e01DE0FC1331250351dd6D11dAFD9b3": "0xFFb668ADDd4494482988e7be39286E0D07ae0249",
     "OtcEscrow - 0x719a363735dFa5023033640197359665072b8C0E": "0x049aB9A389deCaE63a2a8a3c5AA674045Cb89F0c",
     "RewardsMay21MerkleDistributor": "0xcb91f9B5762b5278961fC1AD3755e53cfA2D567F",
-    "IndexPowah": "0x44f2F64287753E0D4EE4043BB1d30077Bf22414e",
+    "IndexPowah - DEPRECATED": "0x44f2F64287753E0D4EE4043BB1d30077Bf22414e",
     "OtcEscrow - 0x5BCF61c5E5C72457003feD3d292AAEA1c06f3691": "0xAA69dBF77E11DacFB7f9973057ef10eCd60d5Bd6",
     "OtcEscrow - 0x7E2E80E8250844Dd4E558f13850380D5af8F0C61": "0x99685269B46028884a4da8eCE226fCfbb263e65B",
     "OtcEscrow - 0xe1B6e4C28127C4704838A0a2d6c6F7c344944B22": "0x3F6a188502fDfabd9F66f7D09ed511Fcd5f0Ca4A",
@@ -77,7 +77,8 @@
     "GIMExtension - BED - DEPRECATED": "0x199901277EFeEaaaffC1655ce011b14827E1Ac0d",
     "StreamingFeeSplitExtension - BED": "0xF5090c139703cF49eEfeF6E2A8E62ef150062B17",
     "GIMExtension - MVI": "0x1906F7408e2C2643Ea99Aa3DCD37234Adf675f74",
-    "GIMExtension - BED": "0x7Bb161F1DD79A1D3C9409d292C8Db17a33023ec3"
+    "GIMExtension - BED": "0x7Bb161F1DD79A1D3C9409d292C8Db17a33023ec3",
+    "IndexPowah": "0x78Ec130EC5E470B06012F2Ad0aB580d659004F7B"
   },
   "transactions": {
     "0": {
@@ -1543,6 +1544,69 @@
       "data": "0x60d54d410000000000000000000000007bb161f1dd79a1d3c9409d292c8db17a33023ec3",
       "description": "Add GIMExtension - BED on BaseManager - BED",
       "contractName": "BaseManager - BED"
+    },
+    "96": {
+      "id": "0x8e07c0553bcee1d46df9c597ab47ed5231adb9bc2a351c0bed3a1c04028b1ec7",
+      "name": "IndexPowah",
+      "timestamp": 1629144711557,
+      "verified": false,
+      "description": "Deployed IndexPowah",
+      "contractAddress": "0x78Ec130EC5E470B06012F2Ad0aB580d659004F7B",
+      "constructorArgs": [
+        "0x10F87409E405c5e44e581A4C3F2eECF36AAf1f92",
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0x3452a7f30a712e415a0674c0341d44ee9d9786f9",
+        "0xA73DF646512C82550C2b3C0324c4EEdEE53b400C",
+        "0xc2EdaD668740f1aA35E4D8f227fB8E17dcA888Cd",
+        75,
+        [
+          "0xB93b505Ed567982E2b6756177ddD23ab5745f309",
+          "0x5bC4249641B4bf4E37EF513F3Fa5C63ECAB34881"
+        ],
+        [
+          "0x1df4564A96aAc2B6633F1ce2f3092a11e57F6c19",
+          "0x0e800B09cBC50e2CCbb01C6A833c56Ef692F3e3E",
+          "0x2f3a28DF7f031695c52C680A4f9888D947d666B4",
+          "0x55c316DEA64D0B6CE20eAb843c821a10E3bdb91B",
+          "0xec5bc904ABb557781b16435E344a59D2218a6E17",
+          "0x7B15bB785167c610020B52bf4B790396D73bf8a0",
+          "0x7833Ba760D9FE0085E39c490f5A8c66565770cA5",
+          "0x3955ebF597154bD93d1Bf9b66BC571FeA3050c38",
+          "0x9CDBCBC17614C07EC857fA39995634107332E035",
+          "0xD0b396C37aC2AE6Eb207aE4a85ca0C3d549E09A0",
+          "0x43D75513e7182C9c9513850b3a716Ff36F90e132",
+          "0x0Def278718bB15eE2173C65fb24C131243fFcb83"
+        ]
+      ],
+      "libraries": {}
+    },
+    "97": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d410000000000000000000000009450d113fcc791fda705d938daf1c942e113ab1e",
+      "description": "Add GovernanceAdapter - DPI on BaseManager - DPI",
+      "contractName": "BaseManager - DPI"
+    },
+    "98": {
+      "id": null,
+      "timestamp": null,
+      "data": "0x60d54d41000000000000000000000000f8a89e4da4bebf79d5ba69e71b4552e6b5435c8c",
+      "description": "Add StreamingFeeSplitExtension - DPI on BaseManager - DPI",
+      "contractName": "BaseManager - DPI"
+    },
+    "99": {
+      "id": null,
+      "timestamp": null,
+      "data": "0xe81409d300000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000100000000000000000000000010f87409e405c5e44e581a4c3f2eecf36aaf1f9200000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001",
+      "description": "GovernanceAdapter - DPI caller statuses updated.",
+      "contractName": "GovernanceAdapter - DPI"
+    },
+    "100": {
+      "id": null,
+      "timestamp": null,
+      "data": "0xb3ab15fb0000000000000000000000009467cfadc9de245010df95ec6a585a506a8ad5fc",
+      "description": "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC set as operator on BaseManager - DPI",
+      "contractName": "BaseManager - DPI"
     }
   }
 }
