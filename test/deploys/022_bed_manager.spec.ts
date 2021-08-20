@@ -4,8 +4,8 @@ import { deployments } from "hardhat";
 import { Account } from "@utils/types";
 import { ether } from "@utils/index";
 
-import { BaseManager } from "@set/typechain/BaseManager";
-import { BaseManager__factory } from "@set/typechain/factories/BaseManager__factory";
+import { BaseManagerV2 } from "@set/typechain/BaseManagerV2";
+import { BaseManagerV2__factory } from "@set/typechain/factories/BaseManagerV2__factory";
 import { GIMExtension } from "@set/typechain/GIMExtension";
 import { GIMExtension__factory } from "@set/typechain/factories/GIMExtension__factory";
 import { StreamingFeeSplitExtension } from "@set/typechain/StreamingFeeSplitExtension";
@@ -34,7 +34,7 @@ const expect = getWaffleExpect();
 describe("BED: Manager System", () => {
   let deployer: Account;
 
-  let baseManagerInstance: BaseManager;
+  let baseManagerInstance: BaseManagerV2;
   let gimExtensionInstance: GIMExtension;
   let feeExtensionInstance: StreamingFeeSplitExtension;
 
@@ -46,7 +46,7 @@ describe("BED: Manager System", () => {
     await deployments.fixture();
 
     const deployedBaseManagerContract = await getContractAddress("BaseManager - BED");
-    baseManagerInstance = new BaseManager__factory(deployer.wallet).attach(deployedBaseManagerContract);
+    baseManagerInstance = new BaseManagerV2__factory(deployer.wallet).attach(deployedBaseManagerContract);
 
     const deployedGIMExtension = await await getContractAddress("GIMExtension - BED");
     gimExtensionInstance = new GIMExtension__factory(deployer.wallet).attach(deployedGIMExtension);
@@ -75,7 +75,7 @@ describe("BED: Manager System", () => {
     });
 
     it("should have the correct adapters", async () => {
-      const adapters = await baseManagerInstance.getAdapters();
+      const adapters = await baseManagerInstance.getExtensions();
       expect(adapters[0]).to.eq(gimExtensionInstance.address);
       expect(adapters[1]).to.eq(feeExtensionInstance.address);
     });

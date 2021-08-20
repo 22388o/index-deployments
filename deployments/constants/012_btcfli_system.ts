@@ -8,7 +8,7 @@ export const CONTRACT_NAMES = {
   STANDARD_TOKEN_MOCK: "StandardTokenMock",
   FLEXIBLE_LEVERAGE_EXTENSION: "FlexibleLeverageStrategyExtension",
   FLEXIBLE_LEVERAGE_EXTENSION_NAME: "BTCFlexibleLeverageStrategyExtension",
-  FEE_SPLIT_ADAPTER: "FeeSplitAdapter",
+  FEE_SPLIT_ADAPTER: "FeeSplitExtension",
   FEE_SPLIT_ADAPTER_NAME: "BTCFLIFeeSplitAdapter",
   SUPPLY_CAP_ISSUANCE_HOOK: "SupplyCapAllowedCallerIssuanceHook",
   SUPPLY_CAP_ISSUANCE_HOOK_NAME: "BTCFLISupplyCapAllowedCallerIssuanceHook",

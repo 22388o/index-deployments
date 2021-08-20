@@ -6,7 +6,7 @@ export const CONTRACT_NAMES = {
   BASE_MANAGER: "BaseManager",
   FLEXIBLE_LEVERAGE_EXTENSION: "FlexibleLeverageStrategyExtension",
   STANDARD_TOKEN_MOCK: "StandardTokenMock",
-  FEE_SPLIT_ADAPTER: "FeeSplitAdapter",
+  FEE_SPLIT_ADAPTER: "FeeSplitExtension",
   SUPPLY_CAP_ISSUANCE_HOOK: "SupplyCapIssuanceHook",
 };
 

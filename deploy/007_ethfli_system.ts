@@ -271,6 +271,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
         streamingFeeModule,
         debtIssuanceModule,
         feeSplit,
+        deployer, // set operatorFeeRecipient to deployer for now (same as 'operator' in manager setup)
       ];
 
       const feeSplitAdapterDeploy = await deploy(CONTRACT_NAMES.FEE_SPLIT_ADAPTER, {

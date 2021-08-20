@@ -55,11 +55,22 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
   } = await prepareDeployment(hre);
 
   let methodologistAddress: string;
+
+  // This deployment has been rescheduled as 023_dpi_manager_with_permissions
+  // Skipping to avoid name collisions in the tests
+  if (networkConstant === "development") {
+    return;
+  }
+
   if (networkConstant === "production") {
     methodologistAddress = await findDependency(DFP_MULTI_SIG);
   } else {
     methodologistAddress = deployer;
   }
+
+  // For the feeExtension (IIP-72). Assigning the final identity of `manager.operator`
+  // ... transferred from `deployer` to treasury in a setOperator call below.
+  const OPERATOR_FEE_RECIPIENT = await findDependency(TREASURY_MULTI_SIG);
 
   await polyFillForDevelopment();
 
@@ -67,7 +78,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   await deployGovernanceAdapter(hre, GOVERNANCE_ADAPTER_NAME, BASE_MANAGER_NAME);
   await deployGIMExtension(hre, GIM_EXTENSION_NAME, BASE_MANAGER_NAME);
-  await deployStreamingFeeExtension(hre, FEE_EXTENSION_NAME, BASE_MANAGER_NAME, FEE_SPLIT_ADAPTER.FEE_SPLIT);
+  await deployStreamingFeeExtension(
+    hre,
+    FEE_EXTENSION_NAME,
+    BASE_MANAGER_NAME,
+    FEE_SPLIT_ADAPTER.FEE_SPLIT,
+    OPERATOR_FEE_RECIPIENT
+  );
 
   await addExtension(hre, BASE_MANAGER_NAME, GOVERNANCE_ADAPTER_NAME);
   await addExtension(hre, BASE_MANAGER_NAME, GIM_EXTENSION_NAME);

@@ -35,7 +35,8 @@ const {
 
 const expect = getWaffleExpect();
 
-describe("DPI: New Manager System", () => {
+// This deployment has been rescheduled as 023_dpi_manager_with_permissions
+describe.skip("DPI: New Manager System - (DEPRECATED)", () => {
   let deployer: Account;
 
   let baseManagerInstance: BaseManager;

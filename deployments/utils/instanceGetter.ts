@@ -1,10 +1,12 @@
 import "module-alias/register";
 
 import {
-  BaseAdapter,
-  BaseAdapter__factory,
+  BaseExtension,
+  BaseExtension__factory,
   BaseManager,
-  BaseManager__factory
+  BaseManager__factory,
+  BaseManagerV2,
+  BaseManagerV2__factory
 } from "@set/typechain/index";
 
 import { Signer } from "ethers";
@@ -22,7 +24,11 @@ export class InstanceGetter {
     return await new BaseManager__factory(this._deployerSigner).attach(icManagerV2Address);
   }
 
-  public async getExtension(extension: Address): Promise<BaseAdapter> {
-    return await BaseAdapter__factory.connect(extension, this._deployerSigner);
+  public async getBaseManagerV2(icManagerV2Address: Address): Promise<BaseManagerV2> {
+    return await new BaseManagerV2__factory(this._deployerSigner).attach(icManagerV2Address);
+  }
+
+  public async getExtension(extension: Address): Promise<BaseExtension> {
+    return await BaseExtension__factory.connect(extension, this._deployerSigner);
   }
 }

@@ -15,6 +15,7 @@ export {
   setOperator,
   stageAlreadyFinished,
   trackFinishedStage,
+  protectModule
 } from "./deployUtils";
 
 export * from "./constants";

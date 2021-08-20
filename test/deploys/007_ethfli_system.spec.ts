@@ -4,11 +4,11 @@ import { deployments } from "hardhat";
 import { Account } from "@utils/types";
 import {
   BaseManager,
-  FeeSplitAdapter,
+  FeeSplitExtension,
   SupplyCapIssuanceHook,
   FlexibleLeverageStrategyExtension,
   BaseManager__factory,
-  FeeSplitAdapter__factory,
+  FeeSplitExtension__factory,
   SupplyCapIssuanceHook__factory,
   FlexibleLeverageStrategyExtension__factory,
 } from "@set/typechain/index";
@@ -36,7 +36,7 @@ describe("ETHFLI System", () => {
 
   let baseManagerInstance: BaseManager;
   let flexibleLeverageStrategyExtensionInstance: FlexibleLeverageStrategyExtension;
-  let feeSplitAdapterInstance: FeeSplitAdapter;
+  let feeSplitAdapterInstance: FeeSplitExtension;
   let supplyCapInstance: SupplyCapIssuanceHook;
 
   before(async () => {
@@ -53,8 +53,8 @@ describe("ETHFLI System", () => {
     flexibleLeverageStrategyExtensionInstance =
       new FlexibleLeverageStrategyExtension__factory(deployer.wallet).attach(deployedFlexibleLeverageStrategyAdapterContract);
 
-    const deployedFeeSplitAdapterContract = await getContractAddress("FeeSplitAdapter");
-    feeSplitAdapterInstance = new FeeSplitAdapter__factory(deployer.wallet).attach(deployedFeeSplitAdapterContract);
+    const deployedFeeSplitAdapterContract = await getContractAddress("FeeSplitExtension");
+    feeSplitAdapterInstance = new FeeSplitExtension__factory(deployer.wallet).attach(deployedFeeSplitAdapterContract);
 
     const deployedSupplyCapIssuanceHookContract = await getContractAddress("SupplyCapIssuanceHook");
     supplyCapInstance = new SupplyCapIssuanceHook__factory(deployer.wallet).attach(deployedSupplyCapIssuanceHookContract);

@@ -126,6 +126,13 @@ export default {
     },
     42: "0xE7B42a0Bf1d41e00fba7A4d41f8fb21d2702e6e2",
   },
+  CONTROLLER: {
+    1: {
+      production: "0xa4c8d221d8BB851f83aadd0223a8900A6921A349",
+      staging: "0xF1B12A7b1f0AF744ED21eEC7d3E891C48Fd3c329",
+    },
+    42: "0x9048278cA7e874F9338e4898C436Ab07AA454701",
+  },
 
   // Compound Contracts
   C_ETH: {
@@ -248,6 +255,8 @@ export const DEPENDENCY = {
   STREAMING_FEE_MODULE: "STREAMING_FEE_MODULE",
   GOVERNANCE_MODULE: "GOVERNANCE_MODULE",
   AMM_SPLITTER: "AMM_SPLITTER",
+  CONTROLLER: "CONTROLLER",
+
   // Compound Contracts
   C_ETH: "C_ETH",
   C_USDC: "C_USDC",

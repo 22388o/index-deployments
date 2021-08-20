@@ -15,7 +15,9 @@ import {
   EMPTY_BYTES,
 } from "@deployments/utils";
 
-import { getRandomAddress } from "@utils/index";
+import DeployHelper from "@deployments/utils/deploys";
+
+import { getRandomAddress, getAccounts } from "@utils/index";
 
 import {
   CONTRACT_NAMES,
@@ -28,6 +30,7 @@ const {
   SINGLE_INDEX_MODULE,
   STREAMING_FEE_MODULE,
   TREASURY_MULTI_SIG,
+  CONTROLLER,
 } = DEPENDENCY;
 
 const CURRENT_STAGE = getCurrentStage(__filename);
@@ -44,8 +47,46 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
   //
 
   async function polyFillForDevelopment(): Promise<void> {
+    const [ owner ] = await getAccounts();
+    const deployHelper = new DeployHelper(owner.wallet);
+
+    if (await findDependency(CONTROLLER) === "") {
+      const controllerInstance = await deployHelper
+        .setV2
+        .deployController(deployer);
+
+      await writeContractAndTransactionToOutputs(
+        CONTROLLER,
+        controllerInstance.address,
+        EMPTY_BYTES,
+        "Created Mock Controller"
+      );
+    }
+
+    if (await findDependency(STREAMING_FEE_MODULE) === "") {
+      const controllerAddress = await getContractAddress(CONTROLLER);
+
+      const streamingFeeModuleInstance = await deployHelper
+        .setV2
+        .deployStreamingFeeModule(controllerAddress);
+
+      await writeContractAndTransactionToOutputs(
+        STREAMING_FEE_MODULE,
+        streamingFeeModuleInstance.address,
+        EMPTY_BYTES,
+        "Created Mock StreamingFeeModule"
+      );
+    }
+
     if (await findDependency(DPI) === "") {
-      await writeContractAndTransactionToOutputs(DPI, await getRandomAddress(), EMPTY_BYTES, "Created Mock DPI");
+      const { setToken } = await deployHelper.setToken.deployConfiguredSetToken(
+        "DefiPulse Index",
+        "DPI",
+        await getContractAddress(CONTROLLER),
+        await getContractAddress(STREAMING_FEE_MODULE),
+      );
+
+      await writeContractAndTransactionToOutputs(DPI, setToken, EMPTY_BYTES, "Created Mock DPI SetToken");
     }
 
     if (await findDependency(SINGLE_INDEX_MODULE) === "") {

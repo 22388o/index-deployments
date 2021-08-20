@@ -126,7 +126,7 @@ export async function deployBaseManager(
       methodologist,
     ];
 
-    const baseManagerDeploy = await deploy("BaseManager", {
+    const baseManagerDeploy = await deploy("BaseManagerV2", {
       from: deployer,
       args: constructorArgs,
       log: true,
@@ -142,9 +142,9 @@ export async function deployBaseManager(
   }
 }
 
-export async function deployGovernanceAdapter(
+export async function deployGovernanceExtension(
   hre: HardhatRuntimeEnvironment,
-  govAdapterName: string,
+  govExtensionName: string,
   managerName: string,
 ): Promise<void> {
   const {
@@ -152,8 +152,8 @@ export async function deployGovernanceAdapter(
     deployer,
   } = await prepareDeployment(hre);
 
-  const checkGovAdapterAddress = await getContractAddress(govAdapterName);
-  if (checkGovAdapterAddress === "") {
+  const checkGovExtensionAddress = await getContractAddress(govExtensionName);
+  if (checkGovExtensionAddress === "") {
     const manager = await getContractAddress(managerName);
     const governanceModule = await findDependency("GOVERNANCE_MODULE");
 
@@ -162,27 +162,31 @@ export async function deployGovernanceAdapter(
       governanceModule,
     ];
 
-    const governanceAdapterDeploy = await deploy("GovernanceAdapter", {
+    const governanceExtensionDeploy = await deploy("GovernanceExtension", {
       from: deployer,
       args: constructorArgs,
       log: true,
     });
 
-    governanceAdapterDeploy.receipt && await saveContractDeployment({
-      name: govAdapterName,
-      contractAddress: governanceAdapterDeploy.address,
-      id: governanceAdapterDeploy.receipt.transactionHash,
-      description: `Deployed ${govAdapterName}`,
+    governanceExtensionDeploy.receipt && await saveContractDeployment({
+      name: govExtensionName,
+      contractAddress: governanceExtensionDeploy.address,
+      id: governanceExtensionDeploy.receipt.transactionHash,
+      description: `Deployed ${govExtensionName}`,
       constructorArgs,
     });
   }
 }
 
+// Alias
+export const deployGovernanceAdapter = deployGovernanceExtension;
+
 export async function deployStreamingFeeExtension(
   hre: HardhatRuntimeEnvironment,
   feeExtensionName: string,
   managerName: string,
-  feeSplit: BigNumber
+  feeSplit: BigNumber,
+  operatorFeeRecipient: Address
 ): Promise<void> {
   const {
     deploy,
@@ -198,6 +202,7 @@ export async function deployStreamingFeeExtension(
       manager,
       streamingFeeModule,
       feeSplit,
+      operatorFeeRecipient,
     ];
 
     const feeSplitExtensionDeploy = await deploy("StreamingFeeSplitExtension", {
@@ -255,7 +260,7 @@ export async function deployGIMExtension(
 export async function addExtension(
   hre: HardhatRuntimeEnvironment,
   managerName: string,
-  adapterName: string
+  extensionName: string
 ): Promise<void> {
   const {
     rawTx,
@@ -266,29 +271,80 @@ export async function addExtension(
   const instanceGetter: InstanceGetter = new InstanceGetter(owner.wallet);
 
   const baseManagerAddress = await getContractAddress(managerName);
-  const baseManagerInstance = await instanceGetter.getBaseManager(baseManagerAddress);
+  const baseManagerInstance = await instanceGetter.getBaseManagerV2(baseManagerAddress);
 
-  const adapterAddress = await getContractAddress(adapterName);
-  if (!await baseManagerInstance.isAdapter(adapterAddress)) {
-    const addAdapterData = baseManagerInstance.interface.encodeFunctionData("addAdapter", [adapterAddress]);
-    const description = `Add ${adapterName} on ${managerName}`;
+  const extensionAddress = await getContractAddress(extensionName);
+  if (!await baseManagerInstance.isExtension(extensionAddress)) {
+    const addExtensionData = baseManagerInstance.interface.encodeFunctionData("addExtension", [extensionAddress]);
+    const description = `Add ${extensionName} on ${managerName}`;
 
     const operator = await baseManagerInstance.operator();
 
     if (process.env.TESTING_PRODUCTION || operator != deployer) {
       await saveDeferredTransactionData({
-        data: addAdapterData,
+        data: addExtensionData,
         description,
         contractName: managerName,
       });
     } else {
-      const addAdapterTransaction: any = await rawTx({
+      const addExtensionTransaction: any = await rawTx({
         from: deployer,
         to: baseManagerInstance.address,
-        data: addAdapterData,
+        data: addExtensionData,
         log: true,
       });
-      await writeTransactionToOutputs(addAdapterTransaction.transactionHash, description);
+      await writeTransactionToOutputs(addExtensionTransaction.transactionHash, description);
+    }
+  }
+}
+
+export async function protectModule(
+  hre: HardhatRuntimeEnvironment,
+  managerName: string,
+  moduleName: string,
+  extensionNames: string[]
+): Promise<void> {
+  const {
+    rawTx,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const [owner] = await getAccounts();
+  const instanceGetter: InstanceGetter = new InstanceGetter(owner.wallet);
+
+  const baseManagerAddress = await getContractAddress(managerName);
+  const baseManagerInstance = await instanceGetter.getBaseManagerV2(baseManagerAddress);
+
+  const moduleAddress = await getContractAddress(moduleName);
+
+  const extensionAddresses = [];
+  for (const name of extensionNames) {
+    extensionAddresses.push(await getContractAddress(name));
+  }
+
+  if (!await baseManagerInstance.protectedModules(moduleAddress)) {
+    const protectModuleData = baseManagerInstance
+      .interface
+      .encodeFunctionData("protectModule", [moduleAddress, extensionAddresses]);
+
+    const description = `Protecting module ${moduleName} on ${managerName}`;
+
+    const operator = await baseManagerInstance.operator();
+
+    if (operator != deployer) {
+      await saveDeferredTransactionData({
+        data: protectModuleData,
+        description,
+        contractName: managerName,
+      });
+    } else {
+      const addExtensionTransaction: any = await rawTx({
+        from: deployer,
+        to: baseManagerInstance.address,
+        data: protectModuleData,
+        log: true,
+      });
+      await writeTransactionToOutputs(addExtensionTransaction.transactionHash, description);
     }
   }
 }
@@ -321,13 +377,13 @@ export async function setOperator(
         contractName: managerName,
       });
     } else {
-      const addAdapterTransaction: any = await rawTx({
+      const setOperatorTransaction: any = await rawTx({
         from: deployer,
         to: baseManagerInstance.address,
         data: setOperatorData,
         log: true,
       });
-      await writeTransactionToOutputs(addAdapterTransaction.transactionHash, description);
+      await writeTransactionToOutputs(setOperatorTransaction.transactionHash, description);
     }
   }
 }
@@ -366,12 +422,12 @@ export async function addApprovedCaller(
       contractName: extensionName,
     });
   } else {
-    const addAdapterTransaction: any = await rawTx({
+    const addCallerTransaction: any = await rawTx({
       from: deployer,
       to: extensionInstance.address,
       data: updateCallerData,
       log: true,
     });
-    await writeTransactionToOutputs(addAdapterTransaction.transactionHash, description);
+    await writeTransactionToOutputs(addCallerTransaction.transactionHash, description);
   }
 }

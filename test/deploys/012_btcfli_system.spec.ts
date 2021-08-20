@@ -5,11 +5,11 @@ import { defaultAbiCoder, solidityPack } from "ethers/lib/utils";
 import { Account } from "@utils/types";
 import {
   BaseManager,
-  FeeSplitAdapter,
+  FeeSplitExtension,
   SupplyCapAllowedCallerIssuanceHook,
   FlexibleLeverageStrategyExtension,
   BaseManager__factory,
-  FeeSplitAdapter__factory,
+  FeeSplitExtension__factory,
   SupplyCapAllowedCallerIssuanceHook__factory,
   FlexibleLeverageStrategyExtension__factory,
 } from "@set/typechain/index";
@@ -36,7 +36,7 @@ describe("BTCFLI System", () => {
 
   let baseManagerInstance: BaseManager;
   let flexibleLeverageStrategyExtensionInstance: FlexibleLeverageStrategyExtension;
-  let feeSplitAdapterInstance: FeeSplitAdapter;
+  let feeSplitAdapterInstance: FeeSplitExtension;
   let supplyCapInstance: SupplyCapAllowedCallerIssuanceHook;
 
   before(async () => {
@@ -54,7 +54,7 @@ describe("BTCFLI System", () => {
       new FlexibleLeverageStrategyExtension__factory(deployer.wallet).attach(deployedFlexibleLeverageStrategyExtensionContract);
 
     const deployedFeeSplitAdapterContract = await getContractAddress("BTCFLIFeeSplitAdapter");
-    feeSplitAdapterInstance = new FeeSplitAdapter__factory(deployer.wallet).attach(deployedFeeSplitAdapterContract);
+    feeSplitAdapterInstance = new FeeSplitExtension__factory(deployer.wallet).attach(deployedFeeSplitAdapterContract);
 
     const deployedSupplyCapAllowedCallerIssuanceHookContract = await getContractAddress("BTCFLISupplyCapAllowedCallerIssuanceHook");
     supplyCapInstance = new SupplyCapAllowedCallerIssuanceHook__factory(deployer.wallet).attach(deployedSupplyCapAllowedCallerIssuanceHookContract);
