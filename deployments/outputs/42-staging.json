@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 22
+    "last_deployment_stage": 24
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -71,7 +71,12 @@
     "FLIRebalanceViewer - DEPRECATED": "0xF6F979a44FA7964668a92167Bea1d1EC4d393eF6",
     "BTCFLIRebalanceViewer - DEPRECATED": "0x005070Cab99A96FF96608fBB6A9C08Ce27261f56",
     "FLIRebalanceViewer": "0xdC34a219A78AbfFE2a5f1E9a2bC51324e1FB4227",
-    "BTCFLIRebalanceViewer": "0x04AF15483050DaF44390f37Eea80d4b8188C5fa5"
+    "BTCFLIRebalanceViewer": "0x04AF15483050DaF44390f37Eea80d4b8188C5fa5",
+    "OPS_MULTI_SIG": "0xfD6853f85697541E1Fe9A7E8008A458308b69084",
+    "BaseManagerV2 - DPI": "0xB9a57Af222B7Ba72eCE7d1e5103C26aEF7f4035D",
+    "GovernanceExtension - DPI": "0x1Fc61Fd6F70BaeFac2Ebf4038fcc90e63CCE8e91",
+    "GIMExtension - DPI": "0x5cE88130c007A61C429cdeC632f054bc7dEbd9d7",
+    "StreamingFeeSplitExtension - DPI": "0xdF863fCb2Bbc01775C450AaA13Fe533a2BcAc063"
   },
   "transactions": {
     "0": {
@@ -1752,6 +1757,94 @@
         "AMMSplitterExchangeAdapter"
       ],
       "libraries": {}
+    },
+    "161": {
+      "id": "0x",
+      "timestamp": 1629500505525,
+      "description": "Created OPS_MULTI_SIG"
+    },
+    "162": {
+      "id": "0x07d0e3abe8bd4d7bfbad2739189e9a6cf712c475df16ccc28edc6e9bc117be88",
+      "name": "BaseManagerV2 - DPI",
+      "timestamp": 1629500516894,
+      "verified": true,
+      "description": "Deployed BaseManagerV2 - DPI",
+      "contractAddress": "0xB9a57Af222B7Ba72eCE7d1e5103C26aEF7f4035D",
+      "constructorArgs": [
+        "0xEA41F11c916813EDa966a4e1a0b09c98C4bbC555",
+        "0x458B8Adf2248709cf739149fE4BAb0B20101c4A1",
+        "0x458B8Adf2248709cf739149fE4BAb0B20101c4A1"
+      ],
+      "libraries": {}
+    },
+    "163": {
+      "id": "0xea92f316e03ff264191d31d4b74da51ebb4f59fbe41955efec53fb54b3ae542f",
+      "name": "GovernanceExtension - DPI",
+      "timestamp": 1629500525537,
+      "verified": true,
+      "description": "Deployed GovernanceExtension - DPI",
+      "contractAddress": "0x1Fc61Fd6F70BaeFac2Ebf4038fcc90e63CCE8e91",
+      "constructorArgs": [
+        "0xB9a57Af222B7Ba72eCE7d1e5103C26aEF7f4035D",
+        "0x936Ffda1C892a7c65777b14C1D71fD2C79222099"
+      ],
+      "libraries": {}
+    },
+    "164": {
+      "id": "0x7088716391f7fa425a2fbe89bff5767b54bd1e3b61db7adc1938012f809bd623",
+      "name": "GIMExtension - DPI",
+      "timestamp": 1629500529829,
+      "verified": true,
+      "description": "Deployed GIMExtension - DPI",
+      "contractAddress": "0x5cE88130c007A61C429cdeC632f054bc7dEbd9d7",
+      "constructorArgs": [
+        "0xB9a57Af222B7Ba72eCE7d1e5103C26aEF7f4035D",
+        "0x2889dee478f1e2913b7de0913be3de40bf05f326"
+      ],
+      "libraries": {}
+    },
+    "165": {
+      "id": "0xf286eb84264ef6e5a753f36db95924857e6e5cf551ccd297dd36870da3d6ffb8",
+      "name": "StreamingFeeSplitExtension - DPI",
+      "timestamp": 1629500538354,
+      "verified": true,
+      "description": "Deployed StreamingFeeSplitExtension - DPI",
+      "contractAddress": "0xdF863fCb2Bbc01775C450AaA13Fe533a2BcAc063",
+      "constructorArgs": [
+        "0xB9a57Af222B7Ba72eCE7d1e5103C26aEF7f4035D",
+        "0xE038E59DEEC8657d105B6a3Fb5040b3a6189Dd51",
+        {
+          "type": "BigNumber",
+          "hex": "0x09b6e64a8ec60000"
+        },
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D"
+      ],
+      "libraries": {}
+    },
+    "166": {
+      "id": "0xc1de8b797a10a69817ead6f2c5c93656c5d24b9d1e52645779e6a247bcb71d6e",
+      "timestamp": 1629500552854,
+      "description": "Add GovernanceExtension - DPI on BaseManagerV2 - DPI"
+    },
+    "167": {
+      "id": "0x2802c7ad3f45c07fa6920fe9bae39979e05bf291b596cd698073cd197c4f53dd",
+      "timestamp": 1629500563388,
+      "description": "Add GIMExtension - DPI on BaseManagerV2 - DPI"
+    },
+    "168": {
+      "id": "0x7f1e9073d0f73b0ec51a1b5a0268d0e343df9793ff90f2aad12fe09b3ca24e24",
+      "timestamp": 1629501271912,
+      "description": "Protecting module STREAMING_FEE_MODULE on BaseManagerV2 - DPI"
+    },
+    "169": {
+      "id": "0x4e804b79b0f7f076babeb6a27c7666c20f001a6ccabcc682d7e5234d26f6aedc",
+      "timestamp": 1629501282032,
+      "description": "GovernanceExtension - DPI caller statuses updated."
+    },
+    "170": {
+      "id": "0x1bad307b56e1d59a6d332ad2f102cd71ff80c4722d842151e12488451003c896",
+      "timestamp": 1629501295974,
+      "description": "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D set as operator on BaseManagerV2 - DPI"
     }
   }
 }

@@ -315,7 +315,7 @@ export async function protectModule(
   const baseManagerAddress = await getContractAddress(managerName);
   const baseManagerInstance = await instanceGetter.getBaseManagerV2(baseManagerAddress);
 
-  const moduleAddress = await getContractAddress(moduleName);
+  const moduleAddress = await findDependency(moduleName);
 
   const extensionAddresses = [];
   for (const name of extensionNames) {
