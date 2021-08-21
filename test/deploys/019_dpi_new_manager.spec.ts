@@ -8,8 +8,8 @@ import { BaseManager } from "@set/typechain/BaseManager";
 import { BaseManager__factory } from "@set/typechain/factories/BaseManager__factory";
 import { GIMExtension } from "@set/typechain/GIMExtension";
 import { GIMExtension__factory } from "@set/typechain/factories/GIMExtension__factory";
-import { GovernanceAdapter } from "@set/typechain/GovernanceAdapter";
-import { GovernanceAdapter__factory } from "@set/typechain/factories/GovernanceAdapter__factory";
+import { GovernanceExtension } from "@set/typechain/GovernanceExtension";
+import { GovernanceExtension__factory } from "@set/typechain/factories/GovernanceExtension__factory";
 import { StreamingFeeSplitExtension } from "@set/typechain/StreamingFeeSplitExtension";
 import { StreamingFeeSplitExtension__factory } from "@set/typechain/factories/StreamingFeeSplitExtension__factory";
 
@@ -40,7 +40,7 @@ describe.skip("DPI: New Manager System - (DEPRECATED)", () => {
   let deployer: Account;
 
   let baseManagerInstance: BaseManager;
-  let governanceAdapterInstance: GovernanceAdapter;
+  let governanceAdapterInstance: GovernanceExtension;
   let gimExtensionInstance: GIMExtension;
   let feeExtensionInstance: StreamingFeeSplitExtension;
 
@@ -55,7 +55,7 @@ describe.skip("DPI: New Manager System - (DEPRECATED)", () => {
     baseManagerInstance = new BaseManager__factory(deployer.wallet).attach(deployedBaseManagerContract);
 
     const deployedGovernanceAdapter = await getContractAddress("GovernanceAdapter - DPI");
-    governanceAdapterInstance = new GovernanceAdapter__factory(deployer.wallet).attach(deployedGovernanceAdapter);
+    governanceAdapterInstance = new GovernanceExtension__factory(deployer.wallet).attach(deployedGovernanceAdapter);
 
     const deployedGIMExtension = await await getContractAddress("GIMExtension - DPI");
     gimExtensionInstance = new GIMExtension__factory(deployer.wallet).attach(deployedGIMExtension);
