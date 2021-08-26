@@ -3,7 +3,7 @@
     "network_key": "1-production",
     "human_friendly_name": "main-net-production",
     "network_id": 1,
-    "last_deployment_stage": 23
+    "last_deployment_stage": 24
   },
   "addresses": {
     "IndexToken": "0x0954906da0Bf32d5479e25f46056d22f08464cab",
@@ -78,7 +78,13 @@
     "StreamingFeeSplitExtension - BED": "0xF5090c139703cF49eEfeF6E2A8E62ef150062B17",
     "GIMExtension - MVI": "0x1906F7408e2C2643Ea99Aa3DCD37234Adf675f74",
     "GIMExtension - BED": "0x7Bb161F1DD79A1D3C9409d292C8Db17a33023ec3",
-    "IndexPowah": "0x78Ec130EC5E470B06012F2Ad0aB580d659004F7B"
+    "IndexPowah": "0x78Ec130EC5E470B06012F2Ad0aB580d659004F7B",
+    "FTCVesting - 0x026FD30023D9199450883B3c7f82b7C9ebbEB2F7": "0x941604E66E72360691232b913b67632c26af424D",
+    "FTCVesting - 0x28A4E12c38f052A4D9FaaF17914ff6363AE97DF4": "0xF8BDFC9bB58dC0C4d2E77e04AAc673B99D09c7Cd",
+    "FTCVesting - 0x5CD4EF55C339ef01f79f494c0a568df90699Aa22": "0x5a2cAf985d71A281662E0925738e54123dA56c40",
+    "FTCVesting - 0x0C1A7BD2A5afb4884bA2dD89B4f7F571553Cda13": "0xc12d290ffA999dAA837F48df99E8Bc70c2dfc26d",
+    "FTCVesting - 0x99b5Fb37B04C966dCaF1EDB5eA27B08644Cc4d08": "0x3cB23D1836052B20828c5D7DE80805C2c2782de6",
+    "FTCVesting - 0xC99ab7Ffa5a4CB9a06Ee68652fE74B6C59c67284": "0x40D4fD107B3D4ebe51b29252458631397462b016"
   },
   "transactions": {
     "0": {
@@ -1450,7 +1456,7 @@
       "id": "0x654ae125ecab6c715342e6aae850fdaa5979cbb929bd7ff3d6fab7843cab27c8",
       "name": "BaseManager - BED",
       "timestamp": 1626284312269,
-      "verified": false,
+      "verified": true,
       "description": "Deployed BaseManager - BED",
       "contractAddress": "0x5E6898eE65EDd36F76571DB4171B4ebdEab5262C",
       "constructorArgs": [
@@ -1464,7 +1470,7 @@
       "id": "0x92dbf28c942a4623361949ce6cab1c8e910f129dfe979501a4679b2256f44cfb",
       "name": "GIMExtension - BED",
       "timestamp": 1626284326599,
-      "verified": false,
+      "verified": true,
       "description": "Deployed GIMExtension - BED",
       "contractAddress": "0x199901277EFeEaaaffC1655ce011b14827E1Ac0d",
       "constructorArgs": [
@@ -1477,7 +1483,7 @@
       "id": "0x2fbc4b07b1aedb55cfbc51c9c00d537770025a203dc51bcf07545975772db765",
       "name": "StreamingFeeSplitExtension - BED",
       "timestamp": 1626284361834,
-      "verified": false,
+      "verified": true,
       "description": "Deployed StreamingFeeSplitExtension - BED",
       "contractAddress": "0xF5090c139703cF49eEfeF6E2A8E62ef150062B17",
       "constructorArgs": [
@@ -1509,7 +1515,7 @@
       "id": "0xeaf38babcfeaa7f89474752ae57f9b62b05b5b50308063828d3c71c7314d700b",
       "name": "GIMExtension - MVI",
       "timestamp": 1627679830628,
-      "verified": false,
+      "verified": true,
       "description": "Deployed GIMExtension - MVI",
       "contractAddress": "0x1906F7408e2C2643Ea99Aa3DCD37234Adf675f74",
       "constructorArgs": [
@@ -1529,7 +1535,7 @@
       "id": "0xf9ad8e72bee69dd6070bf97633fae132c4b7b641b61385141b58c70f75bd94a0",
       "name": "GIMExtension - BED",
       "timestamp": 1627679851831,
-      "verified": false,
+      "verified": true,
       "description": "Deployed GIMExtension - BED",
       "contractAddress": "0x7Bb161F1DD79A1D3C9409d292C8Db17a33023ec3",
       "constructorArgs": [
@@ -1549,7 +1555,7 @@
       "id": "0x8e07c0553bcee1d46df9c597ab47ed5231adb9bc2a351c0bed3a1c04028b1ec7",
       "name": "IndexPowah",
       "timestamp": 1629144711557,
-      "verified": false,
+      "verified": true,
       "description": "Deployed IndexPowah",
       "contractAddress": "0x78Ec130EC5E470B06012F2Ad0aB580d659004F7B",
       "constructorArgs": [
@@ -1607,6 +1613,132 @@
       "data": "0xb3ab15fb0000000000000000000000009467cfadc9de245010df95ec6a585a506a8ad5fc",
       "description": "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC set as operator on BaseManager - DPI",
       "contractName": "BaseManager - DPI"
+    },
+    "101": {
+      "id": "0x2ff6c53bd279b560455a464c525847df4d85ace81c89ca32509fb7f9e6495b11",
+      "name": "FTCVesting - 0x026FD30023D9199450883B3c7f82b7C9ebbEB2F7",
+      "timestamp": 1629943019273,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x026FD30023D9199450883B3c7f82b7C9ebbEB2F7",
+      "contractAddress": "0x941604E66E72360691232b913b67632c26af424D",
+      "constructorArgs": [
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0x026FD30023D9199450883B3c7f82b7C9ebbEB2F7",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1615575600,
+        1631469600,
+        1678644000
+      ],
+      "libraries": {}
+    },
+    "102": {
+      "id": "0x5203528501180ba9d0fe2da6647ef29c9d7cc31e539c66e80fff0ab46a59f30c",
+      "name": "FTCVesting - 0x28A4E12c38f052A4D9FaaF17914ff6363AE97DF4",
+      "timestamp": 1629943055363,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x28A4E12c38f052A4D9FaaF17914ff6363AE97DF4",
+      "contractAddress": "0xF8BDFC9bB58dC0C4d2E77e04AAc673B99D09c7Cd",
+      "constructorArgs": [
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0x28A4E12c38f052A4D9FaaF17914ff6363AE97DF4",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1614538800,
+        1630173600,
+        1677610800
+      ],
+      "libraries": {}
+    },
+    "103": {
+      "id": "0x76e9a2d15e20eb7f872deb0a9e60e0debe39f9b8cc053483bd63185802c18c96",
+      "name": "FTCVesting - 0x5CD4EF55C339ef01f79f494c0a568df90699Aa22",
+      "timestamp": 1629943069574,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x5CD4EF55C339ef01f79f494c0a568df90699Aa22",
+      "contractAddress": "0x5a2cAf985d71A281662E0925738e54123dA56c40",
+      "constructorArgs": [
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0x5CD4EF55C339ef01f79f494c0a568df90699Aa22",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1614538800,
+        1630173600,
+        1677610800
+      ],
+      "libraries": {}
+    },
+    "104": {
+      "id": "0x069864a1686a9616bb9ea20d57132323e34317aec6cb48fce8be5042cfe0592c",
+      "name": "FTCVesting - 0x0C1A7BD2A5afb4884bA2dD89B4f7F571553Cda13",
+      "timestamp": 1629943559510,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x0C1A7BD2A5afb4884bA2dD89B4f7F571553Cda13",
+      "contractAddress": "0xc12d290ffA999dAA837F48df99E8Bc70c2dfc26d",
+      "constructorArgs": [
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0x0C1A7BD2A5afb4884bA2dD89B4f7F571553Cda13",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1614538800,
+        1630173600,
+        1677610800
+      ],
+      "libraries": {}
+    },
+    "105": {
+      "id": "0x94909af7194d4acd8a306fa6b65de49a747582e370a6d3ca13a3fc8730df19e6",
+      "name": "FTCVesting - 0x99b5Fb37B04C966dCaF1EDB5eA27B08644Cc4d08",
+      "timestamp": 1629943997230,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x99b5Fb37B04C966dCaF1EDB5eA27B08644Cc4d08",
+      "contractAddress": "0x3cB23D1836052B20828c5D7DE80805C2c2782de6",
+      "constructorArgs": [
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0x99b5Fb37B04C966dCaF1EDB5eA27B08644Cc4d08",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1626926400,
+        1642827600,
+        1689998400
+      ],
+      "libraries": {}
+    },
+    "106": {
+      "id": "0x7ca8068eca9d4c658d8d81d748eeec5e0256018ee4091eb154a52a18f7475b78",
+      "name": "FTCVesting - 0xC99ab7Ffa5a4CB9a06Ee68652fE74B6C59c67284",
+      "timestamp": 1629944072595,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0xC99ab7Ffa5a4CB9a06Ee68652fE74B6C59c67284",
+      "contractAddress": "0x40D4fD107B3D4ebe51b29252458631397462b016",
+      "constructorArgs": [
+        "0x0954906da0Bf32d5479e25f46056d22f08464cab",
+        "0xC99ab7Ffa5a4CB9a06Ee68652fE74B6C59c67284",
+        "0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1626494400,
+        1642395600,
+        1689566400
+      ],
+      "libraries": {}
     }
   }
 }
