@@ -25,7 +25,7 @@ import {
 import {
   CONTRACT_NAMES,
   FEE_SPLIT_ADAPTER
-} from "@deployments/constants/023_dpi_manager_with_permissions";
+} from "@deployments/constants/024_dpi_manager_with_permissions";
 
 import DeployHelper from "@deployments/utils/deploys";
 
