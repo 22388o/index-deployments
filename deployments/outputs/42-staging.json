@@ -3,7 +3,7 @@
     "network_key": "42-staging",
     "human_friendly_name": "kovan-staging",
     "network_id": 42,
-    "last_deployment_stage": 22
+    "last_deployment_stage": 24
   },
   "addresses": {
     "IndexDAO - DEPRECATED": "0x797029d8a74AD7a0ac5480597796a8452d968aeB",
@@ -71,7 +71,17 @@
     "FLIRebalanceViewer - DEPRECATED": "0xF6F979a44FA7964668a92167Bea1d1EC4d393eF6",
     "BTCFLIRebalanceViewer - DEPRECATED": "0x005070Cab99A96FF96608fBB6A9C08Ce27261f56",
     "FLIRebalanceViewer": "0xdC34a219A78AbfFE2a5f1E9a2bC51324e1FB4227",
-    "BTCFLIRebalanceViewer": "0x04AF15483050DaF44390f37Eea80d4b8188C5fa5"
+    "BTCFLIRebalanceViewer": "0x04AF15483050DaF44390f37Eea80d4b8188C5fa5",
+    "BED": "0x0AC3F61B2A115B7277571dc2593dE10003c5BA06",
+    "BaseManager - BED": "0x47f0626646b3a5c88653E75D0febE7fe64e4F3d1",
+    "GIMExtension - BED": "0xCFF91830D2C9c72ab284B228B1650B04eA15C102",
+    "StreamingFeeSplitExtension - BED": "0xbB46A89C642B4377D91438479790aBbd4454998F",
+    "FTCVesting - 0x026FD30023D9199450883B3c7f82b7C9ebbEB2F7": "0xba84802AAa7f1c94aBdbA6dB3b0f3d436904822a",
+    "FTCVesting - 0x28A4E12c38f052A4D9FaaF17914ff6363AE97DF4": "0xf0f2A75C1802C7299f29A8c23E0B89e7Ab5F10fE",
+    "FTCVesting - 0x5CD4EF55C339ef01f79f494c0a568df90699Aa22": "0x6255cE6e6CEE61603C0693Ac84e4d8869DAa3936",
+    "FTCVesting - 0x0C1A7BD2A5afb4884bA2dD89B4f7F571553Cda13": "0x247512488AEF47D432035a5052242939fa77b241",
+    "FTCVesting - 0x99b5Fb37B04C966dCaF1EDB5eA27B08644Cc4d08": "0xB83CAFd5E26feabb47A26560eA4bCF277f577FA2",
+    "FTCVesting - 0xC99ab7Ffa5a4CB9a06Ee68652fE74B6C59c67284": "0xF33E6cCcAbE138339896CBFC360728e9659D53A3"
   },
   "transactions": {
     "0": {
@@ -1750,6 +1760,196 @@
         "0xE7B42a0Bf1d41e00fba7A4d41f8fb21d2702e6e2",
         "UniswapV3ExchangeAdapter",
         "AMMSplitterExchangeAdapter"
+      ],
+      "libraries": {}
+    },
+    "161": {
+      "id": "0x",
+      "timestamp": 1629937467902,
+      "description": "Created Mock BED"
+    },
+    "162": {
+      "id": "0xd4bfff5f5c7ce1e24b247c230ace7f3639ea8f8742642be13422ddb651a5ad21",
+      "name": "BaseManager - BED",
+      "timestamp": 1629937474060,
+      "verified": true,
+      "description": "Deployed BaseManager - BED",
+      "contractAddress": "0x47f0626646b3a5c88653E75D0febE7fe64e4F3d1",
+      "constructorArgs": [
+        "0x0AC3F61B2A115B7277571dc2593dE10003c5BA06",
+        "0xa037Ff147C390Fc4408A48E1263F89eB86C68f4E",
+        "0xa037Ff147C390Fc4408A48E1263F89eB86C68f4E"
+      ],
+      "libraries": {}
+    },
+    "163": {
+      "id": "0x519ad315f0f470bafb655fbde406b31fe6d9e60df13f9379a60e881a114eecd7",
+      "name": "GIMExtension - BED",
+      "timestamp": 1629937483406,
+      "verified": true,
+      "description": "Deployed GIMExtension - BED",
+      "contractAddress": "0xCFF91830D2C9c72ab284B228B1650B04eA15C102",
+      "constructorArgs": [
+        "0x47f0626646b3a5c88653E75D0febE7fe64e4F3d1",
+        "0x2889dee478f1e2913b7de0913be3de40bf05f326"
+      ],
+      "libraries": {}
+    },
+    "164": {
+      "id": "0x59a9f02ad63c70c176dcd1b1e46e861714e77aeb5a9bda229c6b8dd36b53175f",
+      "name": "StreamingFeeSplitExtension - BED",
+      "timestamp": 1629937488718,
+      "verified": true,
+      "description": "Deployed StreamingFeeSplitExtension - BED",
+      "contractAddress": "0xbB46A89C642B4377D91438479790aBbd4454998F",
+      "constructorArgs": [
+        "0x47f0626646b3a5c88653E75D0febE7fe64e4F3d1",
+        "0xE038E59DEEC8657d105B6a3Fb5040b3a6189Dd51",
+        {
+          "type": "BigNumber",
+          "hex": "0x06f05b59d3b20000"
+        }
+      ],
+      "libraries": {}
+    },
+    "165": {
+      "id": "0x611e5600338755228c2daf32e3e5e426df715ee8c8796872229aa2278ea7b061",
+      "timestamp": 1629937494120,
+      "description": "Add GIMExtension - BED on BaseManager - BED"
+    },
+    "166": {
+      "id": "0x35c6b537694697dde3d531dc2bf6f6f8752a43b497c9fdcf3f82283a562a92ce",
+      "timestamp": 1629937499446,
+      "description": "Add StreamingFeeSplitExtension - BED on BaseManager - BED"
+    },
+    "167": {
+      "id": "0x414c47436c85cbe97cd133b6486a5f23252e33eadb51d3b64cd34c0272557ed2",
+      "timestamp": 1629937504611,
+      "description": "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D set as operator on BaseManager - BED"
+    },
+    "168": {
+      "id": "0x415e0cce95774b2ba2078664b58e4e15df93d5e1892df85f4608fdd6fe245ab6",
+      "name": "FTCVesting - 0x026FD30023D9199450883B3c7f82b7C9ebbEB2F7",
+      "timestamp": 1629937510111,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x026FD30023D9199450883B3c7f82b7C9ebbEB2F7",
+      "contractAddress": "0xba84802AAa7f1c94aBdbA6dB3b0f3d436904822a",
+      "constructorArgs": [
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
+        "0x026FD30023D9199450883B3c7f82b7C9ebbEB2F7",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1615575600,
+        1631469600,
+        1678644000
+      ],
+      "libraries": {}
+    },
+    "169": {
+      "id": "0x212a6d4f4762b211ca4b6b824302dda1cfb364efbb35a0833cb5d6f9a67d569e",
+      "name": "FTCVesting - 0x28A4E12c38f052A4D9FaaF17914ff6363AE97DF4",
+      "timestamp": 1629937519686,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x28A4E12c38f052A4D9FaaF17914ff6363AE97DF4",
+      "contractAddress": "0xf0f2A75C1802C7299f29A8c23E0B89e7Ab5F10fE",
+      "constructorArgs": [
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
+        "0x28A4E12c38f052A4D9FaaF17914ff6363AE97DF4",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1614538800,
+        1630173600,
+        1677610800
+      ],
+      "libraries": {}
+    },
+    "170": {
+      "id": "0x37c4c2e51632fd8149dbd0900c12a33365bd9d96e0a5d7cbba0191621ca77a0d",
+      "name": "FTCVesting - 0x5CD4EF55C339ef01f79f494c0a568df90699Aa22",
+      "timestamp": 1629937530215,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x5CD4EF55C339ef01f79f494c0a568df90699Aa22",
+      "contractAddress": "0x6255cE6e6CEE61603C0693Ac84e4d8869DAa3936",
+      "constructorArgs": [
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
+        "0x5CD4EF55C339ef01f79f494c0a568df90699Aa22",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1614538800,
+        1630173600,
+        1677610800
+      ],
+      "libraries": {}
+    },
+    "171": {
+      "id": "0xbeec7a603bd5e8d3b9988850a384e83d73bd0451dedf0f0349aad2a4a38ed194",
+      "name": "FTCVesting - 0x0C1A7BD2A5afb4884bA2dD89B4f7F571553Cda13",
+      "timestamp": 1629937535628,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x0C1A7BD2A5afb4884bA2dD89B4f7F571553Cda13",
+      "contractAddress": "0x247512488AEF47D432035a5052242939fa77b241",
+      "constructorArgs": [
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
+        "0x0C1A7BD2A5afb4884bA2dD89B4f7F571553Cda13",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1614538800,
+        1630173600,
+        1677610800
+      ],
+      "libraries": {}
+    },
+    "172": {
+      "id": "0xb51b768b6d5ea02d546bb655d3268feac6407182edd77485c78c12b111215b25",
+      "name": "FTCVesting - 0x99b5Fb37B04C966dCaF1EDB5eA27B08644Cc4d08",
+      "timestamp": 1629937541035,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0x99b5Fb37B04C966dCaF1EDB5eA27B08644Cc4d08",
+      "contractAddress": "0xB83CAFd5E26feabb47A26560eA4bCF277f577FA2",
+      "constructorArgs": [
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
+        "0x99b5Fb37B04C966dCaF1EDB5eA27B08644Cc4d08",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1626926400,
+        1642827600,
+        1689998400
+      ],
+      "libraries": {}
+    },
+    "173": {
+      "id": "0xe0e0c89180d8ff8798b027bf698862d203d91730e8411fc5249ced2a9b08ae38",
+      "name": "FTCVesting - 0xC99ab7Ffa5a4CB9a06Ee68652fE74B6C59c67284",
+      "timestamp": 1629937546425,
+      "verified": true,
+      "description": "Deployed FTCVesting - 0xC99ab7Ffa5a4CB9a06Ee68652fE74B6C59c67284",
+      "contractAddress": "0xF33E6cCcAbE138339896CBFC360728e9659D53A3",
+      "constructorArgs": [
+        "0x8771c0a0f8Ff0aC5147fF062BBB0F23E8bE2fd5C",
+        "0xC99ab7Ffa5a4CB9a06Ee68652fE74B6C59c67284",
+        "0xce071Ba2E54e7fa97F063c8526f53eD6470c5b6D",
+        {
+          "type": "BigNumber",
+          "hex": "0x032d26d12e980b600000"
+        },
+        1626494400,
+        1642395600,
+        1689566400
       ],
       "libraries": {}
     }
