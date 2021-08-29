@@ -33,7 +33,11 @@ export default {
   },
   USDC: {
     1: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    42: "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
+    42: "0xe22da380ee6B445bb8273C81944ADEB6E8450422",
+  },
+  LINK: {
+    1: "0x514910771af9ca656af840dff83e8264ecf986ca",
+    42: "	0xAD5ce863aE3E4E9394Ab43d4ba0D80f419F61789",
   },
   ETHFLI: {
     1: {
@@ -48,6 +52,13 @@ export default {
       staging: "0x2fa6ffC08F30866B4f6eC56f31f4E31b4bB91ADa",
     },
     42: "0x7edC8917dfb6F2C696a41579356dfc6ecD360aA1",
+  },
+  LINKFLI: {
+    1: {
+      production: "",
+      staging: "",
+    },
+    42: "",
   },
 
   // DEX Contracts
@@ -90,6 +101,13 @@ export default {
       staging: "0xdD668Fa631C0b3F863e3A830ca23Fe75100009e6",
     },
     42: "0x676C7B527c706801e64AD2108aA1F0Ddc83807D0",
+  },
+  AAVE_LEVERAGE_MODULE: {
+    1: {
+      production: "",
+      staging: "",
+    },
+    42: "",
   },
   STREAMING_FEE_MODULE: {
     1: {
@@ -156,6 +174,20 @@ export default {
     42: "0x160ac3bbbd338bef846dc04ac3d2a9be8de955b1", // This is a mock PriceOracle deployment
   },
 
+  // Aave Contracts
+  A_LINK: {
+    1: "0xa06bC25B5805d5F8d82847D191Cb4Af5A3e873E0",
+    42: "0xeD9044cA8F7caCe8eACcD40367cF2bee39eD1b04",
+  },
+  USDC_VARIABLE_DEBT: {
+    1: "0x619beb58998eD2278e08620f97007e1116D5D25b",
+    42: "0xBE9B058a0f2840130372a81eBb3181dcE02BE957",
+  },
+  AAVE_PROTOCOL_DATA_PROVIDER: {
+    1: "0x057835Ad21a177dbdd3090bB1CAE03EaCF78Fc6d",
+    42: "0x3c73A5E5785cAC854D468F727c606C07488a29D6",
+  },
+
   // Chainlink Oracles
   CHAINLINK_ETH: {
     1: {
@@ -183,6 +215,14 @@ export default {
     },
     // This oracle is manipulatable, it is not reading from an actual data source
     42: "0xb944e38a42bf55e3f65d58e0eec483fe038919cc",
+  },
+  CHAINLINK_LINK: {
+    1: {
+      production: "0x2c1d072e956AFFC0D435Cb7AC38EF18d24d9127c",
+      staging: "",
+    },
+    // This oracle is manipulatable, it is not reading from an actual data source
+    42: "0x396c5E36DD0a0F5a5D33dae44368D4193f69a1F0",
   },
 
   // Admin
@@ -236,9 +276,11 @@ export const DEPENDENCY = {
   BED: "BED",
   BTCFLI: "BTCFLI",
   ETHFLI: "ETHFLI",
+  LINKFLI: "LINKFLI",
   WETH: "WETH",
   WBTC: "WBTC",
   USDC: "USDC",
+  LINK: "LINK",
   // DEX Contracts
   DPI_ETH_UNI_POOL: "DPI_ETH_UNI_POOL",
   ETHFLI_UNI_POOL: "ETHFLI_UNI_POOL",
@@ -250,6 +292,7 @@ export const DEPENDENCY = {
   // Set Protocol Contracts
   DEBT_ISSUANCE_MODULE: "DEBT_ISSUANCE_MODULE",
   COMPOUND_LEVERAGE_MODULE: "COMPOUND_LEVERAGE_MODULE",
+  AAVE_LEVERAGE_MODULE: "AAVE_LEVERAGE_MODULE",
   GENERAL_INDEX_MODULE: "GENERAL_INDEX_MODULE",
   SINGLE_INDEX_MODULE: "SINGLE_INDEX_MODULE",
   STREAMING_FEE_MODULE: "STREAMING_FEE_MODULE",
@@ -263,10 +306,15 @@ export const DEPENDENCY = {
   C_WBTC: "C_WBTC",
   COMPOUND_COMPTROLLER: "COMPOUND_COMPTROLLER",
   COMPOUND_PRICE_ORACLE: "COMPOUND_PRICE_ORACLE",
+  // Aave Contracts
+  AAVE_PROTOCOL_DATA_PROVIDER: "AAVE_PROTOCOL_DATA_PROVIDER",
+  A_LINK: "A_LINK",
+  USDC_VARIABLE_DEBT: "USDC_VARIABLE_DEBT",
   // Chainlink Oracles
   CHAINLINK_ETH: "CHAINLINK_ETH",
   CHAINLINK_BTC: "CHAINLINK_BTC",
   CHAINLINK_USDC: "CHAINLINK_USDC",
+  CHAINLINK_LINK: "CHAINLINK_LINK",
   // Admin
   TREASURY_MULTI_SIG: "TREASURY_MULTI_SIG",
   OPS_MULTI_SIG: "OPS_MULTI_SIG",
