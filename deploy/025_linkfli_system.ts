@@ -58,6 +58,8 @@ const {
   USDC,
   CHAINLINK_LINK,
   CHAINLINK_USDC,
+  AMM_SPLITTER,
+  UNISWAP_V3_QUOTER,
 } = DEPENDENCY;
 
 let owner: Account;
@@ -92,6 +94,8 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
   await deployAaveLeverageStrategyExtension();
 
   await deployFeeAdapter();
+
+  await deployRebalanceViewer();
 
   await addExtension(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.LEVERAGE_EXTENSION_NAME);
   await addExtension(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
@@ -343,6 +347,39 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
         log: true,
       });
       await writeTransactionToOutputs(addExtensionTransaction.transactionHash, `Add extension on BaseManagerV2`);
+    }
+  }
+
+  async function deployRebalanceViewer(): Promise<void> {
+
+    const checkFLIViewerAddress = await getContractAddress(CONTRACT_NAMES.FLI_VIEWER_NAME);
+    if (checkFLIViewerAddress === "") {
+
+      const fliExtension = await getContractAddress(CONTRACT_NAMES.LEVERAGE_EXTENSION_NAME);
+      const uniQuoter = await findDependency(UNISWAP_V3_QUOTER);
+      const ammSplitter = await findDependency(AMM_SPLITTER);
+
+      const constructorArgs: any[] = [
+        fliExtension,
+        uniQuoter,
+        ammSplitter,
+        CONTRACT_NAMES.UNISWAP_V3_EXCHANGE_ADAPTER,
+        CONTRACT_NAMES.AMM_SPLITTER_EXCHANGE_ADAPTER,
+      ];
+
+      const fliViewer = await deploy(
+        CONTRACT_NAMES.FLI_VIEWER,
+        { from: deployer, args: constructorArgs, log: true }
+      );
+
+      fliViewer.receipt &&
+        await saveContractDeployment({
+          name: CONTRACT_NAMES.FLI_VIEWER_NAME,
+          contractAddress: fliViewer.address,
+          id: fliViewer.receipt.transactionHash,
+          description: `Deployed ${CONTRACT_NAMES.FLI_VIEWER_NAME}`,
+          constructorArgs,
+        });
     }
   }
 });

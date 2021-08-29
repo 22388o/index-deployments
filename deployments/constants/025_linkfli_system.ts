@@ -12,6 +12,10 @@ export const CONTRACT_NAMES = {
   FEE_SPLIT_ADAPTER_NAME: "LINKFLIFeeSplitAdapter",
   SUPPLY_CAP_ISSUANCE_HOOK: "SupplyCapAllowedCallerIssuanceHook",
   SUPPLY_CAP_ISSUANCE_HOOK_NAME: "LINKFLISupplyCapAllowedCallerIssuanceHook",
+  UNISWAP_V3_EXCHANGE_ADAPTER: "UniswapV3ExchangeAdapter",
+  AMM_SPLITTER_EXCHANGE_ADAPTER: "AMMSplitterExchangeAdapter",
+  FLI_VIEWER: "FLIRebalanceViewer",
+  FLI_VIEWER_NAME: "LINKFLIRebalanceViewer",
 };
 
 
