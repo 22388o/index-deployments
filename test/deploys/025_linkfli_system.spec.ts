@@ -24,11 +24,29 @@ import {
   getWaffleExpect,
 } from "@utils/index";
 import {
+  DEPENDENCY,
   findDependency,
   getContractAddress,
   ONE_DAY_IN_SECONDS,
 } from "@deployments/utils";
 import { CONTRACT_NAMES, CONTRACT_SETTINGS } from "@deployments/constants/025_linkfli_system";
+
+const {
+  LINKFLI,
+  USDC,
+  LINK,
+  WETH,
+  A_LINK,
+  USDC_VARIABLE_DEBT,
+  AMM_SPLITTER,
+  UNISWAP_V3_QUOTER,
+  CHAINLINK_LINK,
+  CHAINLINK_USDC,
+  AAVE_LEVERAGE_MODULE,
+  AAVE_PROTOCOL_DATA_PROVIDER,
+  STREAMING_FEE_MODULE,
+  DEBT_ISSUANCE_MODULE,
+} = DEPENDENCY;
 
 const expect = getWaffleExpect();
 
@@ -70,7 +88,7 @@ describe("LINKFLI System", () => {
   describe("BaseManagerV2", async () => {
     it("should have the correct SetToken address", async () => {
       const setToken = await baseManagerInstance.setToken();
-      expect(setToken).to.eq(await findDependency("LINKFLI"));
+      expect(setToken).to.eq(await findDependency(LINKFLI));
     });
 
     it("should have the correct operator address", async () => {
@@ -100,15 +118,15 @@ describe("LINKFLI System", () => {
     it("should set the contract addresses", async () => {
       const strategy = await leverageStrategyExtensionInstance.getStrategy();
 
-      expect(strategy.setToken).to.eq(await findDependency("LINKFLI"));
-      expect(strategy.leverageModule).to.eq(await findDependency("AAVE_LEVERAGE_MODULE"));
-      expect(strategy.aaveProtocolDataProvider).to.eq(await findDependency("AAVE_PROTOCOL_DATA_PROVIDER"));
-      expect(strategy.targetCollateralAToken).to.eq(await findDependency("A_LINK"));
-      expect(strategy.targetBorrowDebtToken).to.eq(await findDependency("USDC_VARIABLE_DEBT"));
-      expect(strategy.collateralAsset).to.eq(await findDependency("LINK"));
-      expect(strategy.borrowAsset).to.eq(await findDependency("USDC"));
-      expect(strategy.collateralPriceOracle).to.eq(await findDependency("CHAINLINK_LINK"));
-      expect(strategy.borrowPriceOracle).to.eq(await findDependency("CHAINLINK_USDC"));
+      expect(strategy.setToken).to.eq(await findDependency(LINKFLI));
+      expect(strategy.leverageModule).to.eq(await findDependency(AAVE_LEVERAGE_MODULE));
+      expect(strategy.aaveProtocolDataProvider).to.eq(await findDependency(AAVE_PROTOCOL_DATA_PROVIDER));
+      expect(strategy.targetCollateralAToken).to.eq(await findDependency(A_LINK));
+      expect(strategy.targetBorrowDebtToken).to.eq(await findDependency(USDC_VARIABLE_DEBT));
+      expect(strategy.collateralAsset).to.eq(await findDependency(LINK));
+      expect(strategy.borrowAsset).to.eq(await findDependency(USDC));
+      expect(strategy.collateralPriceOracle).to.eq(await findDependency(CHAINLINK_LINK));
+      expect(strategy.borrowPriceOracle).to.eq(await findDependency(CHAINLINK_USDC));
       expect(strategy.collateralDecimalAdjustment).to.eq(CONTRACT_SETTINGS.COLLATERAL_DECIMAL_ADJUSTMENT);
       expect(strategy.borrowDecimalAdjustment).to.eq(CONTRACT_SETTINGS.BORROW_DECIMAL_ADJUSTMENT);
     });
@@ -141,25 +159,25 @@ describe("LINKFLI System", () => {
     });
 
     it("should set the correct exchange settings", async () => {
-      const ammSplitterSettings = await leverageStrategyExtensionInstance.getExchangeSettings("AMMSplitterExchangeAdapter");
-      const uniV3Settings = await leverageStrategyExtensionInstance.getExchangeSettings("UniswapV3ExchangeAdapter");
+      const ammSplitterSettings = await leverageStrategyExtensionInstance.getExchangeSettings(CONTRACT_NAMES.AMM_SPLITTER_EXCHANGE_ADAPTER);
+      const uniV3Settings = await leverageStrategyExtensionInstance.getExchangeSettings(CONTRACT_NAMES.UNISWAP_V3_EXCHANGE_ADAPTER);
 
       const sushiLeverData = defaultAbiCoder.encode(
         ["address[]"],
-        [[await findDependency("USDC"), await findDependency("WETH"), await findDependency("LINK")]]
+        [[await findDependency(USDC), await findDependency(WETH), await findDependency(LINK)]]
       );
       const sushiDeleverData = defaultAbiCoder.encode(
         ["address[]"],
-        [[await findDependency("LINK"), await findDependency("WETH"), await findDependency("USDC")]]
+        [[await findDependency(LINK), await findDependency(WETH), await findDependency(USDC)]]
       );
 
       const uniV3LeverData = solidityPack(
         ["address", "uint24", "address", "uint24", "address"],
-        [await findDependency("USDC"), BigNumber.from(3000), await findDependency("WETH"), BigNumber.from(3000), await findDependency("LINK")]
+        [await findDependency(USDC), BigNumber.from(3000), await findDependency(WETH), BigNumber.from(3000), await findDependency(LINK)]
       );
       const uniV3DeleverData = solidityPack(
         ["address", "uint24", "address", "uint24", "address"],
-        [await findDependency("LINK"), BigNumber.from(3000), await findDependency("WETH"), BigNumber.from(3000), await findDependency("USDC")]
+        [await findDependency(LINK), BigNumber.from(3000), await findDependency(WETH), BigNumber.from(3000), await findDependency(USDC)]
       );
 
       expect(ammSplitterSettings.twapMaxTradeSize).to.eq(ether(1000));
@@ -180,8 +198,8 @@ describe("LINKFLI System", () => {
       const enabledExchanges = await leverageStrategyExtensionInstance.getEnabledExchanges();
 
       expect(enabledExchanges.length).to.eq(2);
-      expect(enabledExchanges[0]).to.eq("AMMSplitterExchangeAdapter");
-      expect(enabledExchanges[1]).to.eq("UniswapV3ExchangeAdapter");
+      expect(enabledExchanges[0]).to.eq(CONTRACT_NAMES.AMM_SPLITTER_EXCHANGE_ADAPTER);
+      expect(enabledExchanges[1]).to.eq(CONTRACT_NAMES.UNISWAP_V3_EXCHANGE_ADAPTER);
     });
   });
 
@@ -193,8 +211,8 @@ describe("LINKFLI System", () => {
       const operatorFeeSplit = await feeSplitAdapterInstance.operatorFeeSplit();
 
       expect(manager).to.eq(baseManagerInstance.address);
-      expect(streamingFeeModule).to.eq(await findDependency("STREAMING_FEE_MODULE"));
-      expect(issuanceModule).to.eq(await findDependency("DEBT_ISSUANCE_MODULE"));
+      expect(streamingFeeModule).to.eq(await findDependency(STREAMING_FEE_MODULE));
+      expect(issuanceModule).to.eq(await findDependency(DEBT_ISSUANCE_MODULE));
       expect(operatorFeeSplit).to.eq(ether(0.6));
     });
   });
@@ -217,8 +235,8 @@ describe("LINKFLI System", () => {
     it("should set the correct addresses", async () => {
       expect(await rebalanceViewer.uniswapV2ExchangeName()).to.eq(CONTRACT_NAMES.AMM_SPLITTER_EXCHANGE_ADAPTER);
       expect(await rebalanceViewer.uniswapV3ExchangeName()).to.eq(CONTRACT_NAMES.UNISWAP_V3_EXCHANGE_ADAPTER);
-      expect(await rebalanceViewer.uniswapV2Router()).to.eq(await findDependency("AMM_SPLITTER"));
-      expect(await rebalanceViewer.uniswapV3Quoter()).to.eq(await findDependency("UNISWAP_V3_QUOTER"));
+      expect(await rebalanceViewer.uniswapV2Router()).to.eq(await findDependency(AMM_SPLITTER));
+      expect(await rebalanceViewer.uniswapV3Quoter()).to.eq(await findDependency(UNISWAP_V3_QUOTER));
       expect(await rebalanceViewer.fliStrategyExtension()).to.eq(await findDependency(CONTRACT_NAMES.LEVERAGE_EXTENSION_NAME));
     });
   });
