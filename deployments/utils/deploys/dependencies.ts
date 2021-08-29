@@ -33,7 +33,7 @@ export default {
   },
   USDC: {
     1: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    42: "0xe22da380ee6B445bb8273C81944ADEB6E8450422",
+    42: "0x15758350DECEA0E5A96cFe9024e3f352d039905a",
   },
   LINK: {
     1: "0x514910771af9ca656af840dff83e8264ecf986ca",
