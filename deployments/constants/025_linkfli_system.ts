@@ -50,7 +50,7 @@ export const INCENTIVE_SETTINGS = {
   incentivizedTwapCooldownPeriod: BigNumber.from(1),      // 1 sec cooldown on ripcord
   incentivizedSlippageTolerance: ether(0.05),             // 5% max slippage on ripcord
   etherReward: ether(1.5),                                // 2000 gwei * 700k gas used = 1.4 ETH
-  incentivizedLeverageRatio: ether(2.4),                  // A 11% drop from 2.4x results in liquidation for WBTC with 65% CF
+  incentivizedLeverageRatio: ether(2.4),
 };
 
 export const EXCHANGE_NAMES = [
