@@ -7,6 +7,7 @@ export {
   addExtension,
   addApprovedCaller,
   deployBaseManager,
+  deployFeeExtension,
   deployGIMExtension,
   deployGovernanceAdapter,
   deployMerkleDistributor,

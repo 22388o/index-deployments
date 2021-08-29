@@ -221,6 +221,49 @@ export async function deployStreamingFeeExtension(
   }
 }
 
+export async function deployFeeExtension(
+  hre: HardhatRuntimeEnvironment,
+  feeExtensionName: string,
+  managerName: string,
+  feeSplit: BigNumber,
+  operatorFeeRecipient: Address
+): Promise<void> {
+  const {
+    deploy,
+    deployer,
+  } = await prepareDeployment(hre);
+
+  const checkFeeExtensionAddress = await getContractAddress(feeExtensionName);
+  if (checkFeeExtensionAddress === "") {
+
+    const manager = await getContractAddress(managerName);
+    const streamingFeeModule = await findDependency("STREAMING_FEE_MODULE");
+    const debtIssuanceModule = await findDependency("DEBT_ISSUANCE_MODULE");
+
+    const constructorArgs = [
+      manager,
+      streamingFeeModule,
+      debtIssuanceModule,
+      feeSplit,
+      operatorFeeRecipient,
+    ];
+
+    const feeSplitAdapterDeploy = await deploy("FeeSplitExtension", {
+      from: deployer,
+      args: constructorArgs,
+      log: true,
+    });
+
+    feeSplitAdapterDeploy.receipt && await saveContractDeployment({
+      name: feeExtensionName,
+      contractAddress: feeSplitAdapterDeploy.address,
+      id: feeSplitAdapterDeploy.receipt.transactionHash,
+      description: `Deployed ${feeExtensionName}`,
+      constructorArgs,
+    });
+  }
+}
+
 export async function deployGIMExtension(
   hre: HardhatRuntimeEnvironment,
   gimExtensionName: string,

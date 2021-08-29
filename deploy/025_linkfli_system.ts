@@ -12,6 +12,7 @@ import {
 import {
   addExtension,
   deployBaseManager,
+  deployFeeExtension,
   prepareDeployment,
   findDependency,
   getContractAddress,
@@ -47,10 +48,8 @@ const {
   USDC_VARIABLE_DEBT,
   DFP_MULTI_SIG,
   LINKFLI,
-  DEBT_ISSUANCE_MODULE,
   AAVE_LEVERAGE_MODULE,
   AAVE_PROTOCOL_DATA_PROVIDER,
-  STREAMING_FEE_MODULE,
   LINK,
   WETH,
   USDC,
@@ -85,7 +84,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   await deployAaveLeverageStrategyExtension();
 
-  await deployFeeAdapter();
+  await deployFeeExtension(hre, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME, CONTRACT_NAMES.BASE_MANAGER_NAME, FEE_SPLIT_ADAPTER.FEE_SPLIT, deployer);
 
   await deployRebalanceViewer();
 
@@ -239,38 +238,6 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
         contractAddress: leverageDeploy.address,
         id: leverageDeploy.receipt.transactionHash,
         description: "Deployed LINK AaveLeverageStrategyExtension",
-        constructorArgs,
-      });
-    }
-  }
-
-  async function deployFeeAdapter(): Promise<void> {
-    const checkFeeAdapterAddress = await getContractAddress(CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
-    if (checkFeeAdapterAddress === "") {
-      const manager = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER_NAME);
-      const streamingFeeModule = await findDependency(STREAMING_FEE_MODULE);
-      const debtIssuanceModule = await findDependency(DEBT_ISSUANCE_MODULE);
-      const feeSplit = FEE_SPLIT_ADAPTER.FEE_SPLIT;
-
-      const constructorArgs = [
-        manager,
-        streamingFeeModule,
-        debtIssuanceModule,
-        feeSplit,
-        deployer, // set operatorFeeRecipient to deployer for now (same as 'operator' in manager setup)
-      ];
-
-      const feeSplitAdapterDeploy = await deploy(CONTRACT_NAMES.FEE_SPLIT_ADAPTER, {
-        from: deployer,
-        args: constructorArgs,
-        log: true,
-      });
-
-      feeSplitAdapterDeploy.receipt && await saveContractDeployment({
-        name: CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME,
-        contractAddress: feeSplitAdapterDeploy.address,
-        id: feeSplitAdapterDeploy.receipt.transactionHash,
-        description: "Deployed Fee Split Adapter",
         constructorArgs,
       });
     }
