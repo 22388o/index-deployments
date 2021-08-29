@@ -6,26 +6,24 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { defaultAbiCoder, solidityPack } from "ethers/lib/utils";
 import {
   ether,
-  getAccounts,
   getRandomAddress,
 } from "@utils/index";
 
 import {
+  addExtension,
+  deployBaseManager,
   prepareDeployment,
   findDependency,
   getContractAddress,
   getCurrentStage,
-  writeTransactionToOutputs,
   writeContractAndTransactionToOutputs,
   saveContractDeployment,
   stageAlreadyFinished,
   trackFinishedStage,
-  InstanceGetter,
   EMPTY_BYTES,
   DEPENDENCY
 } from "@deployments/utils";
 import {
-  Account,
   AaveContractSettings,
   MethodologySettings,
   ExecutionSettings,
@@ -62,18 +60,12 @@ const {
   UNISWAP_V3_QUOTER,
 } = DEPENDENCY;
 
-let owner: Account;
-let instanceGetter: InstanceGetter;
-
 const CURRENT_STAGE = getCurrentStage(__filename);
 
 const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (hre: HRE) {
-  [owner] = await getAccounts();
-  instanceGetter = new InstanceGetter(owner.wallet);
 
   const {
     deploy,
-    rawTx,
     deployer,
     networkConstant,
   } = await prepareDeployment(hre);
@@ -89,7 +81,7 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   await deploySupplyCapIssuanceHook();
 
-  await deployBaseManagerV2();
+  await deployBaseManager(hre, CONTRACT_NAMES.BASE_MANAGER_NAME, LINKFLI, deployer, dfpMultisigAddress);
 
   await deployAaveLeverageStrategyExtension();
 
@@ -97,8 +89,8 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   await deployRebalanceViewer();
 
-  await addExtension(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.LEVERAGE_EXTENSION_NAME);
-  await addExtension(CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
+  await addExtension(hre, CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.LEVERAGE_EXTENSION_NAME);
+  await addExtension(hre, CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
 
   //
   // Helper Functions
@@ -177,31 +169,6 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
     }
 
     console.log("Polyfilled dependencies");
-  }
-
-  async function deployBaseManagerV2(): Promise<void> {
-    const checkBaseManagerAddress = await getContractAddress(CONTRACT_NAMES.BASE_MANAGER_NAME);
-    if (checkBaseManagerAddress === "") {
-      const constructorArgs = [
-        await findDependency(LINKFLI),
-        deployer, // Set operator to deployer for now
-        dfpMultisigAddress, // Set methodologist to DFP
-      ];
-
-      const baseManagerV2Deploy = await deploy(CONTRACT_NAMES.BASE_MANAGER, {
-        from: deployer,
-        args: constructorArgs,
-        log: true,
-      });
-
-      baseManagerV2Deploy.receipt && await saveContractDeployment({
-        name: CONTRACT_NAMES.BASE_MANAGER_NAME,
-        contractAddress: baseManagerV2Deploy.address,
-        id: baseManagerV2Deploy.receipt.transactionHash,
-        description: "Deployed BaseManagerV2",
-        constructorArgs,
-      });
-    }
   }
 
   async function deployAaveLeverageStrategyExtension(): Promise<void> {
@@ -330,23 +297,6 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
         description: "Deployed LINKLFLISupplyCapAllowedCallerIssuanceHook",
         constructorArgs,
       });
-    }
-  }
-
-  async function addExtension(managerName: string, adapterName: string): Promise<void> {
-    const baseManagerAddress = await getContractAddress(managerName);
-    const baseManagerInstance = await instanceGetter.getBaseManagerV2(baseManagerAddress);
-
-    const adapterAddress = await getContractAddress(adapterName);
-    if (!await baseManagerInstance.isExtension(adapterAddress)) {
-      const addExtensionData = baseManagerInstance.interface.encodeFunctionData("addExtension", [adapterAddress]);
-      const addExtensionTransaction: any = await rawTx({
-        from: deployer,
-        to: baseManagerInstance.address,
-        data: addExtensionData,
-        log: true,
-      });
-      await writeTransactionToOutputs(addExtensionTransaction.transactionHash, `Add extension on BaseManagerV2`);
     }
   }
 
