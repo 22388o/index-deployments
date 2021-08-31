@@ -46,6 +46,7 @@ const {
   AAVE_PROTOCOL_DATA_PROVIDER,
   STREAMING_FEE_MODULE,
   DEBT_ISSUANCE_MODULE,
+  TREASURY_OPS_MULTI_SIG,
 } = DEPENDENCY;
 
 const expect = getWaffleExpect();
@@ -209,11 +210,13 @@ describe("LINKFLI System", () => {
       const streamingFeeModule = await feeSplitAdapterInstance.streamingFeeModule();
       const issuanceModule = await feeSplitAdapterInstance.issuanceModule();
       const operatorFeeSplit = await feeSplitAdapterInstance.operatorFeeSplit();
+      const operatorFeeRecipient = await feeSplitAdapterInstance.operatorFeeRecipient();
 
       expect(manager).to.eq(baseManagerInstance.address);
       expect(streamingFeeModule).to.eq(await findDependency(STREAMING_FEE_MODULE));
       expect(issuanceModule).to.eq(await findDependency(DEBT_ISSUANCE_MODULE));
       expect(operatorFeeSplit).to.eq(ether(0.6));
+      expect(operatorFeeRecipient).to.eq(await findDependency(TREASURY_OPS_MULTI_SIG));
     });
   });
 
