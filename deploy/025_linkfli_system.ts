@@ -63,6 +63,7 @@ const {
   STREAMING_FEE_MODULE,
   DEBT_ISSUANCE_MODULE,
   CONTROLLER,
+  TREASURY_OPS_MULTI_SIG,
 } = DEPENDENCY;
 
 const CURRENT_STAGE = getCurrentStage(__filename);
@@ -90,7 +91,13 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
 
   await deployAaveLeverageStrategyExtension();
 
-  await deployFeeExtension(hre, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME, CONTRACT_NAMES.BASE_MANAGER_NAME, FEE_SPLIT_ADAPTER.FEE_SPLIT, deployer);
+  await deployFeeExtension(
+    hre,
+    CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME,
+    CONTRACT_NAMES.BASE_MANAGER_NAME,
+    FEE_SPLIT_ADAPTER.FEE_SPLIT,
+    await findDependency(TREASURY_OPS_MULTI_SIG),
+  );
 
   await deployRebalanceViewer();
 
@@ -131,6 +138,15 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
       );
 
       await writeContractAndTransactionToOutputs(LINKFLI, setToken, EMPTY_BYTES, "Created Mock LINKFLI SetToken");
+    }
+
+    if (await findDependency(TREASURY_OPS_MULTI_SIG) === "") {
+      await writeContractAndTransactionToOutputs(
+        TREASURY_OPS_MULTI_SIG,
+        await getRandomAddress(),
+        EMPTY_BYTES,
+        "Created Mock TREASURY_OPS_MULTI_SIG"
+      );
     }
 
     if (await findDependency(CHAINLINK_LINK) === "") {
