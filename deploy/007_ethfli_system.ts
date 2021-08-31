@@ -43,6 +43,7 @@ import {
   EXCHANGE_SETTINGS,
 } from "@deployments/constants/007_ethfli_system";
 import { solidityPack } from "ethers/lib/utils";
+import DeployHelper from "@deployments/utils/deploys";
 
 const {
   C_ETH,
@@ -58,6 +59,7 @@ const {
   USDC,
   CHAINLINK_ETH,
   CHAINLINK_USDC,
+  CONTROLLER,
 } = DEPENDENCY;
 
 /**
@@ -109,6 +111,10 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
   //
 
   async function polyFillForDevelopment(): Promise<void> {
+
+    const [ owner ] = await getAccounts();
+    const deployHelper = new DeployHelper(owner.wallet);
+
     if (await findDependency(ETHFLI) === "") {
       await writeContractAndTransactionToOutputs(ETHFLI, await getRandomAddress(), EMPTY_BYTES, "Created Mock ETHFLI");
     }
@@ -118,7 +124,18 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
     }
 
     if (await findDependency(DEBT_ISSUANCE_MODULE) === "") {
-      await writeContractAndTransactionToOutputs(DEBT_ISSUANCE_MODULE, await getRandomAddress(), EMPTY_BYTES, "Created Mock DEBT_ISSUANCE_MODULE");
+      const controllerAddress = await getContractAddress(CONTROLLER);
+
+      const debtIssuanceModuleAddress = await deployHelper
+        .setV2
+        .deployDebtIssuanceModule(controllerAddress);
+
+      await writeContractAndTransactionToOutputs(
+        DEBT_ISSUANCE_MODULE,
+        debtIssuanceModuleAddress.address,
+        EMPTY_BYTES,
+        "Created Mock DebtIssuanceModule"
+      );
     }
 
     if (await findDependency(COMPOUND_COMPTROLLER) === "") {

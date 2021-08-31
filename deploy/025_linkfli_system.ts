@@ -7,6 +7,7 @@ import { defaultAbiCoder, solidityPack } from "ethers/lib/utils";
 import {
   ether,
   getRandomAddress,
+  getAccounts,
 } from "@utils/index";
 
 import {
@@ -22,7 +23,8 @@ import {
   stageAlreadyFinished,
   trackFinishedStage,
   EMPTY_BYTES,
-  DEPENDENCY
+  DEPENDENCY,
+  protectModule,
 } from "@deployments/utils";
 import {
   AaveContractSettings,
@@ -42,6 +44,7 @@ import {
   EXCHANGE_NAMES,
   EXCHANGE_SETTINGS
 } from "@deployments/constants/025_linkfli_system";
+import DeployHelper from "@deployments/utils/deploys";
 
 const {
   A_LINK,
@@ -57,6 +60,9 @@ const {
   CHAINLINK_USDC,
   AMM_SPLITTER,
   UNISWAP_V3_QUOTER,
+  STREAMING_FEE_MODULE,
+  DEBT_ISSUANCE_MODULE,
+  CONTROLLER,
 } = DEPENDENCY;
 
 const CURRENT_STAGE = getCurrentStage(__filename);
@@ -89,15 +95,42 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
   await deployRebalanceViewer();
 
   await addExtension(hre, CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.LEVERAGE_EXTENSION_NAME);
-  await addExtension(hre, CONTRACT_NAMES.BASE_MANAGER_NAME, CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
+
+  await protectModule(
+    hre,
+    CONTRACT_NAMES.BASE_MANAGER_NAME,
+    STREAMING_FEE_MODULE,
+    [ CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME ]
+  );
+
+  await protectModule(
+    hre,
+    CONTRACT_NAMES.BASE_MANAGER_NAME,
+    DEBT_ISSUANCE_MODULE,
+    [ CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME ]
+  );
+
 
   //
   // Helper Functions
   //
 
   async function polyFillForDevelopment(): Promise<void> {
+
+    const [ owner ] = await getAccounts();
+    const deployHelper = new DeployHelper(owner.wallet);
+
     if (await findDependency(LINKFLI) === "") {
-      await writeContractAndTransactionToOutputs(LINKFLI, await getRandomAddress(), EMPTY_BYTES, "Created Mock LINKFLI");
+
+      const { setToken } = await deployHelper.setToken.deployConfiguredSetToken(
+        "LINK2x Flexible Leverage Index",
+        "LINK2xFLI",
+        await getContractAddress(CONTROLLER),
+        await getContractAddress(STREAMING_FEE_MODULE),
+        await getContractAddress(DEBT_ISSUANCE_MODULE)
+      );
+
+      await writeContractAndTransactionToOutputs(LINKFLI, setToken, EMPTY_BYTES, "Created Mock LINKFLI SetToken");
     }
 
     if (await findDependency(CHAINLINK_LINK) === "") {

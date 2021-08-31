@@ -134,7 +134,8 @@ const func: DeployFunction = trackFinishedStage(CURRENT_STAGE, async function (h
         "DefiPulse Index",
         "DPI",
         await getContractAddress(CONTROLLER),
-        await getContractAddress(STREAMING_FEE_MODULE)
+        await getContractAddress(STREAMING_FEE_MODULE),
+        ""
       );
 
       await writeContractAndTransactionToOutputs(DPI, setToken, EMPTY_BYTES, "Created Mock DPI SetToken");

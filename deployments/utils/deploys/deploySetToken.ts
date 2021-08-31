@@ -6,9 +6,11 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { Address } from "../../../utils/types";
 import {
   Controller,
+  DebtIssuanceModule,
   StreamingFeeModule,
   SetTokenCreator,
   Controller__factory,
+  DebtIssuanceModule__factory,
   StreamingFeeModule__factory,
 } from "@set/typechain/index";
 
@@ -17,11 +19,13 @@ import DeploySetV2 from "./deploySetV2";
 import { ether, ProtocolUtils } from "@utils/common";
 
 import { getRandomAddress } from "@utils/index";
+import { ADDRESS_ZERO } from "..";
 
 export type ConfiguredSetTokenAddresses = {
   setToken: Address,
   controller: Address,
   streamingFeeModule: Address
+  debtIssuanceModule: Address
 };
 
 export default class DeploySetToken {
@@ -39,48 +43,73 @@ export default class DeploySetToken {
     _name: string,
     _symbol: string,
     _controller: Address,
-    _module: Address,
+    _streamingFeeModule: Address,
+    _debtIssuanceModule: Address
   ): Promise<ConfiguredSetTokenAddresses> {
     let controllerInstance: Controller;
-    let moduleInstance: StreamingFeeModule;
+    let streamingFeeModuleInstance: StreamingFeeModule;
+    let debtIssuanceModuleInstance: DebtIssuanceModule;
     let setTokenCreatorInstance: SetTokenCreator;
 
     controllerInstance = new Controller__factory(this._deployerSigner).attach(_controller);
-    moduleInstance = new StreamingFeeModule__factory(this._deployerSigner).attach(_module);
-
     setTokenCreatorInstance = await this._setV2.deploySetTokenCreator(controllerInstance.address);
 
-    await controllerInstance.initialize(
-      [setTokenCreatorInstance.address],  // Factories
-      [moduleInstance.address],           // Modules
-      [],                                 // Resources
-      []
-    );
+    if (!(await controllerInstance.isInitialized())) {
+      await controllerInstance.initialize([], [], [], []);
+    }
+
+    controllerInstance.addFactory(setTokenCreatorInstance.address);
+
+    const modules = [ _streamingFeeModule, _debtIssuanceModule ].filter(mod => { return mod !== ""; });
+
+    for (const module of modules) {
+      if (!(await controllerInstance.isModule(module))) {
+        await controllerInstance.addModule(module);
+      }
+    }
 
     const tx = await setTokenCreatorInstance.create(
       [await getRandomAddress()],
       [ether(1000000)],
-      [moduleInstance.address],
+      modules,
       await this._deployerSigner.getAddress(),
       _name,
       _symbol,
     );
 
     const setTokenAddress = await new ProtocolUtils(this._deployerSigner.provider as JsonRpcProvider)
-      .getCreatedSetTokenAddress(tx.hash);
+    .getCreatedSetTokenAddress(tx.hash);
 
-    const feeSettings = {
-      feeRecipient: await this._deployerSigner.getAddress(),
-      maxStreamingFeePercentage: ether(.1),
-      streamingFeePercentage: ether(.01),
-      lastStreamingFeeTimestamp: BigNumber.from(0),
-    };
+    if (_streamingFeeModule !== "") {
+      streamingFeeModuleInstance = new StreamingFeeModule__factory(this._deployerSigner).attach(_streamingFeeModule);
 
-    await moduleInstance.connect(this._deployerSigner).initialize(setTokenAddress, feeSettings);
+      const feeSettings = {
+        feeRecipient: await this._deployerSigner.getAddress(),
+        maxStreamingFeePercentage: ether(.1),
+        streamingFeePercentage: ether(.01),
+        lastStreamingFeeTimestamp: BigNumber.from(0),
+      };
+
+      await streamingFeeModuleInstance.connect(this._deployerSigner).initialize(setTokenAddress, feeSettings);
+    }
+
+    if (_debtIssuanceModule !== "") {
+      debtIssuanceModuleInstance = new DebtIssuanceModule__factory(this._deployerSigner).attach(_debtIssuanceModule);
+
+      await debtIssuanceModuleInstance.connect(this._deployerSigner).initialize(
+        setTokenAddress,
+        ether(0.1),
+        ether(0.01),
+        ether(0.01),
+        await getRandomAddress(),
+        ADDRESS_ZERO
+      );
+    }
 
     return {
       setToken: setTokenAddress,
-      streamingFeeModule: moduleInstance.address,
+      streamingFeeModule: _streamingFeeModule,
+      debtIssuanceModule: _debtIssuanceModule,
       controller: controllerInstance.address,
     };
   }

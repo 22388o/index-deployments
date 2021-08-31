@@ -6,6 +6,7 @@ import { Address } from "../../../utils/types";
 import {
   Controller,
   BasicIssuanceModule,
+  DebtIssuanceModule,
   StreamingFeeModule,
   SetToken,
   SetTokenCreator,
@@ -14,6 +15,7 @@ import {
   WETH9,
   Controller__factory,
   BasicIssuanceModule__factory,
+  DebtIssuanceModule__factory,
   SingleIndexModule__factory,
   StreamingFeeModule__factory,
   SetToken__factory,
@@ -61,6 +63,10 @@ export default class DeploySetV2 {
 
   public async deployBasicIssuanceModule(controller: Address): Promise<BasicIssuanceModule> {
     return await new BasicIssuanceModule__factory(this._deployerSigner).deploy(controller);
+  }
+
+  public async deployDebtIssuanceModule(controller: Address): Promise<DebtIssuanceModule> {
+    return await new DebtIssuanceModule__factory(this._deployerSigner).deploy(controller);
   }
 
   public async deployStreamingFeeModule(controller: Address): Promise<StreamingFeeModule> {

@@ -6,7 +6,9 @@ import {
   BaseManager,
   BaseManager__factory,
   BaseManagerV2,
-  BaseManagerV2__factory
+  BaseManagerV2__factory,
+  SetToken,
+  SetToken__factory,
 } from "@set/typechain/index";
 
 import { Signer } from "ethers";
@@ -30,5 +32,9 @@ export class InstanceGetter {
 
   public async getExtension(extension: Address): Promise<BaseExtension> {
     return await BaseExtension__factory.connect(extension, this._deployerSigner);
+  }
+
+  public async getSetToken(setToken: Address): Promise<SetToken> {
+    return await SetToken__factory.connect(setToken, this._deployerSigner);
   }
 }
