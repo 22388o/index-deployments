@@ -56,7 +56,7 @@ describe("LINKFLI System", () => {
 
   let baseManagerInstance: BaseManagerV2;
   let leverageStrategyExtensionInstance: AaveLeverageStrategyExtension;
-  let feeSplitAdapterInstance: FeeSplitExtension;
+  let feeSplitExtensionInstance: FeeSplitExtension;
   let supplyCapInstance: SupplyCapAllowedCallerIssuanceHook;
   let rebalanceViewer: FLIRebalanceViewer;
 
@@ -74,8 +74,8 @@ describe("LINKFLI System", () => {
     leverageStrategyExtensionInstance =
       new AaveLeverageStrategyExtension__factory(deployer.wallet).attach(deployedLeverageStrategyExtensionContract);
 
-    const deployedFeeSplitAdapterContract = await getContractAddress(CONTRACT_NAMES.FEE_SPLIT_ADAPTER_NAME);
-    feeSplitAdapterInstance = new FeeSplitExtension__factory(deployer.wallet).attach(deployedFeeSplitAdapterContract);
+    const deployedFeeSplitExtensionContract = await getContractAddress(CONTRACT_NAMES.FEE_SPLIT_EXTENSION_NAME);
+    feeSplitExtensionInstance = new FeeSplitExtension__factory(deployer.wallet).attach(deployedFeeSplitExtensionContract);
 
     const deployedSupplyCapAllowedCallerIssuanceHookContract = await getContractAddress(CONTRACT_NAMES.SUPPLY_CAP_ISSUANCE_HOOK_NAME);
     supplyCapInstance = new SupplyCapAllowedCallerIssuanceHook__factory(deployer.wallet).attach(deployedSupplyCapAllowedCallerIssuanceHookContract);
@@ -102,10 +102,10 @@ describe("LINKFLI System", () => {
       expect(methodologist).to.eq(deployer.address);
     });
 
-    it("should have the correct adapters", async () => {
-      const adapters = await baseManagerInstance.getExtensions();
-      expect(adapters[0]).to.eq(leverageStrategyExtensionInstance.address);
-      expect(adapters[1]).to.eq(feeSplitAdapterInstance.address);
+    it("should have the correct extensions", async () => {
+      const extensions = await baseManagerInstance.getExtensions();
+      expect(extensions[0]).to.eq(leverageStrategyExtensionInstance.address);
+      expect(extensions[1]).to.eq(feeSplitExtensionInstance.address);
     });
   });
 
@@ -204,13 +204,13 @@ describe("LINKFLI System", () => {
     });
   });
 
-  describe("FeeSplitAdapter", async () => {
+  describe("FeeSplitExtension", async () => {
     it("should set the correct addresses", async () => {
-      const manager = await feeSplitAdapterInstance.manager();
-      const streamingFeeModule = await feeSplitAdapterInstance.streamingFeeModule();
-      const issuanceModule = await feeSplitAdapterInstance.issuanceModule();
-      const operatorFeeSplit = await feeSplitAdapterInstance.operatorFeeSplit();
-      const operatorFeeRecipient = await feeSplitAdapterInstance.operatorFeeRecipient();
+      const manager = await feeSplitExtensionInstance.manager();
+      const streamingFeeModule = await feeSplitExtensionInstance.streamingFeeModule();
+      const issuanceModule = await feeSplitExtensionInstance.issuanceModule();
+      const operatorFeeSplit = await feeSplitExtensionInstance.operatorFeeSplit();
+      const operatorFeeRecipient = await feeSplitExtensionInstance.operatorFeeRecipient();
 
       expect(manager).to.eq(baseManagerInstance.address);
       expect(streamingFeeModule).to.eq(await findDependency(STREAMING_FEE_MODULE));

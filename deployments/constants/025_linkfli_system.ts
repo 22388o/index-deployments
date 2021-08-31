@@ -8,8 +8,8 @@ export const CONTRACT_NAMES = {
   STANDARD_TOKEN_MOCK: "StandardTokenMock",
   LEVERAGE_EXTENSION: "AaveLeverageStrategyExtension",
   LEVERAGE_EXTENSION_NAME: "LINKAaveLeverageStrategyExtension",
-  FEE_SPLIT_ADAPTER: "FeeSplitExtension",
-  FEE_SPLIT_ADAPTER_NAME: "LINKFLIFeeSplitAdapter",
+  FEE_SPLIT_EXTENSION: "FeeSplitExtension",
+  FEE_SPLIT_EXTENSION_NAME: "LINKFLIFeeSplitExtension",
   SUPPLY_CAP_ISSUANCE_HOOK: "SupplyCapAllowedCallerIssuanceHook",
   SUPPLY_CAP_ISSUANCE_HOOK_NAME: "LINKFLISupplyCapAllowedCallerIssuanceHook",
   UNISWAP_V3_EXCHANGE_ADAPTER: "UniswapV3ExchangeAdapter",
@@ -24,7 +24,7 @@ export const CONTRACT_SETTINGS = {
   BORROW_DECIMAL_ADJUSTMENT: BigNumber.from(22),          // Decimal adjustment for chainlink. Equal to 28-decimals (10^18 * 10^18 / 10^dec / 10^8)
 };
 
-export const FEE_SPLIT_ADAPTER = {
+export const FEE_SPLIT_EXTENSION = {
   FEE_SPLIT: ether(.6),                                   // 60% operator, 40% methodologist fee split
 };
 
