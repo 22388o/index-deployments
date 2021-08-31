@@ -37,7 +37,7 @@ export default {
   },
   LINK: {
     1: "0x514910771af9ca656af840dff83e8264ecf986ca",
-    42: "	0xAD5ce863aE3E4E9394Ab43d4ba0D80f419F61789",
+    42: "0xAD5ce863aE3E4E9394Ab43d4ba0D80f419F61789",
   },
   ETHFLI: {
     1: {
@@ -219,9 +219,9 @@ export default {
   CHAINLINK_LINK: {
     1: {
       production: "0x2c1d072e956AFFC0D435Cb7AC38EF18d24d9127c",
-      staging: "",
+      // This oracle is manipulatable, it is not reading from an actual data source
+      staging: "0x3CA5C941c09473A6c27103fcBc6f3e26974F2aC2",
     },
-    // This oracle is manipulatable, it is not reading from an actual data source
     42: "0x396c5E36DD0a0F5a5D33dae44368D4193f69a1F0",
   },
 
