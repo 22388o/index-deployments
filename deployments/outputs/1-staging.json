@@ -3,7 +3,7 @@
     "network_key": "1-staging",
     "human_friendly_name": "main-net-staging",
     "network_id": 1,
-    "last_deployment_stage": 23
+    "last_deployment_stage": 26
   },
   "addresses": {
     "IndexToken": "0xd46ac82b7ebB77CCB5D4eaF053710aaf6567deF3",
@@ -69,7 +69,12 @@
     "GIMExtension - BED - DEPRECATED": "0xE8fE7424350a7e213ed828FD3ca57719588f6BAe",
     "StreamingFeeSplitExtension - BED": "0x16C2143ebbE391403CFe755CC968184244B810C2",
     "GIMExtension - MVI": "0x922C1b60da557685eb78DEA242C532aEA3114AC7",
-    "GIMExtension - BED": "0x45CdA54CB65AC735DA65df5e8A67CC040325E466"
+    "GIMExtension - BED": "0x45CdA54CB65AC735DA65df5e8A67CC040325E466",
+    "LINKFLISupplyCapAllowedCallerIssuanceHook": "0xE179ecBB8C4D57f5AEA9a4dFF87AEB09a94fa7b1",
+    "LINKFLIBaseManager": "0xE123A3dCe1b8Ca8177eD304f406BD6533230ED9D",
+    "LINKAaveLeverageStrategyExtension": "0x8aDf17A79FA0a7e5953B4814Ff3AA8F364cBD351",
+    "LINKFLIFeeSplitExtension": "0x3A6a514C8766D06685DBa337030bac7087920D3A",
+    "LINKFLIRebalanceViewer": "0x2b6472bAf9cc9948CdfDfB1184BbF1A0333d0321"
   },
   "transactions": {
     "0": {
@@ -1529,6 +1534,209 @@
       "data": "0x60d54d4100000000000000000000000045cda54cb65ac735da65df5e8a67cc040325e466",
       "description": "Add GIMExtension - BED on BaseManager - BED",
       "contractName": "BaseManager - BED"
+    },
+    "98": {
+      "id": "0xa3a2ade54567d8ceeef5061270bdd21682a4da747a2a9e4315eb21abc9407ca4",
+      "name": "LINKFLISupplyCapAllowedCallerIssuanceHook",
+      "timestamp": 1630447137766,
+      "verified": true,
+      "description": "Deployed LINKLFLISupplyCapAllowedCallerIssuanceHook",
+      "contractAddress": "0xE179ecBB8C4D57f5AEA9a4dFF87AEB09a94fa7b1",
+      "constructorArgs": [
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
+        {
+          "type": "BigNumber",
+          "hex": "0x2a5a058fc295ed000000"
+        }
+      ],
+      "libraries": {}
+    },
+    "99": {
+      "id": "0x8f88b4fd5cb6fc41dfd91f89c63e8d952534f7694391fd50b91b17d1d1b97a6f",
+      "name": "LINKFLIBaseManager",
+      "timestamp": 1630447143409,
+      "verified": false,
+      "description": "Deployed LINKFLIBaseManager",
+      "contractAddress": "0xE123A3dCe1b8Ca8177eD304f406BD6533230ED9D",
+      "constructorArgs": [
+        "0x1e84eb493a57bb73ed5b05ab61bb9b1f45726b58",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3",
+        "0x69Bdb276A17Dd90F9D3A545944CCB20E593ae8E3"
+      ],
+      "libraries": {}
+    },
+    "100": {
+      "id": "0x968927c0f220d6e0322f59daccd5b9cb3b2cc980798bf42be559faffe2a180df",
+      "name": "LINKAaveLeverageStrategyExtension",
+      "timestamp": 1630447213609,
+      "verified": true,
+      "description": "Deployed LINK AaveLeverageStrategyExtension",
+      "contractAddress": "0x8aDf17A79FA0a7e5953B4814Ff3AA8F364cBD351",
+      "constructorArgs": [
+        "0xE123A3dCe1b8Ca8177eD304f406BD6533230ED9D",
+        {
+          "aaveProtocolDataProvider": "0x057835Ad21a177dbdd3090bB1CAE03EaCF78Fc6d",
+          "setToken": "0x1e84eb493a57bb73ed5b05ab61bb9b1f45726b58",
+          "leverageModule": "0x5d2B710787078B45CD7582C0423AC2fC180262e8",
+          "targetCollateralAToken": "0xa06bC25B5805d5F8d82847D191Cb4Af5A3e873E0",
+          "targetBorrowDebtToken": "0x619beb58998eD2278e08620f97007e1116D5D25b",
+          "collateralAsset": "0x514910771af9ca656af840dff83e8264ecf986ca",
+          "borrowAsset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "collateralPriceOracle": "0x3CA5C941c09473A6c27103fcBc6f3e26974F2aC2",
+          "borrowPriceOracle": "0xd8eea1b2677b4a0d3d0de325cbec2272efea9f3a",
+          "collateralDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x0a"
+          },
+          "borrowDecimalAdjustment": {
+            "type": "BigNumber",
+            "hex": "0x16"
+          }
+        },
+        {
+          "targetLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1bc16d674ec80000"
+          },
+          "minLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x18fae27693b40000"
+          },
+          "maxLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x1e87f85809dc0000"
+          },
+          "recenteringSpeed": {
+            "type": "BigNumber",
+            "hex": "0x016345785d8a0000"
+          },
+          "rebalanceInterval": {
+            "type": "BigNumber",
+            "hex": "0x015180"
+          }
+        },
+        {
+          "unutilizedLeveragePercentage": {
+            "type": "BigNumber",
+            "hex": "0x2386f26fc10000"
+          },
+          "twapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x1e"
+          },
+          "slippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0x470de4df820000"
+          }
+        },
+        {
+          "incentivizedTwapCooldownPeriod": {
+            "type": "BigNumber",
+            "hex": "0x01"
+          },
+          "incentivizedSlippageTolerance": {
+            "type": "BigNumber",
+            "hex": "0xb1a2bc2ec50000"
+          },
+          "etherReward": {
+            "type": "BigNumber",
+            "hex": "0x14d1120d7b160000"
+          },
+          "incentivizedLeverageRatio": {
+            "type": "BigNumber",
+            "hex": "0x214e8348c4f00000"
+          }
+        },
+        [
+          "AMMSplitterExchangeAdapter",
+          "UniswapV3ExchangeAdapter"
+        ],
+        [
+          {
+            "twapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x3635c9adc5dea00000"
+            },
+            "incentivizedTwapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x6c6b935b8bbd400000"
+            },
+            "exchangeLastTradeTimestamp": {
+              "type": "BigNumber",
+              "hex": "0x00"
+            },
+            "leverExchangeData": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000514910771af9ca656af840dff83e8264ecf986ca",
+            "deleverExchangeData": "0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000003000000000000000000000000514910771af9ca656af840dff83e8264ecf986ca000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          },
+          {
+            "twapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x010f0cf064dd59200000"
+            },
+            "incentivizedTwapMaxTradeSize": {
+              "type": "BigNumber",
+              "hex": "0x021e19e0c9bab2400000"
+            },
+            "exchangeLastTradeTimestamp": {
+              "type": "BigNumber",
+              "hex": "0x00"
+            },
+            "leverExchangeData": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000bb8c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000bb8514910771af9ca656af840dff83e8264ecf986ca",
+            "deleverExchangeData": "0x514910771af9ca656af840dff83e8264ecf986ca000bb8c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000bb8a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          }
+        ]
+      ],
+      "libraries": {}
+    },
+    "101": {
+      "id": "0x9a53855dce80452cae71f05212244afcf8ad90475c5b5fee7c7821395adeabd8",
+      "name": "LINKFLIFeeSplitExtension",
+      "timestamp": 1630448016961,
+      "verified": true,
+      "description": "Deployed LINKFLIFeeSplitExtension",
+      "contractAddress": "0x3A6a514C8766D06685DBa337030bac7087920D3A",
+      "constructorArgs": [
+        "0xE123A3dCe1b8Ca8177eD304f406BD6533230ED9D",
+        "0x3D8d14b7eFb8e342189ee14c3d40dCe005EB901B",
+        "0x338BEf3f37794dd199d6910E6109125D3eCa6048",
+        {
+          "type": "BigNumber",
+          "hex": "0x0853a0d2313c0000"
+        },
+        "0xFafd604d1CC8b6B3B6CC859cF80Fd902972371C1"
+      ],
+      "libraries": {}
+    },
+    "102": {
+      "id": "0x38c1aef05918895b1e59ef265f978e7b61e38888701bdc474a531acab06a9935",
+      "name": "LINKFLIRebalanceViewer",
+      "timestamp": 1630449206301,
+      "verified": true,
+      "description": "Deployed LINKFLIRebalanceViewer",
+      "contractAddress": "0x2b6472bAf9cc9948CdfDfB1184BbF1A0333d0321",
+      "constructorArgs": [
+        "0x8aDf17A79FA0a7e5953B4814Ff3AA8F364cBD351",
+        "0xb27308f9F90D607463bb33eA1BeBb41C27CE5AB6",
+        "0x54AB93d8B64A2f111a37857BD28d94024EBbF332",
+        "UniswapV3ExchangeAdapter",
+        "AMMSplitterExchangeAdapter"
+      ],
+      "libraries": {}
+    },
+    "103": {
+      "id": "0xef0a5e58d4b27b629414a2b8e5f9e239820b32e52e1367417f3fd06147c53ae4",
+      "timestamp": 1630449220188,
+      "description": "Add LINKAaveLeverageStrategyExtension on LINKFLIBaseManager"
+    },
+    "104": {
+      "id": "0xfe96e23719c9c0a9cceba50722ac82572c40fa5b0e288b30a3fbbfebaa8f8fff",
+      "timestamp": 1630450228411,
+      "description": "Protecting module STREAMING_FEE_MODULE on LINKFLIBaseManager"
+    },
+    "105": {
+      "id": "0xafa653366a86edfbea4557f2d0dbd2738aea5c92c2f905c1d1517ae7b513c9da",
+      "timestamp": 1630450252234,
+      "description": "Protecting module DEBT_ISSUANCE_MODULE on LINKFLIBaseManager"
     }
   }
 }

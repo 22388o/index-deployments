@@ -56,7 +56,7 @@ export default {
   LINKFLI: {
     1: {
       production: "",
-      staging: "",
+      staging: "0x1e84eb493a57bb73ed5b05ab61bb9b1f45726b58",
     },
     42: "",
   },
@@ -105,7 +105,7 @@ export default {
   AAVE_LEVERAGE_MODULE: {
     1: {
       production: "",
-      staging: "",
+      staging: "0x5d2B710787078B45CD7582C0423AC2fC180262e8",
     },
     42: "",
   },

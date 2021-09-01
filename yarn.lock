@@ -633,10 +633,10 @@
     "@sentry/types" "5.29.2"
     tslib "^1.9.3"
 
-"@setprotocol/index-coop-contracts@^0.0.27":
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/@setprotocol/index-coop-contracts/-/index-coop-contracts-0.0.27.tgz#5f8881a1b334456b04c0ffea14de153e018f6d5d"
-  integrity sha512-qvea2K79BVuGoFnw/2fnOAe1wfq2oxXrHpB5Pw9pnaJpXl68IsBnkY965KmYjU0oAbQLHJOmzj+jkIjeRE/fyg==
+"@setprotocol/index-coop-contracts@^0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@setprotocol/index-coop-contracts/-/index-coop-contracts-0.0.28.tgz#ed1e9535358a683549f481cea5c743efe1281b7e"
+  integrity sha512-HG4kdPZsgLzDeXyEXE+O9XrsHKAQ6pSzaJqTzAAJA3Bac1LR1MzRP1cUrsjU5MeXSEw77FTXqJoqz3+wtf9RSA==
   dependencies:
     "@ethersproject/abstract-signer" "5.0.9"
     "@ethersproject/bignumber" "5.0.12"
